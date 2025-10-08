@@ -1,0 +1,348 @@
+{
+  "lastUpdated": "2025-01-10",
+  "tabs": {
+    "food": {
+      "categories": {
+        "savory": {
+          "name": "Savory",
+          "id": "savory",
+          "items": [
+            {
+              "name": "SHAKSHUKA (V) (GFA)",
+              "price": "20",
+              "description": "2 sunny side up eggs, tomato sauce, red onion, serrano, red bell, cilantro, labne, Mother Loaf sourdough"
+            },
+            {
+              "name": "BENEDICT (GFA)",
+              "price": "20",
+              "description": "2 poached eggs, Canadian bacon, spicy hollandaise, arugula, English muffin"
+            },
+            {
+              "name": "SOFT SCRAMBLE (V)",
+              "price": "12",
+              "description": "3 eggs, Mother Loaf white pullman"
+            },
+            {
+              "name": "SOFT SCRAMBLE (V) (GF)",
+              "price": "13",
+              "description": "3 eggs, gluten free bread"
+            },
+            {
+              "name": "STEAK & EGGS (GF)",
+              "price": "29",
+              "description": "8oz filet of beef, 3 scrambled eggs, chimi churri, herbs"
+            }
+          ]
+        },
+        "sweet": {
+          "name": "Sweet",
+          "id": "sweet",
+          "items": [
+            {
+              "name": "FRENCH TOAST (V)",
+              "price": "16",
+              "description": "House made berry compote, whipped cream, maple syrup, Mother Loaf white pullman"
+            },
+            {
+              "name": "HOUSE-MADE GREEK YOGURT (V) (GF)",
+              "price": "15",
+              "description": "Granola, fresh berries, local honey, pollen, bee propolis from Detroit Hives"
+            }
+          ]
+        },
+        "bowls": {
+          "name": "Bowls",
+          "id": "bowls",
+          "items": [
+            {
+              "name": "HARVEST BOWL (V) (GF)",
+              "price": "20",
+              "description": "Quinoa, roasted chicken, baby greens, balsamic pickled beet, pickled red onion, fresh tomato, gorgonzola, lemon vin"
+            },
+            {
+              "name": "© BOWL (V) (CSO)",
+              "price": "13",
+              "description": "Jasmine rice, furikake, egg, cucumber, pickled ginger, sesame, scallion, avocado, spicy mayo"
+            },
+            {
+              "name": "© BOWL +PROTEIN ADD ON (V) (CSO)",
+              "price": "7",
+              "description": "Smoked salmon, marinated chicken thigh, crispy pork belly"
+            }
+          ]
+        },
+        "sandwich": {
+          "name": "Sandwich",
+          "id": "sandwich",
+          "items": [
+            {
+              "name": "B.E.L.T (GFA)",
+              "price": "15",
+              "description": "Bacon, sunny side up egg, arugula, mayo, tomato, Mother Loaf white pullman"
+            },
+            {
+              "name": "TURKEY CLUB (GFA)",
+              "price": "17",
+              "description": "Turkey breast, bacon, avocado, arugula, tomato, Mother Loaf white pullman"
+            },
+            {
+              "name": "GRILLED HAM & BRIE (GFA)",
+              "price": "16",
+              "description": "Ham, brie, avocado, arugula, tomato, Mother Loaf white pullman"
+            }
+          ]
+        },
+        "simple": {
+          "name": "Simple",
+          "id": "simple",
+          "items": [
+            {
+              "name": "Avocado Toast (V) (GFA)",
+              "price": "8/13",
+              "description": "Smashed avocado, EVOO, chili flake, herb, lemon, pink salt, Mother Loaf white pullman"
+            },
+            {
+              "name": "Avocado Toast (V) (GFA) ADD ON",
+              "price": "4",
+              "description": "Egg, smoked salmon, bacon"
+            },
+            {
+              "name": "Baguette + Butter (V)",
+              "price": "7",
+              "description": "Mother Loaf baguette, Zingerman's creamery sweet butter"
+            },
+            {
+              "name": "FRESH FRUIT (V) (GF)",
+              "price": "9"
+            },
+            {
+              "name": "OATMEAL (V) (CSO)",
+              "price": "9",
+              "description": "Fresh berries, maple syrup, brown sugar"
+            },
+            {
+              "name": "3 EGGS (V) (GF)",
+              "price": "5"
+            },
+            {
+              "name": "2 EGGS (V) (GF)",
+              "price": "4"
+            },
+            {
+              "name": "CANADIAN BACON (GF)",
+              "price": "5"
+            },
+            {
+              "name": "PORK BACON (GF)",
+              "price": "5"
+            }
+          ]
+        },
+        "greens": {
+          "name": "Greens",
+          "id": "greens",
+          "items": [
+            {
+              "name": "CAESAR SALAD (GFA)",
+              "price": "12",
+              "description": "Romaine, parmesan, Mother Loaf sourdough crouton, cherry tomatoes, lemon, white anchovy"
+            },
+            {
+              "name": "HOUSE SALAD (V) (GF)",
+              "price": "12",
+              "description": "Seasonal greens, roasted tomato, pickled onion, shaved carrot, sunflower seed, lemon vin"
+            }
+          ]
+        },
+        "sides": {
+          "name": "Sides",
+          "id": "sides",
+          "items": [
+            {
+              "name": "ADD-ON (V)",
+              "price": "2",
+              "description": "Add a side salad or cup of soup to any item"
+            },
+            {
+              "name": "CUP SOUP",
+              "price": "7"
+            },
+            {
+              "name": "BOWL SOUP",
+              "price": "9"
+            }
+          ]
+        }
+      }
+    },
+    "drinks": {
+      "categories": {
+        "monthlyFeatures": {
+          "name": "Monthly Features",
+          "id": "monthly-features",
+          "items": [
+            {
+              "name": "COLD BREW",
+              "price": "4.5",
+              "description": "Ice, simple"
+            },
+            {
+              "name": "ICED MAPLE LATTE",
+              "price": "6.5",
+              "description": "Ice, whole milk, maple"
+            },
+            {
+              "name": "ICED © LATTE",
+              "price": "6.5",
+              "description": "Ice, condensed milk, whole milk"
+            }
+          ]
+        },
+        "dripCoffee": {
+          "name": "Drip Coffee",
+          "id": "drip-coffee",
+          "items": [
+            {
+              "name": "SINGLE ORIGIN POUR OVER",
+              "price": "5.5"
+            },
+            {
+              "name": "HOUSE DRIP",
+              "price": "3.5"
+            },
+            {
+              "name": "ICED COFFEE",
+              "price": "4.0"
+            }
+          ]
+        },
+        "espresso": {
+          "name": "Espresso Drinks",
+          "id": "espresso-drinks",
+          "items": [
+            {
+              "name": "SINGLE ORIGIN ESPRESSO",
+              "price": "4.0"
+            },
+            {
+              "name": "CEREMONIAL GRADE MATCHA",
+              "price": "6.0"
+            },
+            {
+              "name": "AMERICANO",
+              "price": "4.0"
+            },
+            {
+              "name": "MACCHIATO",
+              "price": "4.5"
+            },
+            {
+              "name": "Cortado",
+              "price": "4.8"
+            },
+            {
+              "name": "Cappuccino",
+              "price": "5.0"
+            },
+            {
+              "name": "Latte",
+              "price": "5.5"
+            },
+            {
+              "name": "© Latte",
+              "price": "6.5"
+            },
+            {
+              "name": "Maple Latte",
+              "price": "6.5"
+            },
+            {
+              "name": "MOCHA",
+              "price": "6.5"
+            },
+            {
+              "name": "WITH OAT MILK (CONTAINS SEED OIL)",
+              "price": "1"
+            },
+            {
+              "name": "WITH ALMOND MILK",
+              "price": "1"
+            },
+            {
+              "name": "WITH SINGLE ORIGIN ESPRESSO",
+              "price": "1"
+            },
+            {
+              "name": "WITH CEREMONIAL GRADE MATCHA",
+              "price": "3"
+            }
+          ]
+        },
+        "teaAndMore": {
+          "name": "Tea & More",
+          "id": "tea-more",
+          "items": [
+            {
+              "name": "Chai Latte",
+              "price": "5.5"
+            },
+            {
+              "name": "Sweet Matcha Latte",
+              "price": "7.0"
+            },
+            {
+              "name": "CEREMONIAL GRADE MATCHA LATTE",
+              "price": "8.5"
+            },
+            {
+              "name": "HOT CHOCOLATE",
+              "price": "5.5"
+            },
+            {
+              "name": "Teas",
+              "price": "5.0",
+              "description": "ANCIENT GOLDEN YUNNAN, EARL GREY, GREEN BANCHA, TROPICAL COCONUT, PEACH BLOSSOM, RASPBERRY GREEN, GINGER LIME, TURMERIC GINGER, HIBISCUS BERRY, MYSTIC MINT, CHAMOMILE, CINNAMON PLUM"
+            }
+          ]
+        }
+      }
+    },
+    "features": {
+      "name": "Late Summer '25",
+      "items": [
+        {
+          "name": "Vegetarian Black Bean Chili (V) (GFA)",
+          "price": "7/9",
+          "description": "Pinconning cheddar, cilantro sour cream, scallion, Mother Loaf sourdough"
+        },
+        {
+          "name": "Green Coconut Curry Tofu Bowl (VG) (GF)",
+          "price": "22",
+          "description": "Jasmine rice, fried tofu, red onion, shiitake mushroom, summer squash, zucchini, cashew, scallion, sesame"
+        },
+        {
+          "name": "7oz Ribeye Sandwich",
+          "price": "29",
+          "description": "Arugula, béarnaise sauce, Mother Loaf baguette, served with a cup of vegetarian black bean chili"
+        },
+        {
+          "name": "Ahi tuna salad",
+          "price": "28",
+          "description": "6oz blackened Ahi tuna, fried wontons, Nappa cabbage, bok choy, red onion, carrot, cilantro lime dressing, chili oil"
+        },
+        {
+          "name": "Strawberry Matcha French Toast (V)",
+          "price": "20",
+          "description": "House-made strawberry syrup, matcha buttercream frosting"
+        }
+      ]
+    }
+  },
+  "dietaryKey": {
+    "VG": "Vegan",
+    "V": "Vegetarian",
+    "GF": "Gluten Free",
+    "GFA": "Gluten Free Available",
+    "CSO": "Contains Seed Oil"
+  }
+}

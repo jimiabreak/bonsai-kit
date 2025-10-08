@@ -1,0 +1,19 @@
+{
+  "address": {
+    "street": "123 Coffee Street",
+    "city": "Your City",
+    "state": "ST",
+    "zip": "12345"
+  },
+  "phone": "(123) 456-7890",
+  "email": "hello@commonwealthcoffee.com",
+  "hours": {
+    "Monday": "7:00 AM - 6:00 PM",
+    "Tuesday": "7:00 AM - 6:00 PM",
+    "Wednesday": "7:00 AM - 6:00 PM",
+    "Thursday": "7:00 AM - 6:00 PM",
+    "Friday": "7:00 AM - 6:00 PM",
+    "Saturday": "8:00 AM - 5:00 PM",
+    "Sunday": "8:00 AM - 5:00 PM"
+  }
+}

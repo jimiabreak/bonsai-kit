@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Brand colors from CLAUDE.md */
+  --color-cream: #F8F4E6;
+  --color-dark: #2C2C2C;
+
+  /* CSS variable colors */
+  --background: #F8F4E6;
+  --foreground: #2C2C2C;
+
+  /* Font families */
+  --font-sans: 'Inria Sans';
+  --font-serif: 'Inria Serif';
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-inria-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  /* Respect user motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* Focus visible for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-dark);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Minimum touch targets for accessibility */
+  .touch-target {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+@layer components {
+  /* Typography Styles from Figma */
+
+  /* Page Typography */
+  .text-body {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 2.813rem; /* 45px */
+    font-weight: 400;
+    line-height: 3.125rem; /* 50px */
+    letter-spacing: -0.04em;
+  }
+
+  .text-title {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 2.813rem; /* 45px */
+    font-weight: 700;
+    line-height: 3.125rem; /* 50px */
+    letter-spacing: -0.04em;
+  }
+
+  .text-sub-footer {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 0.938rem; /* 15px */
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  /* Menu Typography */
+  .menu-large-link {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 5.063rem; /* 81.01px */
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    text-underline-position: from-font;
+  }
+
+  .menu-section-title {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 3.125rem; /* 50px */
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.06em;
+  }
+
+  .menu-section-subtitle {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 1.875rem; /* 30px */
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .menu-item-title {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 1.875rem; /* 30px */
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .menu-item-description {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 1.063rem; /* 17px */
+    font-weight: 400;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+  }
+
+  /* Subscription Card Typography */
+  .text-subscription-title {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 1.563rem; /* 25px */
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.02em;
+  }
+
+  .text-subscription-body {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 1.563rem; /* 25px */
+    font-weight: 400;
+    line-height: 1.938rem; /* 31px */
+  }
+
+  .text-subscription-detail {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 0.625rem; /* 10px */
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.02em;
+  }
+
+  .text-subscription-price {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 1.75rem; /* 28px */
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.02em;
+  }
+
+  .text-subscription-frequency {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 1.563rem; /* 25px */
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.02em;
+  }
+
+  .text-subscription-label {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 1.25rem; /* 20px */
+    font-weight: 400;
+    line-height: 1.938rem; /* 31px */
+  }
+
+  .text-subscription-italic {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 1.375rem; /* 22px */
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.563rem; /* 25px */
+  }
+
+  .text-subscription-include {
+    font-family: var(--font-inria-sans), sans-serif;
+    font-size: 1.563rem; /* 25px */
+    font-weight: 700;
+    line-height: 2.563rem; /* 41px */
+  }
+}
