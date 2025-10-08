@@ -31,8 +31,8 @@ export default function GiftCardsPage() {
 
             {/* Text Content */}
             <div className="text-brand-blue">
-              <h1 className="font-serif text-[64px] leading-[1.1] tracking-[-0.02em] mb-8">
-                Gift Cards
+              <h1 className="text-title mb-8">
+                GIFT CARDS
               </h1>
               <p className="text-[24px] leading-[1.5] tracking-[-0.01em]">
                 Send a physical Commonwealth gift card directly to your special someone. Fill out your gift card recipient&apos;s shipping address below and we will make sure it gets to them. *Spend $100, and upgrade to an exclusive Commonwealth gift card box.
@@ -41,16 +41,14 @@ export default function GiftCardsPage() {
           </div>
 
           {/* Jotform Embed */}
-          <div className="w-full">
-            <div id="jotform-container" className="bg-white rounded-sm p-4 md:p-8">
-              <Script
-                src="https://form.jotform.com/jsform/231805714126148"
-                strategy="afterInteractive"
-                onLoad={() => {
-                  console.log('Jotform loaded successfully');
-                }}
-              />
-            </div>
+          <div className="w-full mb-20">
+            <Script
+              src="https://form.jotform.com/jsform/231805714126148"
+              strategy="afterInteractive"
+              onLoad={() => {
+                console.log('Jotform loaded successfully');
+              }}
+            />
           </div>
         </div>
       </main>
