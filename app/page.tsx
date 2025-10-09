@@ -64,6 +64,9 @@ export default function Home() {
             <a href="/contact" className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap">
               Contact
             </a>
+            <a href="/subscription" className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap">
+              Subscriptions
+            </a>
             <a href="/gift-cards" className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap">
               Gift Cards
             </a>
