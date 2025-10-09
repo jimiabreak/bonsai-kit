@@ -22,6 +22,12 @@ export default function Footer() {
             Contact
           </Link>
           <Link
+            href="/subscription"
+            className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap"
+          >
+            Subscriptions
+          </Link>
+          <Link
             href="/gift-cards"
             className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap"
           >
