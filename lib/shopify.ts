@@ -212,7 +212,13 @@ export async function createCheckout(
     }
   `;
 
-  const lineItem: any = {
+  interface CartLineItem {
+    merchandiseId: string;
+    quantity: number;
+    sellingPlanId?: string;
+  }
+
+  const lineItem: CartLineItem = {
     merchandiseId: variantId,
     quantity,
   };
