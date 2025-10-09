@@ -102,6 +102,16 @@ export interface ShopifyVariant {
     key: string;
     value: string;
   }>;
+  sellingPlanAllocations?: {
+    edges: Array<{
+      node: {
+        sellingPlan: {
+          id: string;
+          name: string;
+        };
+      };
+    }>;
+  };
 }
 
 interface ProductsResponse {
@@ -138,6 +148,16 @@ export async function fetchSubscriptionProducts(): Promise<ShopifyProduct[]> {
                     currencyCode
                   }
                   availableForSale
+                  sellingPlanAllocations(first: 1) {
+                    edges {
+                      node {
+                        sellingPlan {
+                          id
+                          name
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -174,7 +194,8 @@ interface CartCreateResponse {
 
 export async function createCheckout(
   variantId: string,
-  quantity: number = 1
+  quantity: number = 1,
+  sellingPlanId?: string
 ): Promise<string> {
   const query = `
     mutation CartCreate($input: CartInput!) {
@@ -191,14 +212,19 @@ export async function createCheckout(
     }
   `;
 
+  const lineItem: any = {
+    merchandiseId: variantId,
+    quantity,
+  };
+
+  // Add selling plan if provided (for subscriptions)
+  if (sellingPlanId) {
+    lineItem.sellingPlanId = sellingPlanId;
+  }
+
   const variables = {
     input: {
-      lines: [
-        {
-          merchandiseId: variantId,
-          quantity,
-        },
-      ],
+      lines: [lineItem],
     },
   };
 

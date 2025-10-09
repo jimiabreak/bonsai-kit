@@ -15,7 +15,7 @@ export default function SubscriptionPage() {
   const [error, setError] = useState<string | null>(null);
   const [dripOptions, setDripOptions] = useState<SubscriptionOption[]>([]);
   const [espressoOptions, setEspressoOptions] = useState<SubscriptionOption[]>([]);
-  const [isCreatingCheckout, setIsCreatingCheckout] = useState(false);
+  const [processingVariantId, setProcessingVariantId] = useState<string | null>(null);
   const [retryCount, setRetryCount] = useState(0);
   const MAX_RETRIES = 2;
 
@@ -40,8 +40,9 @@ export default function SubscriptionPage() {
           .filter((p) => p.title.toLowerCase().includes('espresso'))
           .flatMap(mapProductToOptions);
 
-        setDripOptions(drip.length > 0 ? drip : getFallbackDripOptions());
-        setEspressoOptions(espresso.length > 0 ? espresso : getFallbackEspressoOptions());
+        // Use Shopify data if we have at least 2 options for each, otherwise use fallback
+        setDripOptions(drip.length >= 2 ? drip : getFallbackDripOptions());
+        setEspressoOptions(espresso.length >= 2 ? espresso : getFallbackEspressoOptions());
       } catch (err) {
         if (process.env.NODE_ENV === 'development') {
           console.error('Failed to load products:', err);
@@ -68,19 +69,35 @@ export default function SubscriptionPage() {
   }, [retryCount]);
 
   const mapProductToOptions = (product: ShopifyProduct): SubscriptionOption[] => {
-    return product.variants.edges.map(({ node: variant }) => {
-      const price = parseFloat(variant.priceV2.amount);
-      const bags = parseInt(variant.title.match(/\d+/)?.[0] || '2');
+    return product.variants.edges
+      .filter(({ node: variant }) => variant.availableForSale)
+      .map(({ node: variant }) => {
+        const price = parseFloat(variant.priceV2.amount);
 
-      return {
-        bags,
-        frequency: 'Every 2 weeks',
-        usageRate: bags === 2 ? 'YOU GO THROUGH 1 BAG A WEEK' : 'YOU GO THROUGH 0.5 BAG A WEEK',
-        price: Math.round(price),
-        shipping: 0, // Shipping included in price
-        shopifyVariantId: variant.id,
-      };
-    });
+        // Extract bag count from product title (e.g., "Drip Subscription - 4 Bags")
+        const productTitle = product.title.toLowerCase();
+        let bags = 2; // default
+
+        if (productTitle.includes('4 bag')) {
+          bags = 4;
+        } else if (productTitle.includes('2 bag')) {
+          bags = 2;
+        }
+
+        // Get selling plan ID if available
+        const sellingPlanId = variant.sellingPlanAllocations?.edges?.[0]?.node?.sellingPlan?.id;
+
+        return {
+          bags,
+          frequency: 'Every 2 weeks',
+          usageRate: bags === 2 ? 'YOU GO THROUGH 1 BAG A WEEK' : 'YOU GO THROUGH 0.5 BAG A WEEK',
+          price: Math.round(price),
+          shipping: 7,
+          shopifyVariantId: variant.id,
+          sellingPlanId,
+        };
+      })
+      .sort((a, b) => a.bags - b.bags); // Sort by bags count
   };
 
   const getFallbackDripOptions = (): SubscriptionOption[] => [
@@ -119,7 +136,7 @@ export default function SubscriptionPage() {
 
   const handleSignUp = async (option: SubscriptionOption) => {
     // Prevent multiple rapid clicks
-    if (isCreatingCheckout) {
+    if (processingVariantId) {
       return;
     }
 
@@ -132,14 +149,18 @@ export default function SubscriptionPage() {
     }
 
     try {
-      setIsCreatingCheckout(true);
+      setProcessingVariantId(option.shopifyVariantId);
 
       // Add timeout to prevent hanging requests
       const timeoutPromise = new Promise<never>((_, reject) =>
         setTimeout(() => reject(new Error('Request timeout')), 15000)
       );
 
-      const checkoutPromise = createCheckout(option.shopifyVariantId);
+      const checkoutPromise = createCheckout(
+        option.shopifyVariantId,
+        1,
+        option.sellingPlanId
+      );
       const checkoutUrl = await Promise.race([checkoutPromise, timeoutPromise]);
 
       // Redirect to Shopify checkout
@@ -156,7 +177,7 @@ export default function SubscriptionPage() {
 
       alert(errorMessage);
     } finally {
-      setIsCreatingCheckout(false);
+      setProcessingVariantId(null);
     }
   };
 
@@ -289,7 +310,7 @@ export default function SubscriptionPage() {
             frequencyNote="CHOOSE YOUR FREQUENCY BELOW:"
             options={dripOptions}
             onSignUp={handleSignUp}
-            disabled={isCreatingCheckout}
+            processingVariantId={processingVariantId}
           />
 
           <SubscriptionCard
@@ -303,7 +324,7 @@ export default function SubscriptionPage() {
             frequencyNote="CHOOSE YOUR FREQUENCY BELOW:"
             options={espressoOptions}
             onSignUp={handleSignUp}
-            disabled={isCreatingCheckout}
+            processingVariantId={processingVariantId}
           />
         </motion.div>
       )}

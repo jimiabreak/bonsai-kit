@@ -11,7 +11,7 @@ export default function SubscriptionCard({
   frequencyNote,
   options,
   onSignUp,
-  disabled = false
+  processingVariantId = null
 }: SubscriptionCardProps) {
   return (
     <div className="bg-cream border-2 border-brand-blue rounded-sm p-6 flex flex-col gap-4 w-full max-w-[700px]">
@@ -91,10 +91,10 @@ export default function SubscriptionCard({
               variant="subscription"
               size="subscription"
               onClick={() => onSignUp?.(option)}
-              disabled={disabled}
+              disabled={processingVariantId !== null}
               className="w-[254px]"
             >
-              {disabled ? 'PROCESSING...' : 'SIGN UP'}
+              {processingVariantId === option.shopifyVariantId ? 'PROCESSING...' : 'SIGN UP'}
             </Button>
           </div>
 

@@ -117,6 +117,7 @@ export interface SubscriptionOption {
   price: number;
   shipping: number;
   shopifyVariantId?: string; // Shopify variant ID for checkout
+  sellingPlanId?: string; // Shopify selling plan ID for subscriptions
 }
 
 export interface SubscriptionCardProps {
@@ -128,7 +129,7 @@ export interface SubscriptionCardProps {
   frequencyNote: string;
   options: SubscriptionOption[];
   onSignUp?: (option: SubscriptionOption) => void;
-  disabled?: boolean;
+  processingVariantId?: string | null;
 }
 
 // Shopify Types
