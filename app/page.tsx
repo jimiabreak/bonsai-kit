@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="relative overflow-hidden h-screen">
       {/* Header */}
-      <div className="relative z-50">
+      <div className="fixed top-0 left-0 right-0 z-50">
         <ThemedHeader theme="light" />
       </div>
 
@@ -72,6 +72,9 @@ export default function Home() {
             </a>
             <a href="/events" className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap">
               Events
+            </a>
+            <a href="/faq" className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap">
+              FAQ
             </a>
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap">
               Facebook

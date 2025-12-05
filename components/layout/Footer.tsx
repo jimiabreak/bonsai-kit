@@ -39,6 +39,12 @@ export default function Footer() {
           >
             Events
           </Link>
+          <Link
+            href="/faq"
+            className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap"
+          >
+            FAQ
+          </Link>
           <a
             href="https://facebook.com"
             target="_blank"

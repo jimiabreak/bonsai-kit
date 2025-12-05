@@ -164,11 +164,17 @@ export default function FAQPage() {
             <a href="/contact" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               Contact
             </a>
+            <a href="/subscription" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
+              Subscriptions
+            </a>
             <a href="/gift-cards" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               Gift Cards
             </a>
             <a href="/events" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               Events
+            </a>
+            <a href="/faq" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
+              FAQ
             </a>
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               Facebook

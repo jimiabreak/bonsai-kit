@@ -45,26 +45,46 @@ export default function InfoPage() {
           {/* INFO Column */}
           <div className="text-cream">
             <h2 className="text-title mb-8">INFO</h2>
-            <div className="space-y-1">
+            <div>
               <p className="text-body font-bold">Commonwealth Café</p>
               <p className="text-body">300 Hamilton Row</p>
-              <p className="text-body mb-6">Birmingham, MI 48009</p>
+              <p className="text-body mb-8">Birmingham, MI 48009</p>
 
-              <p className="text-body mt-8">Map</p>
-              <p className="text-body mt-2">
-                <a
-                  href="tel:2487929766"
-                  className="hover:opacity-70 transition-opacity duration-300"
-                >
-                  (248) 792-9766
-                </a>
-              </p>
+              <a
+                href="https://maps.google.com/?q=300+Hamilton+Row,+Birmingham,+MI+48009"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-body underline hover:opacity-70 transition-opacity duration-300 mb-4"
+              >
+                Map
+                <Image
+                  src="/images/link-arrow.svg"
+                  alt=""
+                  width={29}
+                  height={29}
+                  className="w-[20px] h-[20px]"
+                />
+              </a>
+              <br />
+              <a
+                href="tel:2487929766"
+                className="inline-flex items-center gap-2 text-body underline hover:opacity-70 transition-opacity duration-300 mt-4"
+              >
+                (248) 792-9766
+                <Image
+                  src="/images/link-arrow.svg"
+                  alt=""
+                  width={29}
+                  height={29}
+                  className="w-[20px] h-[20px]"
+                />
+              </a>
             </div>
           </div>
 
           {/* HOURS Column */}
           <div className="text-cream">
-            <h2 className="text-title mb-8">HOURS</h2>
+            <h2 className="text-title mb-8 text-right">HOURS</h2>
             <div className="flex justify-between max-w-[500px]">
               <div className="space-y-1">
                 <p className="text-body">Mon</p>
@@ -90,7 +110,7 @@ export default function InfoPage() {
 
         {/* No Reservations Text */}
         <motion.div
-          className="text-center text-cream mb-20 md:mb-32"
+          className="text-center text-cream mb-40 md:mb-52"
           {...fadeInUp}
           transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.4 : 0, ease: "easeOut" }}
         >
@@ -103,23 +123,33 @@ export default function InfoPage() {
 
         {/* MENU Section */}
         <motion.div
-          className="mb-16 md:mb-24"
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 mb-40 md:mb-52"
           {...fadeInUp}
           transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.5 : 0, ease: "easeOut" }}
         >
           <Link
             href="/menu"
-            className="flex flex-col items-start gap-4 group"
+            className="inline-flex items-center gap-3 group"
           >
-            <h2 className="menu-large-link text-cream hover:opacity-70 transition-opacity duration-300">
+            <h2 className="menu-large-link text-cream underline hover:opacity-70 transition-opacity duration-300">
               MENU
             </h2>
-            <p className="text-body text-cream max-w-[360px]">
+            <Image
+              src="/images/link-arrow.svg"
+              alt=""
+              width={29}
+              height={29}
+              className="w-[29px] h-[29px]"
+            />
+          </Link>
+          <div className="text-cream text-right">
+            <p className="text-[32px] md:text-[60px] leading-tight tracking-[-0.06em] whitespace-nowrap">
               OUR ALL-DAY MENU
-              <br />
+            </p>
+            <p className="text-[32px] md:text-[60px] leading-tight tracking-[-0.06em] whitespace-nowrap">
               SERVED EVERY DAY.
             </p>
-          </Link>
+          </div>
         </motion.div>
       </div>
 
@@ -173,11 +203,17 @@ export default function InfoPage() {
             <Link href="/contact" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               Contact
             </Link>
+            <Link href="/subscription" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
+              Subscriptions
+            </Link>
             <Link href="/gift-cards" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               Gift Cards
             </Link>
             <Link href="/events" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               Events
+            </Link>
+            <Link href="/faq" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
+              FAQ
             </Link>
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               Facebook
