@@ -142,16 +142,16 @@ export default function MenuPage() {
                           itemIndex !== category.items.length - 1 ? 'border-b border-cream/30 pb-6' : ''
                         }`}
                       >
-                        <div className="flex justify-between items-start mb-2">
-                          <h3 className="text-cream text-[1.5rem] md:text-[2rem] font-normal">
+                        <div className="flex justify-between items-start gap-4 mb-2">
+                          <h3 className="text-cream text-[18px] sm:text-[24px] md:text-[30px] font-normal flex-1">
                             {item.name}
                           </h3>
-                          <span className="text-cream text-[1.5rem] md:text-[2rem] font-normal ml-4 flex-shrink-0">
+                          <span className="text-cream text-[18px] sm:text-[24px] md:text-[30px] font-normal flex-shrink-0">
                             ${item.price}
                           </span>
                         </div>
                         {item.description && (
-                          <p className="text-cream/80 text-[1rem] md:text-[1.25rem] leading-relaxed">
+                          <p className="text-cream/80 text-[14px] sm:text-[15px] md:text-[17px] leading-relaxed">
                             {item.description}
                           </p>
                         )}
@@ -196,16 +196,16 @@ export default function MenuPage() {
                           itemIndex !== category.items.length - 1 ? 'border-b border-cream/30 pb-6' : ''
                         }`}
                       >
-                        <div className="flex justify-between items-start mb-2">
-                          <h3 className="text-cream text-[1.5rem] md:text-[2rem] font-normal">
+                        <div className="flex justify-between items-start gap-4 mb-2">
+                          <h3 className="text-cream text-[18px] sm:text-[24px] md:text-[30px] font-normal flex-1">
                             {item.name}
                           </h3>
-                          <span className="text-cream text-[1.5rem] md:text-[2rem] font-normal ml-4 flex-shrink-0">
+                          <span className="text-cream text-[18px] sm:text-[24px] md:text-[30px] font-normal flex-shrink-0">
                             ${item.price}
                           </span>
                         </div>
                         {item.description && (
-                          <p className="text-cream/80 text-[1rem] md:text-[1.25rem] leading-relaxed">
+                          <p className="text-cream/80 text-[14px] sm:text-[15px] md:text-[17px] leading-relaxed">
                             {item.description}
                           </p>
                         )}
@@ -234,16 +234,16 @@ export default function MenuPage() {
                       index !== menuData.tabs.features.items.length - 1 ? 'border-b border-cream/30 pb-6' : ''
                     }`}
                   >
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-cream text-[1.5rem] md:text-[2rem] font-normal">
+                    <div className="flex justify-between items-start gap-4 mb-2">
+                      <h3 className="text-cream text-[18px] sm:text-[24px] md:text-[30px] font-normal flex-1">
                         {item.name}
                       </h3>
-                      <span className="text-cream text-[1.5rem] md:text-[2rem] font-normal ml-4 flex-shrink-0">
+                      <span className="text-cream text-[18px] sm:text-[24px] md:text-[30px] font-normal flex-shrink-0">
                         ${item.price}
                       </span>
                     </div>
                     {item.description && (
-                      <p className="text-cream/80 text-[1rem] md:text-[1.25rem] leading-relaxed">
+                      <p className="text-cream/80 text-[14px] sm:text-[15px] md:text-[17px] leading-relaxed">
                         {item.description}
                       </p>
                     )}
