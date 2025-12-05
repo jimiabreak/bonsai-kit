@@ -6,14 +6,14 @@ import ThemedHeader from "@/components/layout/ThemedHeader";
 
 export default function Home() {
   return (
-    <div className="relative overflow-hidden h-screen">
+    <div className="relative overflow-hidden h-screen w-full">
       {/* Header */}
-      <div className="fixed top-0 left-0 right-0 z-50">
+      <div className="fixed top-0 left-0 right-0 z-50 w-full">
         <ThemedHeader theme="light" />
       </div>
 
       {/* Hero Content */}
-      <div className="fixed inset-0 w-screen h-[100vh] min-h-[100dvh] bg-cream flex items-center justify-center overflow-hidden z-0">
+      <div className="fixed inset-0 w-full h-[100vh] min-h-[100dvh] bg-cream flex items-center justify-center overflow-hidden z-0">
         {/* Hero food image */}
         <motion.div
           className="relative w-full max-w-[480px] h-[600px] md:h-[641px]"
@@ -53,36 +53,36 @@ export default function Home() {
       </div>
 
       {/* Footer - Homepage specific */}
-      <div className="fixed bottom-0 left-0 right-0 z-50">
+      <div className="fixed bottom-0 left-0 right-0 z-50 w-full">
         <motion.footer
-          className="relative bg-transparent py-7 px-4"
+          className="relative bg-transparent py-4 md:py-7 px-4 overflow-x-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
-          <nav className="flex items-center justify-center gap-6 max-w-[1512px] mx-auto">
-            <a href="/contact" className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap">
+          <nav className="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-3 md:gap-6 max-w-[1512px] mx-auto">
+            <a href="/contact" className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300">
               Contact
             </a>
-            <a href="/subscription" className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap">
+            <a href="/subscription" className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300">
               Subscriptions
             </a>
-            <a href="/gift-cards" className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap">
+            <a href="/gift-cards" className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300">
               Gift Cards
             </a>
-            <a href="/events" className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap">
+            <a href="/events" className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300">
               Events
             </a>
-            <a href="/faq" className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap">
+            <a href="/faq" className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300">
               FAQ
             </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300">
               Facebook
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300">
               Instagram
             </a>
-            <a href="/privacy" className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap">
+            <a href="/privacy" className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300">
               Privacy Policy
             </a>
           </nav>

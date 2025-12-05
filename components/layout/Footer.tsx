@@ -7,41 +7,41 @@ import { motion } from 'framer-motion';
 export default function Footer() {
   return (
     <motion.footer
-      className="relative z-50 bg-cream py-16 px-4"
+      className="relative z-50 bg-cream py-16 px-4 w-full overflow-x-hidden"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
     >
       <div className="max-w-[1512px] mx-auto">
         {/* Footer Links */}
-        <nav className="flex flex-wrap items-center justify-center gap-6 mb-12">
+        <nav className="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-4 md:gap-6 mb-12">
           <Link
             href="/contact"
-            className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap"
+            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
           >
             Contact
           </Link>
           <Link
             href="/subscription"
-            className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap"
+            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
           >
             Subscriptions
           </Link>
           <Link
             href="/gift-cards"
-            className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap"
+            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
           >
             Gift Cards
           </Link>
           <Link
             href="/events"
-            className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap"
+            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
           >
             Events
           </Link>
           <Link
             href="/faq"
-            className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap"
+            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
           >
             FAQ
           </Link>
@@ -49,7 +49,7 @@ export default function Footer() {
             href="https://facebook.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap"
+            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
           >
             Facebook
           </a>
@@ -57,13 +57,13 @@ export default function Footer() {
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap"
+            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
           >
             Instagram
           </a>
           <Link
             href="/privacy"
-            className="font-sans text-brand-blue text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300 whitespace-nowrap"
+            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
           >
             Privacy Policy
           </Link>

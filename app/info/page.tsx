@@ -13,16 +13,16 @@ export default function InfoPage() {
     : { initial: { opacity: 1, y: 0 }, animate: { opacity: 1, y: 0 } };
 
   return (
-    <div className="bg-brand-blue min-h-screen">
+    <div className="bg-brand-blue min-h-screen w-full overflow-x-hidden">
       {/* Header */}
       <ThemedHeader theme="dark" />
 
       {/* Main Content Wrapper - matching Figma layout */}
-      <div className="max-w-[1008px] mx-auto px-4 md:px-8 pt-16 md:pt-24 pb-20">
+      <div className="max-w-[1008px] mx-auto px-4 md:px-8 pt-16 md:pt-24 pb-20 w-full">
 
         {/* Logo */}
         <motion.div
-          className="flex justify-center mb-24 md:mb-32 py-8 md:py-12"
+          className="flex justify-center mb-16 md:mb-24 lg:mb-32 py-4 md:py-8 lg:py-12"
           {...fadeInUp}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
@@ -31,20 +31,20 @@ export default function InfoPage() {
             alt="Commonwealth Coffee"
             width={760}
             height={470}
-            className="w-full max-w-[760px] h-auto"
+            className="w-full max-w-[90%] md:max-w-[760px] h-auto"
             priority
           />
         </motion.div>
 
         {/* INFO and HOURS Section */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 mb-20 md:mb-32"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-24 mb-16 md:mb-20 lg:mb-32"
           {...fadeInUp}
           transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.2 : 0, ease: "easeOut" }}
         >
           {/* INFO Column */}
           <div className="text-cream">
-            <h2 className="text-title mb-8">INFO</h2>
+            <h2 className="text-title mb-6 md:mb-8">INFO</h2>
             <div>
               <p className="text-body font-bold">Commonwealth Café</p>
               <p className="text-body">300 Hamilton Row</p>
@@ -84,8 +84,8 @@ export default function InfoPage() {
 
           {/* HOURS Column */}
           <div className="text-cream">
-            <h2 className="text-title mb-8 text-right">HOURS</h2>
-            <div className="flex justify-between max-w-[500px]">
+            <h2 className="text-title mb-6 md:mb-8 md:text-right">HOURS</h2>
+            <div className="flex justify-between max-w-[500px] w-full">
               <div className="space-y-1">
                 <p className="text-body">Mon</p>
                 <p className="text-body">Tue</p>
@@ -110,11 +110,11 @@ export default function InfoPage() {
 
         {/* No Reservations Text */}
         <motion.div
-          className="text-center text-cream mb-40 md:mb-52"
+          className="text-center text-cream mb-24 md:mb-32 lg:mb-40 xl:mb-52 px-4"
           {...fadeInUp}
           transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.4 : 0, ease: "easeOut" }}
         >
-          <p className="text-4xl md:text-[60px] leading-tight tracking-[-0.06em]">
+          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-[60px] leading-tight tracking-[-0.06em]">
             NO RESERVATIONS.
             <br />
             WALK IN OR TAKEOUT ONLY.
@@ -123,7 +123,7 @@ export default function InfoPage() {
 
         {/* MENU Section */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 mb-40 md:mb-52"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-24 mb-24 md:mb-32 lg:mb-40 xl:mb-52"
           {...fadeInUp}
           transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.5 : 0, ease: "easeOut" }}
         >
@@ -139,14 +139,14 @@ export default function InfoPage() {
               alt=""
               width={29}
               height={29}
-              className="w-[29px] h-[29px]"
+              className="w-[20px] h-[20px] md:w-[29px] md:h-[29px]"
             />
           </Link>
-          <div className="text-cream text-right">
-            <p className="text-[32px] md:text-[60px] leading-tight tracking-[-0.06em] whitespace-nowrap">
+          <div className="text-cream md:text-right">
+            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-[60px] leading-tight tracking-[-0.06em]">
               OUR ALL-DAY MENU
             </p>
-            <p className="text-[32px] md:text-[60px] leading-tight tracking-[-0.06em] whitespace-nowrap">
+            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-[60px] leading-tight tracking-[-0.06em]">
               SERVED EVERY DAY.
             </p>
           </div>
@@ -192,36 +192,36 @@ export default function InfoPage() {
 
       {/* Footer Section - Cream Background */}
       <motion.div
-        className="bg-cream py-16 px-4"
+        className="bg-cream py-16 px-4 w-full overflow-x-hidden"
         initial={{ opacity: !prefersReducedMotion ? 0 : 1 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.8 : 0, ease: "easeOut" }}
       >
         <div className="max-w-[1200px] mx-auto">
           {/* Footer Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-6 mb-8">
-            <Link href="/contact" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
+          <nav className="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-4 md:gap-6 mb-8">
+            <Link href="/contact" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               Contact
             </Link>
-            <Link href="/subscription" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
+            <Link href="/subscription" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               Subscriptions
             </Link>
-            <Link href="/gift-cards" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
+            <Link href="/gift-cards" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               Gift Cards
             </Link>
-            <Link href="/events" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
+            <Link href="/events" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               Events
             </Link>
-            <Link href="/faq" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
+            <Link href="/faq" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               FAQ
             </Link>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               Facebook
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               Instagram
             </a>
-            <Link href="/privacy" className="font-sans text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
+            <Link href="/privacy" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
               Privacy Policy
             </Link>
           </nav>

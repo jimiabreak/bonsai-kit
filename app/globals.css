@@ -72,18 +72,32 @@ body {
   /* Page Typography */
   .text-body {
     font-family: var(--font-inria-sans), sans-serif;
-    font-size: 2.813rem; /* 45px */
+    font-size: 1.5rem; /* 24px on mobile */
     font-weight: 400;
-    line-height: 3.125rem; /* 50px */
+    line-height: 1.75rem; /* 28px */
     letter-spacing: -0.04em;
+  }
+
+  @media (min-width: 768px) {
+    .text-body {
+      font-size: 2.813rem; /* 45px on desktop */
+      line-height: 3.125rem; /* 50px */
+    }
   }
 
   .text-title {
     font-family: var(--font-inria-sans), sans-serif;
-    font-size: 2.813rem; /* 45px */
+    font-size: 1.75rem; /* 28px on mobile */
     font-weight: 700;
-    line-height: 3.125rem; /* 50px */
+    line-height: 2rem; /* 32px */
     letter-spacing: -0.04em;
+  }
+
+  @media (min-width: 768px) {
+    .text-title {
+      font-size: 2.813rem; /* 45px on desktop */
+      line-height: 3.125rem; /* 50px */
+    }
   }
 
   .text-sub-footer {
@@ -96,7 +110,7 @@ body {
   /* Menu Typography */
   .menu-large-link {
     font-family: var(--font-inria-sans), sans-serif;
-    font-size: 5.063rem; /* 81.01px */
+    font-size: 2.5rem; /* 40px on mobile */
     font-weight: 700;
     line-height: 1;
     letter-spacing: -0.03em;
@@ -105,36 +119,67 @@ body {
     text-underline-position: from-font;
   }
 
+  @media (min-width: 768px) {
+    .menu-large-link {
+      font-size: 5.063rem; /* 81.01px on desktop */
+    }
+  }
+
   .menu-section-title {
     font-family: var(--font-inria-sans), sans-serif;
-    font-size: 3.125rem; /* 50px */
+    font-size: 1.875rem; /* 30px on mobile */
     font-weight: 400;
     line-height: 1;
     letter-spacing: -0.06em;
   }
 
+  @media (min-width: 768px) {
+    .menu-section-title {
+      font-size: 3.125rem; /* 50px on desktop */
+    }
+  }
+
   .menu-section-subtitle {
     font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.875rem; /* 30px */
+    font-size: 1.125rem; /* 18px on mobile */
     font-weight: 400;
     line-height: 1;
     letter-spacing: -0.03em;
+  }
+
+  @media (min-width: 768px) {
+    .menu-section-subtitle {
+      font-size: 1.875rem; /* 30px on desktop */
+    }
   }
 
   .menu-item-title {
     font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.875rem; /* 30px */
+    font-size: 1.125rem; /* 18px on mobile */
     font-weight: 400;
-    line-height: 1;
+    line-height: 1.2;
     letter-spacing: -0.03em;
+  }
+
+  @media (min-width: 768px) {
+    .menu-item-title {
+      font-size: 1.875rem; /* 30px on desktop */
+      line-height: 1;
+    }
   }
 
   .menu-item-description {
     font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.063rem; /* 17px */
+    font-size: 0.875rem; /* 14px on mobile */
     font-weight: 400;
     line-height: 1.55;
     letter-spacing: -0.01em;
+  }
+
+  @media (min-width: 768px) {
+    .menu-item-description {
+      font-size: 1.063rem; /* 17px on desktop */
+    }
   }
 
   /* Subscription Card Typography */

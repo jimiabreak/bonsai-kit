@@ -56,32 +56,32 @@ export default function MenuPage() {
   };
 
   return (
-    <div className="bg-brand-blue min-h-screen">
+    <div className="bg-brand-blue min-h-screen w-full overflow-x-hidden">
       {/* Header */}
       <ThemedHeader theme="dark" />
 
       {/* Main Content */}
-      <div className="max-w-[1200px] mx-auto px-4 md:px-8 pt-16 md:pt-24 pb-20">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-8 pt-16 md:pt-24 pb-20 w-full">
         {/* Menu Title */}
         <motion.div
-          className="text-center mb-16 md:mb-24"
+          className="text-center mb-12 md:mb-16 lg:mb-24"
           {...fadeInUp}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h1 className="text-cream text-[120px] md:text-[180px] lg:text-[240px] font-sans font-normal leading-none tracking-tight">
+          <h1 className="text-cream text-[80px] sm:text-[120px] md:text-[180px] lg:text-[240px] font-sans font-normal leading-none tracking-tight">
             MENU
           </h1>
         </motion.div>
 
         {/* Tab Navigation */}
         <motion.div
-          className="flex gap-8 mb-12"
+          className="flex gap-4 sm:gap-6 md:gap-8 mb-12 overflow-x-auto"
           {...fadeInUp}
           transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.2 : 0, ease: "easeOut" }}
         >
           <button
             onClick={() => setActiveTab('food')}
-            className={`text-[50px] font-normal tracking-[-3px] leading-normal transition-all duration-300 ${
+            className={`text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-3px] leading-normal transition-all duration-300 whitespace-nowrap ${
               activeTab === 'food' ? 'text-cream underline' : 'text-cream/50 hover:text-cream/70'
             }`}
           >
@@ -89,7 +89,7 @@ export default function MenuPage() {
           </button>
           <button
             onClick={() => setActiveTab('drinks')}
-            className={`text-[50px] font-normal tracking-[-3px] leading-normal transition-all duration-300 ${
+            className={`text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-3px] leading-normal transition-all duration-300 whitespace-nowrap ${
               activeTab === 'drinks' ? 'text-cream underline' : 'text-cream/50 hover:text-cream/70'
             }`}
           >
@@ -97,7 +97,7 @@ export default function MenuPage() {
           </button>
           <button
             onClick={() => setActiveTab('features')}
-            className={`text-[50px] font-normal tracking-[-3px] leading-normal transition-all duration-300 ${
+            className={`text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-3px] leading-normal transition-all duration-300 whitespace-nowrap ${
               activeTab === 'features' ? 'text-cream underline' : 'text-cream/50 hover:text-cream/70'
             }`}
           >
@@ -116,12 +116,12 @@ export default function MenuPage() {
           {activeTab === 'food' && (
             <div>
               {/* Category Navigation */}
-              <div className="flex flex-wrap gap-8 mb-16">
+              <div className="flex flex-wrap gap-4 sm:gap-6 md:gap-8 mb-12 md:mb-16">
                 {Object.values(menuData.tabs.food.categories).map((category: Category) => (
                   <button
                     key={category.id}
                     onClick={() => scrollToCategory(category.id)}
-                    className="text-cream text-[30px] font-normal tracking-[-0.9px] leading-normal whitespace-nowrap hover:opacity-70 transition-opacity duration-300"
+                    className="text-cream text-[18px] sm:text-[24px] md:text-[30px] font-normal tracking-[-0.9px] leading-normal whitespace-nowrap hover:opacity-70 transition-opacity duration-300"
                   >
                     {category.name}
                   </button>
@@ -130,8 +130,8 @@ export default function MenuPage() {
 
               {/* Food Categories */}
               {Object.values(menuData.tabs.food.categories).map((category: Category, index: number) => (
-                <div key={category.id} id={category.id} className="mb-16">
-                  <h2 className="text-cream text-[50px] font-normal tracking-[-3px] leading-normal mb-8">
+                <div key={category.id} id={category.id} className="mb-12 md:mb-16">
+                  <h2 className="text-cream text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-3px] leading-normal mb-6 md:mb-8">
                     {category.name}
                   </h2>
                   <div className="space-y-6">
@@ -170,12 +170,12 @@ export default function MenuPage() {
           {activeTab === 'drinks' && (
             <div>
               {/* Category Navigation */}
-              <div className="flex flex-wrap gap-8 mb-16">
+              <div className="flex flex-wrap gap-4 sm:gap-6 md:gap-8 mb-12 md:mb-16">
                 {Object.values(menuData.tabs.drinks.categories).map((category: Category) => (
                   <button
                     key={category.id}
                     onClick={() => scrollToCategory(category.id)}
-                    className="text-cream text-[30px] font-normal tracking-[-0.9px] leading-normal whitespace-nowrap hover:opacity-70 transition-opacity duration-300"
+                    className="text-cream text-[18px] sm:text-[24px] md:text-[30px] font-normal tracking-[-0.9px] leading-normal whitespace-nowrap hover:opacity-70 transition-opacity duration-300"
                   >
                     {category.name}
                   </button>
@@ -184,8 +184,8 @@ export default function MenuPage() {
 
               {/* Drink Categories */}
               {Object.values(menuData.tabs.drinks.categories).map((category: Category, index: number) => (
-                <div key={category.id} id={category.id} className="mb-16">
-                  <h2 className="text-cream text-[50px] font-normal tracking-[-3px] leading-normal mb-8">
+                <div key={category.id} id={category.id} className="mb-12 md:mb-16">
+                  <h2 className="text-cream text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-3px] leading-normal mb-6 md:mb-8">
                     {category.name}
                   </h2>
                   <div className="space-y-6">
@@ -223,7 +223,7 @@ export default function MenuPage() {
           {/* Features Tab */}
           {activeTab === 'features' && (
             <div>
-              <h2 className="text-cream text-[50px] font-normal tracking-[-3px] leading-normal mb-8">
+              <h2 className="text-cream text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-3px] leading-normal mb-6 md:mb-8">
                 {menuData.tabs.features.name}
               </h2>
               <div className="space-y-6">

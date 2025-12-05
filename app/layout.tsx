@@ -62,9 +62,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inriaSans.variable} ${inriaSerif.variable}`}>
-      <body className="font-sans antialiased bg-cream text-charcoal-900">
-        <main>
+    <html lang="en" className={`${inriaSans.variable} ${inriaSerif.variable} overflow-x-hidden`}>
+      <body className="font-sans antialiased bg-cream text-charcoal-900 overflow-x-hidden w-full">
+        <main className="overflow-x-hidden w-full">
           {children}
         </main>
       </body>
