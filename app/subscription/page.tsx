@@ -301,7 +301,7 @@ export default function SubscriptionPage() {
         >
           <SubscriptionCard
             title="DRIP COLLECTION"
-            image="/images/subscription-card.jpg"
+            image="/images/common-sub.jpg"
             description='Enjoy fresh coffee with our "DRIP COFFEE" subscription! Get a bag of rich espresso or unique single origin coffee delivered to your door every two weeks.'
             includes={[
               '1 BAG OF ESPRESSO SINGLE ORIGIN',
@@ -315,7 +315,7 @@ export default function SubscriptionPage() {
 
           <SubscriptionCard
             title="ESPRESSO COLLECTION"
-            image="/images/subscription-card.jpg"
+            image="/images/espresso-sub.jpg"
             description='Enjoy fresh coffee with our "ESPRESSO" subscription! Get a bag of rich espresso or unique single origin coffee delivered to your door every two weeks.'
             includes={[
               '1 BAG OF NEWLY ROASTED (IN CAFE) SINGLE ORIGIN',
