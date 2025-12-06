@@ -14,7 +14,7 @@ export default function Footer() {
     >
       <div className="max-w-[1512px] mx-auto">
         {/* Footer Links */}
-        <nav className="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-4 md:gap-6 mb-12">
+        <nav className="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-3 md:gap-4 mb-8">
           <Link
             href="/contact"
             className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"

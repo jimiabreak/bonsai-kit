@@ -182,36 +182,36 @@ export default function SubscriptionPage() {
   };
 
   return (
-    <div className="bg-cream min-h-screen">
+    <div className="bg-cream min-h-screen w-full overflow-x-hidden">
       {/* Header */}
       <ThemedHeader theme="light" />
 
       {/* Hero Section */}
       <motion.div
-        className="relative max-w-[1512px] mx-auto px-4 md:px-8 pt-16 md:pt-24"
+        className="relative max-w-[1512px] mx-auto px-4 md:px-8 pt-24 md:pt-32 pb-12 md:pb-16"
         {...fadeInUp}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         {/* C Logo */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-6 md:mb-8">
           <Image
             src="/images/c-logo.svg"
             alt="Commonwealth"
             width={33}
             height={42}
-            className="w-[33px] h-[42px]"
+            className="w-[28px] h-[36px] md:w-[33px] md:h-[42px]"
           />
         </div>
 
         {/* Hero Text */}
-        <h1 className="text-center text-brand-blue text-[3.75rem] md:text-[60px] tracking-[-0.06em] leading-tight max-w-[692px] mx-auto mb-16">
+        <h1 className="text-center text-brand-blue text-[2rem] sm:text-[2.5rem] md:text-[3.75rem] lg:text-[60px] tracking-[-0.06em] leading-tight max-w-[692px] mx-auto mb-12 md:mb-16">
           A curated coffee subscription by Commonwealth.
         </h1>
       </motion.div>
 
       {/* Blue Banner Section */}
       <motion.div
-        className="bg-brand-blue h-[21.875rem] mb-20"
+        className="bg-brand-blue h-[250px] md:h-[21.875rem] mb-12 md:mb-20"
         {...fadeInUp}
         transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.2 : 0, ease: "easeOut" }}
       >
@@ -219,22 +219,22 @@ export default function SubscriptionPage() {
 
       {/* JOIN THE ©LUB - Below blue banner */}
       <motion.div
-        className="max-w-[1512px] mx-auto px-16 mb-12"
+        className="max-w-[1512px] mx-auto px-4 md:px-8 mb-12 md:mb-16"
         {...fadeInUp}
         transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.25 : 0, ease: "easeOut" }}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-32 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-32 items-start">
           <div>
-            <h2 className="text-brand-blue text-[40px] font-bold tracking-[-0.02em] mb-8">
+            <h2 className="text-brand-blue text-[28px] sm:text-[32px] md:text-[40px] font-bold tracking-[-0.02em] mb-4 md:mb-8">
               JOIN THE ©LUB
             </h2>
-            <p className="text-brand-blue text-[33px] leading-[44px] tracking-[-0.04em]">
+            <p className="text-brand-blue text-[18px] sm:text-[22px] md:text-[28px] lg:text-[33px] leading-[1.4] md:leading-[44px] tracking-[-0.04em]">
               Select an amount and frequency below. Checkout and enjoy free shipping. Get our freshest coffee, straight to your door.
             </p>
           </div>
 
-          <div className="flex items-start justify-end pt-[calc(40px+2rem)]">
-            <div className="space-y-1 text-brand-blue text-[28px] leading-[56px] tracking-[-0.04em] uppercase">
+          <div className="flex items-start justify-start md:justify-end md:pt-[calc(40px+2rem)]">
+            <div className="space-y-1 text-brand-blue text-[16px] sm:text-[20px] md:text-[24px] lg:text-[28px] leading-[2] md:leading-[56px] tracking-[-0.04em] uppercase">
               <p>— FRESHLY ROASTED</p>
               <p>— Flexible frequencies</p>
               <p>— FOR ESPRESSO & FILTER</p>
@@ -244,17 +244,17 @@ export default function SubscriptionPage() {
       </motion.div>
 
       {/* Divider */}
-      <div className="max-w-[1512px] mx-auto px-16">
-        <div className="h-[2px] bg-brand-blue mb-12" />
+      <div className="max-w-[1512px] mx-auto px-4 md:px-8">
+        <div className="h-[2px] bg-brand-blue mb-8 md:mb-12" />
       </div>
 
       {/* Subscription Intro */}
       <motion.div
-        className="max-w-[1512px] mx-auto px-16 mb-16"
+        className="max-w-[1512px] mx-auto px-4 md:px-8 mb-12 md:mb-16"
         {...fadeInUp}
         transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.3 : 0, ease: "easeOut" }}
       >
-        <p className="text-center text-brand-blue text-[3.75rem] md:text-[60px] tracking-[-0.06em] leading-tight max-w-[692px] mx-auto">
+        <p className="text-center text-brand-blue text-[2rem] sm:text-[2.5rem] md:text-[3.75rem] lg:text-[60px] tracking-[-0.06em] leading-tight max-w-[692px] mx-auto">
           Start a subscription with any of the options below:
         </p>
       </motion.div>
@@ -262,7 +262,7 @@ export default function SubscriptionPage() {
       {/* Error Banner */}
       {error && (
         <motion.div
-          className="max-w-[1512px] mx-auto px-16 mb-8"
+          className="max-w-[1512px] mx-auto px-4 md:px-8 mb-8"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
@@ -276,7 +276,7 @@ export default function SubscriptionPage() {
       {/* Loading State */}
       {isLoading ? (
         <motion.div
-          className="max-w-[1512px] mx-auto px-16 mb-32"
+          className="max-w-[1512px] mx-auto px-4 md:px-8 mb-24 md:mb-32"
           {...fadeInUp}
           transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.4 : 0, ease: "easeOut" }}
         >
@@ -295,7 +295,7 @@ export default function SubscriptionPage() {
       ) : (
         /* Subscription Cards */
         <motion.div
-          className="max-w-[1512px] mx-auto px-16 mb-32 grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="max-w-[1512px] mx-auto px-4 md:px-8 mb-24 md:mb-32 grid grid-cols-1 md:grid-cols-2 gap-8"
           {...fadeInUp}
           transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.4 : 0, ease: "easeOut" }}
         >
@@ -330,20 +330,20 @@ export default function SubscriptionPage() {
       )}
 
       {/* Fresh Coffee Section */}
-      <div className="max-w-[1512px] mx-auto px-16 mb-32 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-[1512px] mx-auto px-4 md:px-8 mb-24 md:mb-32 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
         <motion.div
           {...fadeInUp}
           transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.5 : 0, ease: "easeOut" }}
         >
-          <h2 className="text-brand-blue text-[3.75rem] md:text-[60px] tracking-[-0.06em] leading-tight mb-12">
+          <h2 className="text-brand-blue text-[2rem] sm:text-[2.5rem] md:text-[3.75rem] lg:text-[60px] tracking-[-0.06em] leading-tight mb-8 md:mb-12">
             Fresh coffee beans, expertly roasted, at home.
           </h2>
 
-          <h3 className="text-brand-blue text-[40px] font-bold tracking-[-0.02em] mb-6">
+          <h3 className="text-brand-blue text-[28px] sm:text-[32px] md:text-[40px] font-bold tracking-[-0.02em] mb-4 md:mb-6">
             OUR ETHOS
           </h3>
 
-          <div className="text-brand-blue text-[33px] leading-[44px] tracking-[-0.04em] space-y-6">
+          <div className="text-brand-blue text-[18px] sm:text-[22px] md:text-[28px] lg:text-[33px] leading-[1.4] md:leading-[44px] tracking-[-0.04em] space-y-4 md:space-y-6">
             <p>
               Commonwealth Coffee Roasters has been a cornerstone of quality in Birmingham, Michigan, delivering exceptional specialty coffee since 2010 at Commonwealth Cafe.
             </p>
@@ -354,7 +354,7 @@ export default function SubscriptionPage() {
         </motion.div>
 
         <motion.div
-          className="relative h-[836px] overflow-hidden rounded-sm"
+          className="relative h-[400px] md:h-[600px] lg:h-[836px] overflow-hidden rounded-sm"
           {...fadeInUp}
           transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.6 : 0, ease: "easeOut" }}
         >
@@ -373,13 +373,13 @@ export default function SubscriptionPage() {
       </div>
 
       {/* Divider */}
-      <div className="max-w-[1512px] mx-auto px-16">
-        <div className="h-[2px] bg-brand-blue mb-16" />
+      <div className="max-w-[1512px] mx-auto px-4 md:px-8">
+        <div className="h-[2px] bg-brand-blue mb-12 md:mb-16" />
       </div>
 
       {/* Coffee Image Banner */}
       <motion.div
-        className="relative w-full h-[363px] mb-16 overflow-hidden"
+        className="relative w-full h-[250px] md:h-[363px] mb-12 md:mb-16 overflow-hidden"
         {...fadeInUp}
         transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.7 : 0, ease: "easeOut" }}
       >
@@ -393,51 +393,51 @@ export default function SubscriptionPage() {
 
       {/* FAQ Section */}
       <motion.div
-        className="max-w-[1512px] mx-auto px-16 mb-32"
+        className="max-w-[1512px] mx-auto px-4 md:px-8 mb-24 md:mb-32"
         {...fadeInUp}
         transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.8 : 0, ease: "easeOut" }}
       >
-        <h2 className="text-brand-blue text-[3.75rem] md:text-[60px] tracking-[-0.06em] mb-12">
+        <h2 className="text-brand-blue text-[2rem] sm:text-[2.5rem] md:text-[3.75rem] lg:text-[60px] tracking-[-0.06em] mb-8 md:mb-12">
           FAQ
         </h2>
 
-        <div className="space-y-8">
+        <div className="space-y-6 md:space-y-8">
           {/* FAQ Item 1 */}
-          <div className="border-b border-brand-blue pb-8">
-            <h3 className="text-brand-blue text-[33px] font-bold tracking-[-0.03em] mb-4">
+          <div className="border-b border-brand-blue pb-6 md:pb-8">
+            <h3 className="text-brand-blue text-[20px] sm:text-[24px] md:text-[28px] lg:text-[33px] font-bold tracking-[-0.03em] mb-3 md:mb-4">
               Can I change up my subscription?
             </h3>
-            <p className="text-brand-blue text-[33px] leading-[1.55] tracking-[-0.01em]">
+            <p className="text-brand-blue text-[16px] sm:text-[18px] md:text-[24px] lg:text-[33px] leading-[1.55] tracking-[-0.01em]">
               Yes, you may login to our customer portal (powered by Stripe) to cancel update card numbers or address details.
             </p>
           </div>
 
           {/* FAQ Item 2 */}
-          <div className="border-b border-brand-blue pb-8">
-            <h3 className="text-brand-blue text-[33px] font-bold tracking-[-0.03em] mb-4">
+          <div className="border-b border-brand-blue pb-6 md:pb-8">
+            <h3 className="text-brand-blue text-[20px] sm:text-[24px] md:text-[28px] lg:text-[33px] font-bold tracking-[-0.03em] mb-3 md:mb-4">
               Will I be charged for shipping?
             </h3>
-            <p className="text-brand-blue text-[33px] leading-[1.55] tracking-[-0.01em]">
+            <p className="text-brand-blue text-[16px] sm:text-[18px] md:text-[24px] lg:text-[33px] leading-[1.55] tracking-[-0.01em]">
               Shipping is already included in the flat rate price.
             </p>
           </div>
 
           {/* FAQ Item 3 */}
-          <div className="border-b border-brand-blue pb-8">
-            <h3 className="text-brand-blue text-[33px] font-bold tracking-[-0.03em] mb-4">
+          <div className="border-b border-brand-blue pb-6 md:pb-8">
+            <h3 className="text-brand-blue text-[20px] sm:text-[24px] md:text-[28px] lg:text-[33px] font-bold tracking-[-0.03em] mb-3 md:mb-4">
               Will I get the freshest coffee?
             </h3>
-            <p className="text-brand-blue text-[33px] leading-[1.55] tracking-[-0.01em]">
+            <p className="text-brand-blue text-[16px] sm:text-[18px] md:text-[24px] lg:text-[33px] leading-[1.55] tracking-[-0.01em]">
               Subscribers always get our most fresh coffee! We roast and ship daily from our facilities in Detroit.
             </p>
           </div>
 
           {/* FAQ Item 4 */}
-          <div className="border-b border-brand-blue pb-8">
-            <h3 className="text-brand-blue text-[33px] font-bold tracking-[-0.03em] mb-4">
+          <div className="border-b border-brand-blue pb-6 md:pb-8">
+            <h3 className="text-brand-blue text-[20px] sm:text-[24px] md:text-[28px] lg:text-[33px] font-bold tracking-[-0.03em] mb-3 md:mb-4">
               When can I expect my order?
             </h3>
-            <p className="text-brand-blue text-[33px] leading-[1.55] tracking-[-0.01em]">
+            <p className="text-brand-blue text-[16px] sm:text-[18px] md:text-[24px] lg:text-[33px] leading-[1.55] tracking-[-0.01em]">
               We ship daily from our Detroit facility. You will be emailed a tracking number as soon as your order ships to follow the progress of your order.
             </p>
           </div>
