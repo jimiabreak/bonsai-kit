@@ -161,7 +161,7 @@ export default function ContactPage() {
       </div>
 
       {/* Footer */}
-      <Footer />
+      <Footer theme="light" />
     </div>
   );
 }

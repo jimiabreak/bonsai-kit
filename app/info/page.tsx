@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
 import ThemedHeader from '@/components/layout/ThemedHeader';
+import Footer from '@/components/layout/Footer';
 
 export default function InfoPage() {
   const prefersReducedMotion = useReducedMotion();
@@ -13,7 +14,7 @@ export default function InfoPage() {
     : { initial: { opacity: 1, y: 0 }, animate: { opacity: 1, y: 0 } };
 
   return (
-    <div className="bg-brand-blue min-h-screen w-full overflow-x-hidden">
+    <div className="bg-brand-blue min-h-screen w-full overflow-x-hidden" style={{ backgroundColor: '#152885' }}>
       {/* Header */}
       <ThemedHeader theme="dark" />
 
@@ -190,48 +191,8 @@ export default function InfoPage() {
         </div>
       </motion.div>
 
-      {/* Footer Section - Cream Background */}
-      <motion.div
-        className="bg-cream py-16 px-4 w-full overflow-x-hidden"
-        initial={{ opacity: !prefersReducedMotion ? 0 : 1 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.8 : 0, ease: "easeOut" }}
-      >
-        <div className="max-w-[1200px] mx-auto">
-          {/* Footer Links */}
-          <nav className="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-4 md:gap-6 mb-8">
-            <Link href="/contact" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
-              Contact
-            </Link>
-            <Link href="/subscription" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
-              Subscriptions
-            </Link>
-            <Link href="/gift-cards" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
-              Gift Cards
-            </Link>
-            <Link href="/events" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
-              Events
-            </Link>
-            <Link href="/faq" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
-              FAQ
-            </Link>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
-              Facebook
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
-              Instagram
-            </a>
-            <Link href="/privacy" className="font-sans text-base md:text-xl text-brand-blue tracking-[-0.01em] hover:opacity-70 transition-opacity duration-300">
-              Privacy Policy
-            </Link>
-          </nav>
-
-          {/* Copyright */}
-          <p className="text-sub-footer text-brand-blue text-center">
-            © 2025. All rights reserved.
-          </p>
-        </div>
-      </motion.div>
+      {/* Footer */}
+      <Footer theme="dark" />
     </div>
   );
 }

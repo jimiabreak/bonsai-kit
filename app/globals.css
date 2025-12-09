@@ -185,7 +185,7 @@ body {
   /* Subscription Card Typography */
   .text-subscription-title {
     font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.563rem; /* 25px */
+    font-size: 1.125rem; /* 18px on mobile */
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.02em;
@@ -193,9 +193,9 @@ body {
 
   .text-subscription-body {
     font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.563rem; /* 25px */
+    font-size: 1rem; /* 16px on mobile */
     font-weight: 400;
-    line-height: 1.938rem; /* 31px */
+    line-height: 1.5;
   }
 
   .text-subscription-detail {
@@ -216,7 +216,7 @@ body {
 
   .text-subscription-frequency {
     font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.563rem; /* 25px */
+    font-size: 1.25rem; /* 20px on mobile */
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.02em;
@@ -224,23 +224,53 @@ body {
 
   .text-subscription-label {
     font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.25rem; /* 20px */
+    font-size: 1rem; /* 16px on mobile */
     font-weight: 400;
-    line-height: 1.938rem; /* 31px */
+    line-height: 1.5;
   }
 
   .text-subscription-italic {
     font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.375rem; /* 22px */
+    font-size: 1rem; /* 16px on mobile */
     font-weight: 400;
     font-style: italic;
-    line-height: 1.563rem; /* 25px */
+    line-height: 1.5;
   }
 
   .text-subscription-include {
     font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.563rem; /* 25px */
+    font-size: 1.125rem; /* 18px on mobile */
     font-weight: 700;
-    line-height: 2.563rem; /* 41px */
+    line-height: 1.6;
+  }
+
+  @media (min-width: 768px) {
+    .text-subscription-title {
+      font-size: 1.563rem; /* 25px on desktop */
+    }
+
+    .text-subscription-body {
+      font-size: 1.563rem; /* 25px on desktop */
+      line-height: 1.938rem; /* 31px */
+    }
+
+    .text-subscription-frequency {
+      font-size: 1.563rem; /* 25px on desktop */
+    }
+
+    .text-subscription-label {
+      font-size: 1.25rem; /* 20px on desktop */
+      line-height: 1.938rem; /* 31px */
+    }
+
+    .text-subscription-italic {
+      font-size: 1.375rem; /* 22px on desktop */
+      line-height: 1.563rem; /* 25px */
+    }
+
+    .text-subscription-include {
+      font-size: 1.563rem; /* 25px on desktop */
+      line-height: 2.563rem; /* 41px */
+    }
   }
 }

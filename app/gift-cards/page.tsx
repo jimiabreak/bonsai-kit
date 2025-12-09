@@ -85,7 +85,7 @@ export default function GiftCardsPage() {
         </div>
       </main>
 
-      <Footer />
+      <Footer theme="light" />
     </div>
   );
 }

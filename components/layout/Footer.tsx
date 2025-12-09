@@ -3,11 +3,20 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { getCustomerPortalUrl } from '@/lib/shopify';
 
-export default function Footer() {
+interface FooterProps {
+  theme?: 'light' | 'dark';
+}
+
+export default function Footer({ theme = 'light' }: FooterProps) {
+  const bgColor = theme === 'dark' ? 'bg-brand-blue' : 'bg-cream';
+  const textColor = theme === 'dark' ? 'text-cream' : 'text-brand-blue';
+  const logoSrc = theme === 'dark' ? '/images/Commonwealth_Logo_R-Cream.svg' : '/images/Commonwealth_Logo_R.svg';
+
   return (
     <motion.footer
-      className="relative z-50 bg-cream py-16 px-4 w-full overflow-x-hidden"
+      className={`relative z-50 ${bgColor} py-16 px-4 w-full overflow-x-hidden`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -17,31 +26,31 @@ export default function Footer() {
         <nav className="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-3 md:gap-4 mb-8">
           <Link
             href="/contact"
-            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
+            className={`font-sans ${textColor} text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300`}
           >
             Contact
           </Link>
           <Link
             href="/subscription"
-            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
+            className={`font-sans ${textColor} text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300`}
           >
             Subscriptions
           </Link>
           <Link
             href="/gift-cards"
-            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
+            className={`font-sans ${textColor} text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300`}
           >
             Gift Cards
           </Link>
           <Link
             href="/events"
-            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
+            className={`font-sans ${textColor} text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300`}
           >
             Events
           </Link>
           <Link
             href="/faq"
-            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
+            className={`font-sans ${textColor} text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300`}
           >
             FAQ
           </Link>
@@ -49,7 +58,7 @@ export default function Footer() {
             href="https://facebook.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
+            className={`font-sans ${textColor} text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300`}
           >
             Facebook
           </a>
@@ -57,22 +66,16 @@ export default function Footer() {
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
+            className={`font-sans ${textColor} text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300`}
           >
             Instagram
           </a>
-          <Link
-            href="/privacy"
-            className="font-sans text-brand-blue text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300"
-          >
-            Privacy Policy
-          </Link>
         </nav>
 
         {/* Commonwealth Logo */}
         <div className="flex justify-center mb-8">
           <Image
-            src="/images/Commonwealth_Logo_R.svg"
+            src={logoSrc}
             alt="Commonwealth"
             width={500}
             height={100}
@@ -89,7 +92,7 @@ export default function Footer() {
             height={12}
             className="h-3 w-auto"
           />
-          <p className="text-sub-footer text-brand-blue">
+          <p className={`text-sub-footer ${textColor}`}>
             2025. All rights reserved.
           </p>
         </div>

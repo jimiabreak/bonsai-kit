@@ -1,4 +1,7 @@
+'use client';
+
 import Image from 'next/image';
+import { motion, useReducedMotion } from 'framer-motion';
 import Button from './Button';
 import { SubscriptionCardProps } from '@/types';
 
@@ -13,8 +16,31 @@ export default function SubscriptionCard({
   onSignUp,
   processingVariantId = null
 }: SubscriptionCardProps) {
+  const prefersReducedMotion = useReducedMotion();
+
+  const cardVariants = !prefersReducedMotion ? {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  } : {
+    hidden: { opacity: 1, y: 0 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
-    <div className="bg-cream border-2 border-brand-blue rounded-sm p-6 flex flex-col gap-4 w-full max-w-[700px]">
+    <motion.div
+      className="bg-cream border-2 border-brand-blue rounded-sm p-6 flex flex-col gap-4 w-full max-w-[700px]"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={cardVariants}
+    >
       {/* Title */}
       <h3 className="text-subscription-title text-brand-blue text-center">
         {title}
@@ -27,6 +53,7 @@ export default function SubscriptionCard({
           alt={imageAlt}
           fill
           className="object-cover"
+          sizes="(max-width: 768px) 100vw, 700px"
         />
       </div>
 
@@ -54,10 +81,10 @@ export default function SubscriptionCard({
       {/* Subscription Options */}
       {options.map((option, index) => (
         <div key={index}>
-          <div className="flex items-end justify-between w-full">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between w-full gap-6 md:gap-4">
             {/* Price Section */}
-            <div className="flex flex-col justify-between h-[100px]">
-              <p className="text-subscription-detail text-brand-blue">
+            <div className="flex flex-col justify-between">
+              <p className="text-subscription-detail text-brand-blue mb-2 md:mb-0">
                 PRICE PER DELIVERY:
               </p>
               <div className="flex flex-col gap-1">
@@ -71,12 +98,12 @@ export default function SubscriptionCard({
             </div>
 
             {/* Frequency Section */}
-            <div className="flex flex-col justify-between h-[100px]">
-              <p className="text-subscription-detail text-brand-blue">
+            <div className="flex flex-col justify-between">
+              <p className="text-subscription-detail text-brand-blue mb-2 md:mb-0">
                 FREQUENCY:
               </p>
               <div className="flex flex-col gap-1">
-                <div className="text-subscription-frequency text-brand-blue whitespace-nowrap">
+                <div className="text-subscription-frequency text-brand-blue">
                   <p className="mb-0">{option.bags} Bags</p>
                   <p className="mb-0">{option.frequency}</p>
                 </div>
@@ -92,7 +119,7 @@ export default function SubscriptionCard({
               size="subscription"
               onClick={() => onSignUp?.(option)}
               disabled={processingVariantId !== null}
-              className="w-[254px]"
+              className="w-full md:w-[254px]"
             >
               {processingVariantId === option.shopifyVariantId ? 'PROCESSING...' : 'SIGN UP'}
             </Button>
@@ -100,10 +127,10 @@ export default function SubscriptionCard({
 
           {/* Divider after each option except last */}
           {index < options.length - 1 && (
-            <div className="h-[2px] w-full bg-brand-blue mt-4" />
+            <div className="h-[2px] w-full bg-brand-blue mt-6 md:mt-4" />
           )}
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 }

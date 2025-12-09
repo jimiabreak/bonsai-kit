@@ -245,3 +245,14 @@ export async function createCheckout(
 
   return data.cartCreate.cart.checkoutUrl;
 }
+
+/**
+ * Get the URL for the Shopify customer account portal
+ * where customers can manage their subscriptions
+ */
+export function getCustomerPortalUrl(): string {
+  if (!domain) {
+    throw new Error('Shopify domain is not configured');
+  }
+  return `https://${domain}/account`;
+}

@@ -56,7 +56,7 @@ export default function MenuPage() {
   };
 
   return (
-    <div className="bg-brand-blue min-h-screen w-full overflow-x-hidden">
+    <div className="bg-brand-blue min-h-screen w-full overflow-x-hidden" style={{ backgroundColor: '#152885' }}>
       {/* Header */}
       <ThemedHeader theme="dark" />
 
@@ -267,7 +267,7 @@ export default function MenuPage() {
       </div>
 
       {/* Footer */}
-      <Footer />
+      <Footer theme="dark" />
     </div>
   );
 }

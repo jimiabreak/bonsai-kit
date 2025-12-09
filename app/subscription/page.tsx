@@ -6,8 +6,9 @@ import { motion, useReducedMotion } from 'framer-motion';
 import ThemedHeader from '@/components/layout/ThemedHeader';
 import Footer from '@/components/layout/Footer';
 import SubscriptionCard from '@/components/ui/SubscriptionCard';
+import FAQAccordion from '@/components/ui/FAQAccordion';
 import { SubscriptionOption } from '@/types';
-import { fetchSubscriptionProducts, createCheckout, ShopifyProduct } from '@/lib/shopify';
+import { fetchSubscriptionProducts, createCheckout, ShopifyProduct, getCustomerPortalUrl } from '@/lib/shopify';
 
 export default function SubscriptionPage() {
   const prefersReducedMotion = useReducedMotion();
@@ -16,7 +17,6 @@ export default function SubscriptionPage() {
   const [dripOptions, setDripOptions] = useState<SubscriptionOption[]>([]);
   const [espressoOptions, setEspressoOptions] = useState<SubscriptionOption[]>([]);
   const [processingVariantId, setProcessingVariantId] = useState<string | null>(null);
-  const [retryCount, setRetryCount] = useState(0);
   const MAX_RETRIES = 2;
 
   const fadeInUp = !prefersReducedMotion
@@ -24,6 +24,8 @@ export default function SubscriptionPage() {
     : { initial: { opacity: 1, y: 0 }, animate: { opacity: 1, y: 0 } };
 
   useEffect(() => {
+    let retryAttempt = 0;
+
     async function loadProducts() {
       try {
         setIsLoading(true);
@@ -53,8 +55,8 @@ export default function SubscriptionPage() {
         setEspressoOptions(getFallbackEspressoOptions());
 
         // Only show error if we've exhausted retries
-        if (retryCount < MAX_RETRIES) {
-          setRetryCount(retryCount + 1);
+        if (retryAttempt < MAX_RETRIES) {
+          retryAttempt++;
           // Retry after 1 second
           setTimeout(() => loadProducts(), 1000);
         } else {
@@ -66,7 +68,7 @@ export default function SubscriptionPage() {
     }
 
     loadProducts();
-  }, [retryCount]);
+  }, []);
 
   const mapProductToOptions = (product: ShopifyProduct): SubscriptionOption[] => {
     return product.variants.edges
@@ -243,6 +245,27 @@ export default function SubscriptionPage() {
         </div>
       </motion.div>
 
+      {/* Manage Subscription Section */}
+      <motion.div
+        className="max-w-[1512px] mx-auto px-4 md:px-8 mb-12 md:mb-16"
+        {...fadeInUp}
+        transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.3 : 0, ease: "easeOut" }}
+      >
+        <div className="bg-cream border-2 border-brand-blue rounded-xl p-8 md:p-12 text-center max-w-[700px] mx-auto">
+          <p className="text-brand-blue text-[20px] sm:text-[24px] md:text-[28px] mb-6 md:mb-8 font-normal">
+            Already a subscriber?
+          </p>
+          <a
+            href={getCustomerPortalUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center h-[61px] px-8 bg-cream border-2 border-brand-blue text-brand-blue text-[1.563rem] font-bold tracking-[-0.02em] hover:bg-brand-blue hover:text-cream focus-visible:ring-brand-blue transition-all duration-300 rounded-xl touch-target"
+          >
+            Manage Your Subscription
+          </a>
+        </div>
+      </motion.div>
+
       {/* Divider */}
       <div className="max-w-[1512px] mx-auto px-4 md:px-8">
         <div className="h-[2px] bg-brand-blue mb-8 md:mb-12" />
@@ -384,10 +407,11 @@ export default function SubscriptionPage() {
         transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.7 : 0, ease: "easeOut" }}
       >
         <Image
-          src="/images/food-1.png"
+          src="/images/capp.png"
           alt="Fresh coffee"
           fill
           className="object-cover"
+          sizes="100vw"
         />
       </motion.div>
 
@@ -401,51 +425,31 @@ export default function SubscriptionPage() {
           FAQ
         </h2>
 
-        <div className="space-y-6 md:space-y-8">
-          {/* FAQ Item 1 */}
-          <div className="border-b border-brand-blue pb-6 md:pb-8">
-            <h3 className="text-brand-blue text-[20px] sm:text-[24px] md:text-[28px] lg:text-[33px] font-bold tracking-[-0.03em] mb-3 md:mb-4">
-              Can I change up my subscription?
-            </h3>
-            <p className="text-brand-blue text-[16px] sm:text-[18px] md:text-[24px] lg:text-[33px] leading-[1.55] tracking-[-0.01em]">
-              Yes, you may login to our customer portal (powered by Stripe) to cancel update card numbers or address details.
-            </p>
-          </div>
-
-          {/* FAQ Item 2 */}
-          <div className="border-b border-brand-blue pb-6 md:pb-8">
-            <h3 className="text-brand-blue text-[20px] sm:text-[24px] md:text-[28px] lg:text-[33px] font-bold tracking-[-0.03em] mb-3 md:mb-4">
-              Will I be charged for shipping?
-            </h3>
-            <p className="text-brand-blue text-[16px] sm:text-[18px] md:text-[24px] lg:text-[33px] leading-[1.55] tracking-[-0.01em]">
-              Shipping is already included in the flat rate price.
-            </p>
-          </div>
-
-          {/* FAQ Item 3 */}
-          <div className="border-b border-brand-blue pb-6 md:pb-8">
-            <h3 className="text-brand-blue text-[20px] sm:text-[24px] md:text-[28px] lg:text-[33px] font-bold tracking-[-0.03em] mb-3 md:mb-4">
-              Will I get the freshest coffee?
-            </h3>
-            <p className="text-brand-blue text-[16px] sm:text-[18px] md:text-[24px] lg:text-[33px] leading-[1.55] tracking-[-0.01em]">
-              Subscribers always get our most fresh coffee! We roast and ship daily from our facilities in Detroit.
-            </p>
-          </div>
-
-          {/* FAQ Item 4 */}
-          <div className="border-b border-brand-blue pb-6 md:pb-8">
-            <h3 className="text-brand-blue text-[20px] sm:text-[24px] md:text-[28px] lg:text-[33px] font-bold tracking-[-0.03em] mb-3 md:mb-4">
-              When can I expect my order?
-            </h3>
-            <p className="text-brand-blue text-[16px] sm:text-[18px] md:text-[24px] lg:text-[33px] leading-[1.55] tracking-[-0.01em]">
-              We ship daily from our Detroit facility. You will be emailed a tracking number as soon as your order ships to follow the progress of your order.
-            </p>
-          </div>
-        </div>
+        <FAQAccordion
+          theme="light"
+          items={[
+            {
+              question: "Can I change up my subscription?",
+              answer: "Yes! You can manage your subscription anytime through your Shopify customer account. Login to update payment methods, change delivery frequency, pause, or cancel your subscription. Click 'Manage Your Subscription' above or visit your customer portal."
+            },
+            {
+              question: "Will I be charged for shipping?",
+              answer: "Shipping is already included in the flat rate price."
+            },
+            {
+              question: "Will I get the freshest coffee?",
+              answer: "Subscribers always get our most fresh coffee! We roast and ship daily from our facilities in Detroit."
+            },
+            {
+              question: "When can I expect my order?",
+              answer: "We ship daily from our Detroit facility. You will be emailed a tracking number as soon as your order ships to follow the progress of your order."
+            }
+          ]}
+        />
       </motion.div>
 
       {/* Footer */}
-      <Footer />
+      <Footer theme="light" />
     </div>
   );
 }
