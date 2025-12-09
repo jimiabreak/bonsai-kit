@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { getCustomerPortalUrl } from '@/lib/shopify';
 
 interface FooterProps {
   theme?: 'light' | 'dark';

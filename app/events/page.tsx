@@ -86,7 +86,7 @@ export default function EventsPage() {
           <h2 className="text-brand-blue text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] tracking-[-0.06em] leading-tight">
             Host your event at Commonwealth
             <br />
-            or we'll bring our food to you.
+            or we&apos;ll bring our food to you.
           </h2>
         </motion.div>
 
