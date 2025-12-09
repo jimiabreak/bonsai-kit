@@ -20,14 +20,7 @@ export default function SubscriptionCard({
 
   const cardVariants = !prefersReducedMotion ? {
     hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.4, 0, 0.2, 1] // easeOut as cubic bezier
-      }
-    }
+    visible: { opacity: 1, y: 0 }
   } : {
     hidden: { opacity: 1, y: 0 },
     visible: { opacity: 1, y: 0 }
@@ -40,6 +33,7 @@ export default function SubscriptionCard({
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
       variants={cardVariants}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
       {/* Title */}
       <h3 className="text-subscription-title text-brand-blue text-center">
