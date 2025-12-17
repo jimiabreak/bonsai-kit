@@ -7,8 +7,8 @@ export default defineConfig({
   name: 'default',
   title: 'Commonwealth Coffee',
 
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  projectId: 'wvwhqsyr',
+  dataset: 'production',
 
   basePath: '/admin',
 

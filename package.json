@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sanity/vision": "^3.68.1",
     "framer-motion": "^12.23.12",
     "gray-matter": "^4.0.3",
     "next": "14.2.32",
