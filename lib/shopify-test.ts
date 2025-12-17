@@ -5,10 +5,10 @@
  * Use these to validate your setup before deploying to production
  */
 
-const domain = process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN;
-const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN;
-
-const SHOPIFY_GRAPHQL_ENDPOINT = `https://${domain}/api/2024-01/graphql.json`;
+// Lazy load env vars to support dotenv in test scripts
+const getDomain = () => process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN;
+const getToken = () => process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN;
+const getEndpoint = () => `https://${getDomain()}/api/2024-01/graphql.json`;
 
 interface TestResult {
   success: boolean;
@@ -22,7 +22,10 @@ interface TestResult {
  */
 export async function verifyCredentials(): Promise<TestResult> {
   try {
-    if (!domain || !storefrontAccessToken) {
+    const domain = getDomain();
+    const token = getToken();
+
+    if (!domain || !token) {
       return {
         success: false,
         message: 'Missing credentials',
@@ -41,11 +44,11 @@ export async function verifyCredentials(): Promise<TestResult> {
       }
     `;
 
-    const response = await fetch(SHOPIFY_GRAPHQL_ENDPOINT, {
+    const response = await fetch(getEndpoint(), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
+        'X-Shopify-Storefront-Access-Token': token,
       },
       body: JSON.stringify({ query }),
     });
@@ -112,11 +115,11 @@ export async function checkProductsExist(): Promise<TestResult> {
       }
     `;
 
-    const response = await fetch(SHOPIFY_GRAPHQL_ENDPOINT, {
+    const response = await fetch(getEndpoint(), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': storefrontAccessToken || '',
+        'X-Shopify-Storefront-Access-Token': getToken() || '',
       },
       body: JSON.stringify({ query }),
     });
@@ -219,11 +222,11 @@ export async function testCheckoutCreation(
       },
     };
 
-    const response = await fetch(SHOPIFY_GRAPHQL_ENDPOINT, {
+    const response = await fetch(getEndpoint(), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': storefrontAccessToken || '',
+        'X-Shopify-Storefront-Access-Token': getToken() || '',
       },
       body: JSON.stringify({ query, variables }),
     });

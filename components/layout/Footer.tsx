@@ -89,7 +89,7 @@ export default function Footer({ theme = 'light' }: FooterProps) {
             alt="©"
             width={12}
             height={12}
-            className="h-3 w-auto"
+            className={`h-3 w-auto ${theme === 'dark' ? 'invert brightness-0' : ''}`}
           />
           <p className={`text-sub-footer ${textColor}`}>
             2025. All rights reserved.

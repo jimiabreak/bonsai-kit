@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 export default function Header() {
   return (
     <motion.header
-      className="relative z-50 bg-transparent py-1 px-4"
+      className="relative z-50 bg-transparent py-16 px-4"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}

@@ -28,7 +28,7 @@ export default function InfoPage() {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <Image
-            src="/images/main-logo-v2.svg"
+            src="/images/main-logo-V2.svg"
             alt="Commonwealth Coffee"
             width={760}
             height={470}
@@ -44,7 +44,7 @@ export default function InfoPage() {
           transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.2 : 0, ease: "easeOut" }}
         >
           {/* INFO Column */}
-          <div className="text-cream">
+          <div className="text-cream text-center md:text-left">
             <h2 className="text-title mb-6 md:mb-8">INFO</h2>
             <div>
               <p className="text-body font-bold">Commonwealth Café</p>
@@ -85,8 +85,8 @@ export default function InfoPage() {
 
           {/* HOURS Column */}
           <div className="text-cream">
-            <h2 className="text-title mb-6 md:mb-8 md:text-right">HOURS</h2>
-            <div className="flex justify-between max-w-[500px] w-full">
+            <h2 className="text-title mb-6 md:mb-8 text-center md:text-right">HOURS</h2>
+            <div className="flex justify-between max-w-[500px] w-full mx-auto md:mx-0 md:ml-auto">
               <div className="space-y-1">
                 <p className="text-body">Mon</p>
                 <p className="text-body">Tue</p>
@@ -115,7 +115,7 @@ export default function InfoPage() {
           {...fadeInUp}
           transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.4 : 0, ease: "easeOut" }}
         >
-          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-[60px] leading-tight tracking-[-0.06em]">
+          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-[60px] leading-[1.4] md:leading-[1.3] tracking-[-0.06em]">
             NO RESERVATIONS.
             <br />
             WALK IN OR TAKEOUT ONLY.
@@ -130,7 +130,7 @@ export default function InfoPage() {
         >
           <Link
             href="/menu"
-            className="inline-flex items-center gap-3 group"
+            className="inline-flex items-center justify-center md:justify-start gap-3 group"
           >
             <h2 className="menu-large-link text-cream underline hover:opacity-70 transition-opacity duration-300">
               MENU
@@ -143,11 +143,11 @@ export default function InfoPage() {
               className="w-[20px] h-[20px] md:w-[29px] md:h-[29px]"
             />
           </Link>
-          <div className="text-cream md:text-right">
-            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-[60px] leading-tight tracking-[-0.06em]">
-              OUR ALL-DAY MENU
+          <div className="text-cream text-center md:text-right max-w-[600px] md:max-w-none mx-auto md:mx-0">
+            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-[60px] leading-[1.4] md:leading-[1.3] tracking-[-0.06em] whitespace-nowrap">
+              OUR ALL-DAY MENU.
             </p>
-            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-[60px] leading-tight tracking-[-0.06em]">
+            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-[60px] leading-[1.4] md:leading-[1.3] tracking-[-0.06em] whitespace-nowrap">
               SERVED EVERY DAY.
             </p>
           </div>
@@ -156,33 +156,25 @@ export default function InfoPage() {
 
       {/* Food Images - Full Width */}
       <motion.div
-        className="px-5 space-y-4 mb-20"
+        className="px-5 mb-20"
         {...fadeInUp}
         transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.6 : 0, ease: "easeOut" }}
       >
-        {/* Large Image */}
-        <div className="relative w-full h-[400px] md:h-[740px] rounded-sm overflow-hidden">
-          <Image
-            src="/images/food-1.png"
-            alt="Commonwealth Coffee food"
-            fill
-            className="object-cover"
-          />
-        </div>
-
-        {/* Two Smaller Images */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="relative w-full h-[400px] md:h-[831px] rounded-sm overflow-hidden">
+          {/* First Image - Cinnamon Rolls */}
+          <div className="relative w-full aspect-[3/4] rounded-sm overflow-hidden">
             <Image
-              src="/images/food-1.png"
-              alt="Commonwealth Coffee food"
+              src="/images/0A925E52-AF1F-422C-A875-F7A617523660-1-1.jpg"
+              alt="Commonwealth Coffee pastries"
               fill
               className="object-cover"
             />
           </div>
-          <div className="relative w-full h-[400px] md:h-[831px] rounded-sm overflow-hidden">
+
+          {/* Second Image - Bowl Dish */}
+          <div className="relative w-full aspect-[3/4] rounded-sm overflow-hidden">
             <Image
-              src="/images/food-2.png"
+              src="/images/IwerwMG_5035.jpg"
               alt="Commonwealth Coffee food"
               fill
               className="object-cover"

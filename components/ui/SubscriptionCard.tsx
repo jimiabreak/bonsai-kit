@@ -57,31 +57,32 @@ export default function SubscriptionCard({
       </p>
 
       {/* What You Get */}
-      <div className="text-brand-blue space-y-2">
+      <div className="text-brand-blue space-y-2 pt-4">
         <p className="text-subscription-label">WHAT YOU GET:</p>
         {includes.map((item, index) => (
           <p key={index} className="text-subscription-include">
             — {item}
           </p>
         ))}
-        <p className="text-subscription-italic mt-4">
-          {frequencyNote}
-        </p>
       </div>
+
+      <p className="text-subscription-italic text-brand-blue mt-6">
+        {frequencyNote}
+      </p>
 
       {/* Divider */}
       <div className="h-[2px] w-full bg-brand-blue" />
 
       {/* Subscription Options */}
       {options.map((option, index) => (
-        <div key={index}>
+        <div key={index} className="pt-4">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between w-full gap-6 md:gap-4">
             {/* Price Section */}
-            <div className="flex flex-col justify-between">
-              <p className="text-subscription-detail text-brand-blue mb-2 md:mb-0">
+            <div className="flex flex-col">
+              <p className="text-subscription-detail text-brand-blue mb-2">
                 PRICE PER DELIVERY:
               </p>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 pt-[1.5em]">
                 <p className="text-subscription-price text-brand-blue">
                   ${option.price}
                 </p>
@@ -92,8 +93,8 @@ export default function SubscriptionCard({
             </div>
 
             {/* Frequency Section */}
-            <div className="flex flex-col justify-between">
-              <p className="text-subscription-detail text-brand-blue mb-2 md:mb-0">
+            <div className="flex flex-col">
+              <p className="text-subscription-detail text-brand-blue mb-2">
                 FREQUENCY:
               </p>
               <div className="flex flex-col gap-1">

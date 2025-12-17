@@ -10,7 +10,7 @@ export default function ThemedHeader({ theme = 'light' }: ThemedHeaderProps) {
   const textColor = theme === 'light' ? 'text-brand-blue' : 'text-cream';
 
   return (
-    <header className="relative z-50 bg-transparent py-1 px-4 w-full">
+    <header className="relative z-50 bg-transparent py-4 md:py-7 px-4 w-full">
       <nav className="grid grid-cols-3 items-start max-w-[1512px] mx-auto gap-2 md:gap-4">
         <Link
           href="/info"

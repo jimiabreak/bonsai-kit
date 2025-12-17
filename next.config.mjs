@@ -9,6 +9,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
     ],
   },
   compiler: {
@@ -20,6 +24,8 @@ const nextConfig = {
   httpAgentOptions: {
     keepAlive: true,
   },
+  // Required for embedded Sanity Studio
+  transpilePackages: ['next-sanity'],
 };
 
 export default nextConfig;
