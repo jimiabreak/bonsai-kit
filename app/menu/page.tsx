@@ -44,9 +44,9 @@ export default function MenuPage() {
   const scrollToCategory = (categoryId: string) => {
     const element = document.getElementById(categoryId);
     if (element) {
-      const offset = 120; // Account for fixed header
+      const offset = 150; // Account for header and some padding
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      const offsetPosition = elementPosition + window.scrollY - offset;
 
       window.scrollTo({
         top: offsetPosition,
