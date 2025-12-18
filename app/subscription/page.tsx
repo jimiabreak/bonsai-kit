@@ -261,7 +261,7 @@ export default function SubscriptionPage() {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center h-[61px] px-8 bg-cream border-2 border-brand-blue text-brand-blue text-[1.563rem] font-bold tracking-[-0.02em] hover:bg-brand-blue hover:text-cream focus-visible:ring-brand-blue transition-all duration-300 rounded-xl touch-target"
           >
-            Manage Your Subscription
+            Manage Subscription
           </a>
         </div>
       </motion.div>
