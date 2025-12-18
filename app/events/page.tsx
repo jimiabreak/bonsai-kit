@@ -92,7 +92,7 @@ export default function EventsPage() {
 
         {/* Two Options Section */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 md:gap-12 items-start mb-16 md:mb-20"
+          className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 md:gap-12 items-center mb-16 md:mb-20"
           {...fadeInUp}
           transition={{ duration: 0.6, delay: !prefersReducedMotion ? 0.4 : 0, ease: "easeOut" }}
         >
@@ -118,7 +118,7 @@ export default function EventsPage() {
           </div>
 
           {/* OR Divider */}
-          <div className="flex items-center justify-center md:py-24">
+          <div className="flex items-center justify-center">
             <div className="text-brand-blue text-[32px] sm:text-[40px] md:text-[48px] font-bold">
               OR
             </div>
