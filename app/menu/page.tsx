@@ -43,14 +43,22 @@ export default function MenuPage() {
 
   const scrollToCategory = (categoryId: string) => {
     const element = document.getElementById(categoryId);
-    if (element) {
-      const yOffset = -150; // Negative offset to account for header
-      const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
 
-      window.scrollTo({
-        top: y,
-        behavior: 'smooth'
+    if (element) {
+      // Use scrollIntoView for more reliable scrolling
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
       });
+
+      // Then adjust for header offset
+      setTimeout(() => {
+        const scrolledY = window.scrollY;
+        window.scrollTo({
+          top: scrolledY - 180,
+          behavior: 'smooth'
+        });
+      }, 100);
     }
   };
 
