@@ -50,7 +50,7 @@ export default function ContactPage() {
           {...fadeInUp}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h1 className="text-cream text-[120px] md:text-[180px] lg:text-[240px] font-sans font-normal leading-none tracking-tight">
+          <h1 className="text-cream text-[80px] sm:text-[120px] md:text-[180px] lg:text-[240px] font-sans font-normal leading-none tracking-tight">
             CONTACT
           </h1>
         </motion.div>
