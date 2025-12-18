@@ -81,7 +81,7 @@ export default function MenuPage() {
         >
           <button
             onClick={() => setActiveTab('food')}
-            className={`text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-3px] leading-normal transition-all duration-300 whitespace-nowrap ${
+            className={`text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-0.5px] md:tracking-[-3px] leading-normal transition-all duration-300 whitespace-nowrap ${
               activeTab === 'food' ? 'text-cream underline' : 'text-cream/50 hover:text-cream/70'
             }`}
           >
@@ -89,7 +89,7 @@ export default function MenuPage() {
           </button>
           <button
             onClick={() => setActiveTab('drinks')}
-            className={`text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-3px] leading-normal transition-all duration-300 whitespace-nowrap ${
+            className={`text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-0.5px] md:tracking-[-3px] leading-normal transition-all duration-300 whitespace-nowrap ${
               activeTab === 'drinks' ? 'text-cream underline' : 'text-cream/50 hover:text-cream/70'
             }`}
           >
@@ -97,7 +97,7 @@ export default function MenuPage() {
           </button>
           <button
             onClick={() => setActiveTab('features')}
-            className={`text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-3px] leading-normal transition-all duration-300 whitespace-nowrap ${
+            className={`text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-0.5px] md:tracking-[-3px] leading-normal transition-all duration-300 whitespace-nowrap ${
               activeTab === 'features' ? 'text-cream underline' : 'text-cream/50 hover:text-cream/70'
             }`}
           >
@@ -121,7 +121,7 @@ export default function MenuPage() {
                   <button
                     key={category.id}
                     onClick={() => scrollToCategory(category.id)}
-                    className="text-cream text-[18px] sm:text-[24px] md:text-[30px] font-normal tracking-[-0.9px] leading-normal whitespace-nowrap hover:opacity-70 transition-opacity duration-300"
+                    className="text-cream text-[18px] sm:text-[24px] md:text-[30px] font-normal tracking-normal md:tracking-[-0.9px] leading-normal whitespace-nowrap hover:opacity-70 transition-opacity duration-300"
                   >
                     {category.name}
                   </button>
@@ -131,7 +131,7 @@ export default function MenuPage() {
               {/* Food Categories */}
               {Object.values(menuData.tabs.food.categories).map((category: Category, index: number) => (
                 <div key={category.id} id={category.id} className="mb-12 md:mb-16">
-                  <h2 className="text-cream text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-3px] leading-normal mb-6 md:mb-8">
+                  <h2 className="text-cream text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-0.5px] md:tracking-[-3px] leading-normal mb-6 md:mb-8">
                     {category.name}
                   </h2>
                   <div className="space-y-6">
@@ -175,7 +175,7 @@ export default function MenuPage() {
                   <button
                     key={category.id}
                     onClick={() => scrollToCategory(category.id)}
-                    className="text-cream text-[18px] sm:text-[24px] md:text-[30px] font-normal tracking-[-0.9px] leading-normal whitespace-nowrap hover:opacity-70 transition-opacity duration-300"
+                    className="text-cream text-[18px] sm:text-[24px] md:text-[30px] font-normal tracking-normal md:tracking-[-0.9px] leading-normal whitespace-nowrap hover:opacity-70 transition-opacity duration-300"
                   >
                     {category.name}
                   </button>
@@ -185,7 +185,7 @@ export default function MenuPage() {
               {/* Drink Categories */}
               {Object.values(menuData.tabs.drinks.categories).map((category: Category, index: number) => (
                 <div key={category.id} id={category.id} className="mb-12 md:mb-16">
-                  <h2 className="text-cream text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-3px] leading-normal mb-6 md:mb-8">
+                  <h2 className="text-cream text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-0.5px] md:tracking-[-3px] leading-normal mb-6 md:mb-8">
                     {category.name}
                   </h2>
                   <div className="space-y-6">
@@ -223,7 +223,7 @@ export default function MenuPage() {
           {/* Features Tab */}
           {activeTab === 'features' && (
             <div>
-              <h2 className="text-cream text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-3px] leading-normal mb-6 md:mb-8">
+              <h2 className="text-cream text-[30px] sm:text-[40px] md:text-[50px] font-normal tracking-[-0.5px] md:tracking-[-3px] leading-normal mb-6 md:mb-8">
                 {menuData.tabs.features.name}
               </h2>
               <div className="space-y-6">
