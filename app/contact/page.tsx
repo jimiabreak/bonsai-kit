@@ -12,6 +12,7 @@ export default function ContactPage() {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const prefersReducedMotion = useReducedMotion();
 
   const fadeInUp = !prefersReducedMotion
@@ -21,12 +22,31 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // TODO: Implement form submission
-    console.log('Form submitted:', formData);
-    setTimeout(() => {
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        // Clear success message after 5 seconds
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
       setIsSubmitting(false);
-      // Reset form or show success message
-    }, 2000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -157,6 +177,26 @@ export default function ContactPage() {
           >
             {isSubmitting ? 'Submitting...' : 'Submit'}
           </button>
+
+          {/* Success/Error Messages */}
+          {submitStatus === 'success' && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-6 p-6 bg-cream text-brand-blue text-center text-[1.25rem] md:text-[1.5rem]"
+            >
+              Thank you! Your message has been sent successfully.
+            </motion.div>
+          )}
+          {submitStatus === 'error' && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-6 p-6 bg-red-100 text-red-800 text-center text-[1.25rem] md:text-[1.5rem]"
+            >
+              Sorry, there was an error sending your message. Please try again or email us directly at info@gocommonwealth.com
+            </motion.div>
+          )}
         </motion.form>
       </div>
 

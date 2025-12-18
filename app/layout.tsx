@@ -17,6 +17,7 @@ const inriaSerif = Inria_Serif({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.gocommonwealth.com'),
   title: "Commonwealth Coffee | Specialty Coffee & Cafe",
   description: "Experience the finest artisan coffee, expertly roasted to perfection. Discover our selection of single-origin beans and signature blends.",
   keywords: "coffee, roaster, artisan coffee, single-origin, coffee beans, specialty coffee, cafe",
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://commonwealthcoffee.com",
+    url: "https://www.gocommonwealth.com",
     siteName: "Commonwealth Coffee",
     title: "Commonwealth Coffee | Specialty Coffee & Cafe",
     description: "Experience the finest artisan coffee, expertly roasted to perfection.",
