@@ -63,7 +63,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inriaSans.variable} ${inriaSerif.variable} overflow-x-hidden`}>
-      <body className="font-sans antialiased bg-cream text-charcoal-900 overflow-x-hidden w-full">
+      <body className="font-sans antialiased bg-[var(--background)] text-charcoal-900 overflow-x-hidden w-full">
         <main className="overflow-x-hidden w-full">
           {children}
         </main>

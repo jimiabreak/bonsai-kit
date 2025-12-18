@@ -56,7 +56,7 @@ export default function MenuPage() {
   };
 
   return (
-    <div className="bg-brand-blue min-h-screen w-full overflow-x-hidden" style={{ backgroundColor: '#152885' }}>
+    <div style={{ "--background": "#152885" } as React.CSSProperties} className="min-h-[100dvh] w-full overflow-x-hidden bg-[var(--background)]">
       {/* Header */}
       <ThemedHeader theme="dark" />
 

@@ -16,9 +16,13 @@
   --font-serif: 'Inria Serif';
 }
 
+html, body {
+  height: 100%;
+  background: var(--background);
+}
+
 body {
   color: var(--foreground);
-  background: var(--background);
   font-family: var(--font-inria-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
