@@ -40,7 +40,7 @@ export default function EventsPage() {
             >
               events@gocommonwealth.com
               <Image
-                src="/images/link-arrow.svg"
+                src="/images/light-arrow.svg"
                 alt=""
                 width={29}
                 height={29}
@@ -158,7 +158,7 @@ export default function EventsPage() {
           >
             events@gocommonwealth.com
             <Image
-              src="/images/link-arrow.svg"
+              src="/images/light-arrow.svg"
               alt=""
               width={29}
               height={29}
