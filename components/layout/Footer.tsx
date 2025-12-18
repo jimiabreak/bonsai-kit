@@ -12,6 +12,7 @@ export default function Footer({ theme = 'light' }: FooterProps) {
   const bgColor = theme === 'dark' ? 'bg-brand-blue' : 'bg-cream';
   const textColor = theme === 'dark' ? 'text-cream' : 'text-brand-blue';
   const logoSrc = theme === 'dark' ? '/images/Commonwealth_Logo_R-Cream.svg' : '/images/Commonwealth_Logo_R.svg';
+  const cLogoSrc = theme === 'dark' ? '/images/Commonwealth_ORIG-C_WHITE.svg' : '/images/Commonwealth_ORIG-C_BLUE.svg';
 
   return (
     <motion.footer
@@ -76,24 +77,50 @@ export default function Footer({ theme = 'light' }: FooterProps) {
           <Image
             src={logoSrc}
             alt="Commonwealth"
-            width={500}
-            height={100}
-            className="h-auto max-w-[500px] w-full"
+            width={680}
+            height={136}
+            className="h-auto max-w-[600px] md:max-w-[680px] w-full"
           />
         </div>
 
-        {/* Small C Logo and Copyright */}
-        <div className="flex items-center justify-center gap-2">
-          <Image
-            src="/images/c-small.svg"
-            alt="©"
-            width={12}
-            height={12}
-            className={`h-3 w-auto ${theme === 'dark' ? 'invert brightness-0' : ''}`}
-          />
-          <p className={`text-sub-footer ${textColor}`}>
-            2025. All rights reserved.
-          </p>
+        {/* Bottom Row: Copyright, C Logo, Credit */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 items-center">
+          {/* Copyright */}
+          <div className="flex items-center justify-center md:justify-start gap-2">
+            <Image
+              src={cLogoSrc}
+              alt="©"
+              width={24}
+              height={24}
+              className="h-5 w-5 md:h-6 md:w-6"
+            />
+            <p className={`text-sub-footer ${textColor}`}>
+              2025. All rights reserved.
+            </p>
+          </div>
+
+          {/* Center C Logo (hidden on mobile, shown on desktop) */}
+          <div className="hidden md:flex justify-center">
+            <Image
+              src={cLogoSrc}
+              alt="Commonwealth"
+              width={24}
+              height={24}
+              className="h-6 w-6"
+            />
+          </div>
+
+          {/* Shirakaba Studio Credit */}
+          <div className="flex justify-center md:justify-end">
+            <a
+              href="https://www.shirakaba.studio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-sub-footer ${textColor} hover:opacity-70 transition-opacity duration-300`}
+            >
+              Site by Shirakaba Studio
+            </a>
+          </div>
         </div>
       </div>
     </motion.footer>
