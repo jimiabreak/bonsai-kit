@@ -73,7 +73,7 @@ export default function Footer({ theme = 'light' }: FooterProps) {
         </nav>
 
         {/* Commonwealth Logo */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-12 md:mb-16">
           <Image
             src={logoSrc}
             alt="Commonwealth"
@@ -87,20 +87,14 @@ export default function Footer({ theme = 'light' }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 items-center">
           {/* Copyright */}
           <div className="flex items-center justify-center md:justify-start gap-2">
-            <Image
-              src={cLogoSrc}
-              alt="©"
-              width={24}
-              height={24}
-              className="h-5 w-5 md:h-6 md:w-6"
-            />
+            <span className={`text-sub-footer ${textColor}`}>©</span>
             <p className={`text-sub-footer ${textColor}`}>
               2025. All rights reserved.
             </p>
           </div>
 
-          {/* Center C Logo (hidden on mobile, shown on desktop) */}
-          <div className="hidden md:flex justify-center">
+          {/* Center C Logo */}
+          <div className="flex justify-center">
             <Image
               src={cLogoSrc}
               alt="Commonwealth"
