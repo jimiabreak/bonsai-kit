@@ -216,11 +216,10 @@ Enable ISR if needed for dynamic content
 
 Important Notes
 
-No CMS: Content managed via JSON/Markdown files
+CMS: Content managed via sanity please see [text](agents/headless-shopify-agent.md) 
 No Auth: Shopify handles all customer accounts
 Mobile-First: Every component starts at 320px
 Accessibility: WCAG 2.1 AA compliance required
-Menu Maintenance: Quarterly updates via JSON only
 Performance: Core Web Vitals are critical metrics
 
 Quick Commands

@@ -10,7 +10,7 @@
             {
               "name": "COMMON BREAKFAST (GFA)",
               "price": "23",
-              "description": "2 Vital Farms eggs any style, house-made sausage, bacon strips, potato hash, toasted levain, house-made jam"
+              "description": "2 Vital Farms eggs any style, 1 house-made sausage, 2 bacon strips, 3 potato hash, toasted levain, house-made jam"
             },
             {
               "name": "COMMON D.O.P. SCRAMBLE (GFA)",
@@ -30,7 +30,7 @@
             {
               "name": "MEDITERRANEAN QUICHE (V)",
               "price": "21",
-              "description": "Feta, spinach, red onion, kalamata olives, olive oil, side salad"
+              "description": "Feta, spinach, red onion, kalamata olives, olive oil, © side salad"
             },
             {
               "name": "GOAT CHEESE QUICHE (V)",
@@ -61,12 +61,12 @@
             {
               "name": "FRENCH TOAST (V)",
               "price": "20",
-              "description": "Options: Calder honey butter + maple syrup, Macerated berries + whipped cream, or Espresso cème anglaise + vanilla mascarpone"
+              "description": "Calder honey butter + Currey Farms Michigan 100% pure maple syrup *or Macerated berries + whipped cream *or Espresso cème anglaise + vanilla mascarpone"
             },
             {
               "name": "BUTTERMILK WAFFLE (V)",
               "price": "16",
-              "description": "Whole wheat, Calder honey butter, Michigan maple syrup. Add fresh fruit +$7"
+              "description": "Whole wheat, Calder honey butter, Currey Farms Michigan 100% pure maple syrup *Add fresh fruit 7"
             },
             {
               "name": "BLUEBERRY PANCAKES (V)",
@@ -81,7 +81,7 @@
             {
               "name": "BUTTERMILK PANCAKES (V)",
               "price": "15",
-              "description": "House-made honey butter, Michigan maple syrup. Add blueberries +$3 or chocolate chips +$3"
+              "description": "House-made honey butter, Currey Farms Michigan 100% pure maple syrup *Add blueberries 3 / chocolate chips 3"
             }
           ]
         },
@@ -92,7 +92,7 @@
             {
               "name": "QUINOA BREAKFAST BOWL (V)",
               "price": "20",
-              "description": "Eggs, quinoa, vegetables, kale, currants, avocado, lemon tahini dressing. Protein add-ons available"
+              "description": "2 Vital Farms eggs any style, organic quinoa, seasonal vegetables, sautéed kale, currants, avocado, lemon tahini dressing *Add Gerber Farms chicken 9 / Line-caught tuna salad 7 / Flat Iron Wagyu 26 / Grilled Faroe Island Salmon 15"
             },
             {
               "name": "CRISPY BACON FRIED RICE",
@@ -365,32 +365,32 @@
       }
     },
     "features": {
-      "name": "Fall '25",
+      "name": "Winter '26",
       "items": [
         {
-          "name": "EGGS BENEDICT (V)",
-          "price": "21",
-          "description": "House-made jalapeño cheddar biscuit, 2 poached pasture-raised eggs, spinach, tomato, béarnaise sauce"
+          "name": "POTATO LEEK SOUP (VG) (GFA)",
+          "price": "8/11",
+          "description": "Roasted cauliflower, pineapple chimichurri, scallions served with toasted levain"
         },
         {
-          "name": "CINNAMON APPLE PANCAKES (V)",
-          "price": "16",
-          "description": "3 buttermilk pancakes topped with caramelized cinnamon apples, whipped cream, powdered sugar"
-        },
-        {
-          "name": "CUBAN SANDWICH",
+          "name": "BUTTER CHICKEN (GFA)",
           "price": "24",
-          "description": "Pulled pork, ham, sweet mustard dressing, pickles, onions, coleslaw, house-made BBQ sauce"
+          "description": "House-made garlic naan, white rice, Greek yogurt, parsley, cilantro"
         },
         {
-          "name": "PEAR + GOAT CHEESE TOAST (V) (GFA)",
-          "price": "16",
-          "description": "Caramelized poached pears, chai-infused honey, goat cheese, toasted almonds"
+          "name": "LAMB SHAWARMA BOWL (GF)",
+          "price": "25",
+          "description": "Pickled onions and turnips, Greek yogurt, cornichons, cilantro, EVOO"
         },
         {
-          "name": "BUTTERNUT SQUASH SOUP (VG) (GFA)",
-          "price": "7/9",
-          "description": "Pickled jalapeño, salted pepitas, coconut curry, cilantro"
+          "name": "RICOTTA + PISTACHIO TOAST (V) (GFA)",
+          "price": "18",
+          "description": "Grilled levain sourdough, roasted pistachio butter, chili-infused honey Topped with chopped pistachios, powdered sugar, and sea salt flakes"
+        },
+        {
+          "name": "BANANA TARTE TATIN (V)",
+          "price": "19",
+          "description": "Caramelized bananas, house-made \"Nutella\", powdered sugar"
         }
       ]
     }

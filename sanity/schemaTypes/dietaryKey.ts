@@ -1,36 +1,28 @@
 import { defineType, defineField } from 'sanity'
 
 export default defineType({
-  name: 'menuCategory',
-  title: 'Menu Category',
+  name: 'dietaryKey',
+  title: 'Dietary Key',
   type: 'document',
   fields: [
     defineField({
-      name: 'name',
-      title: 'Category Name',
+      name: 'abbreviation',
+      title: 'Abbreviation',
       type: 'string',
+      description: 'e.g., VG, V, GF, GFA, CSO',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'id',
-      title: 'Category ID',
-      type: 'slug',
-      options: {
-        source: 'name',
-      },
+      name: 'fullName',
+      title: 'Full Name',
+      type: 'string',
+      description: 'e.g., Vegan, Vegetarian, Gluten Free',
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'items',
-      title: 'Menu Items',
-      type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'menuItem' }] }],
     }),
     defineField({
       name: 'order',
       title: 'Display Order',
       type: 'number',
-      description: 'Order in which this category appears',
       validation: (Rule) => Rule.required().integer().min(0),
     }),
   ],
