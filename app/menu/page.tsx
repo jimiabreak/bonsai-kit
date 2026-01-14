@@ -2,12 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { useLiveQuery } from 'next-sanity/preview';
 import ThemedHeader from '@/components/layout/ThemedHeader';
 import Footer from '@/components/layout/Footer';
-import { client } from '@/lib/sanity.client';
-import { menuQuery } from '@/lib/sanity.queries';
-import menuDataFallback from '@/content/menu.json';
+import { useSanityMenu } from '@/hooks/useSanityMenu';
 
 type TabType = 'food' | 'drinks' | 'features';
 
@@ -27,8 +24,8 @@ export default function MenuPage() {
   const [activeTab, setActiveTab] = useState<TabType>('food');
   const prefersReducedMotion = useReducedMotion();
 
-  // Fetch menu data from Sanity with real-time updates
-  const [menuData] = useLiveQuery(menuDataFallback, menuQuery, {}, { client });
+  // Fetch menu data from Sanity with real-time updates (falls back to JSON if Sanity unavailable)
+  const { menuData } = useSanityMenu();
 
   // Load active tab from sessionStorage on mount
   useEffect(() => {
