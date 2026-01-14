@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typegen": "sanity schema extract && sanity typegen generate --enforce-required-fields",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@sanity/vision": "^3.68.1",

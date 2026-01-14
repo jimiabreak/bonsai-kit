@@ -1,6 +1,6 @@
-import menuItem from './menuItem'
-import menuCategory from './menuCategory'
-import menuTab from './menuTab'
-import dietaryKey from './dietaryKey'
+import { menuItemType } from './menuItem'
+import { menuCategoryType } from './menuCategory'
+import { menuTabType } from './menuTab'
+import { dietaryKeyType } from './dietaryKey'
 
-export const schemaTypes = [menuItem, menuCategory, menuTab, dietaryKey]
+export const schemaTypes = [menuItemType, menuCategoryType, menuTabType, dietaryKeyType]

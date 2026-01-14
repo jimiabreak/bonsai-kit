@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { client } from '@/lib/sanity.client';
-import { menuQuery } from '@/lib/sanity.queries';
+import { MENU_QUERY } from '@/lib/sanity.queries';
 import menuDataFallback from '@/content/menu.json';
 
 type MenuData = typeof menuDataFallback;
@@ -15,7 +15,7 @@ export function useSanityMenu() {
     // Fetch initial data
     const fetchMenu = async () => {
       try {
-        const data = await client.fetch(menuQuery);
+        const data = await client.fetch(MENU_QUERY);
         if (data && data.tabs) {
           setMenuData(data as unknown as MenuData);
         }
@@ -29,7 +29,7 @@ export function useSanityMenu() {
     fetchMenu();
 
     // Set up real-time subscription for updates
-    const subscription = client.listen(menuQuery).subscribe((update) => {
+    const subscription = client.listen(MENU_QUERY).subscribe((update) => {
       if (update.result) {
         setMenuData(update.result as unknown as MenuData);
       }
