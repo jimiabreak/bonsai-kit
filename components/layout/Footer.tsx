@@ -55,7 +55,7 @@ export default function Footer({ theme = 'light' }: FooterProps) {
             FAQ
           </Link>
           <a
-            href="https://facebook.com"
+            href="https://www.facebook.com/gocommonwealth/"
             target="_blank"
             rel="noopener noreferrer"
             className={`font-sans ${textColor} text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300`}
@@ -63,7 +63,7 @@ export default function Footer({ theme = 'light' }: FooterProps) {
             Facebook
           </a>
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/gocommonwealth/"
             target="_blank"
             rel="noopener noreferrer"
             className={`font-sans ${textColor} text-base md:text-xl tracking-[-0.01em] hover:opacity-70 transition-all duration-300`}
