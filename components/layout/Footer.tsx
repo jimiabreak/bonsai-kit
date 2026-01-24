@@ -89,7 +89,7 @@ export default function Footer({ theme = 'light' }: FooterProps) {
           <div className="flex items-center justify-center md:justify-start gap-2">
             <span className={`text-sub-footer ${textColor}`}>©</span>
             <p className={`text-sub-footer ${textColor}`}>
-              2025. All rights reserved.
+              2026. All rights reserved.
             </p>
           </div>
 
