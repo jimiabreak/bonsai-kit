@@ -18,6 +18,10 @@ const inriaSerif = Inria_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.gocommonwealth.com'),
+  icons: {
+    icon: '/images/favicon.png',
+    apple: '/images/favicon.png',
+  },
   title: "Commonwealth Coffee | Specialty Coffee & Cafe",
   description: "Experience the finest artisan coffee, expertly roasted to perfection. Discover our selection of single-origin beans and signature blends.",
   keywords: "coffee, roaster, artisan coffee, single-origin, coffee beans, specialty coffee, cafe",

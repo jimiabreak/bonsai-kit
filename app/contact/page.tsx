@@ -1,9 +1,19 @@
 'use client';
 
 import { useState } from 'react';
+import Script from 'next/script';
 import { motion, useReducedMotion } from 'framer-motion';
 import ThemedHeader from '@/components/layout/ThemedHeader';
 import Footer from '@/components/layout/Footer';
+
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (callback: () => void) => void;
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+    };
+  }
+}
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -25,12 +35,22 @@ export default function ContactPage() {
     setSubmitStatus('idle');
 
     try {
+      // Get reCAPTCHA v3 token
+      let recaptchaToken = '';
+      if (window.grecaptcha) {
+        await new Promise<void>((resolve) => window.grecaptcha.ready(resolve));
+        recaptchaToken = await window.grecaptcha.execute(
+          process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!,
+          { action: 'contact_form' }
+        );
+      }
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, recaptchaToken }),
       });
 
       if (response.ok) {
@@ -58,6 +78,12 @@ export default function ContactPage() {
 
   return (
     <div style={{ "--background": "#152885" } as React.CSSProperties} className="min-h-[100dvh] w-full overflow-x-hidden bg-[var(--background)]">
+      {/* reCAPTCHA v3 Script */}
+      <Script
+        src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+        strategy="afterInteractive"
+      />
+
       {/* Header */}
       <ThemedHeader theme="dark" />
 
@@ -162,13 +188,6 @@ export default function ContactPage() {
             />
           </div>
 
-          {/* reCAPTCHA Placeholder */}
-          <div className="mb-8">
-            <div className="inline-block bg-cream px-4 py-3">
-              <p className="text-brand-blue text-sm">reCAPTCHA placeholder</p>
-            </div>
-          </div>
-
           {/* Submit Button */}
           <button
             type="submit"
@@ -177,6 +196,13 @@ export default function ContactPage() {
           >
             {isSubmitting ? 'Submitting...' : 'Submit'}
           </button>
+
+          {/* reCAPTCHA Attribution (required when badge is hidden) */}
+          <p className="text-cream/60 text-xs mt-4 text-center">
+            This site is protected by reCAPTCHA and the Google{' '}
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-cream">Privacy Policy</a> and{' '}
+            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-cream">Terms of Service</a> apply.
+          </p>
 
           {/* Success/Error Messages */}
           {submitStatus === 'success' && (

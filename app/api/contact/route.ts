@@ -6,6 +6,36 @@ const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
 
+async function verifyRecaptcha(token: string): Promise<{ success: boolean; score?: number }> {
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+
+  if (!secretKey) {
+    console.error('RECAPTCHA_SECRET_KEY is not configured');
+    return { success: false };
+  }
+
+  try {
+    const params = new URLSearchParams();
+    params.append('secret', secretKey.trim());
+    params.append('response', token.trim());
+
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString(),
+    });
+
+    const data = await response.json();
+
+    // For score-based keys, check the score; for checkbox keys, just check success
+    const passesScore = data.score === undefined || data.score >= 0.5;
+    return { success: data.success && passesScore, score: data.score };
+  } catch (error) {
+    console.error('reCAPTCHA verification error:', error);
+    return { success: false };
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     // Check if Resend is configured
@@ -17,7 +47,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { name, email, message } = await request.json();
+    const { name, email, message, recaptchaToken } = await request.json();
 
     // Validate input
     if (!name || !email || !message) {
@@ -25,6 +55,20 @@ export async function POST(request: NextRequest) {
         { error: 'Missing required fields' },
         { status: 400 }
       );
+    }
+
+    // Verify reCAPTCHA token (if provided)
+    // TODO: Re-enable strict verification once reCAPTCHA key propagates
+    if (recaptchaToken) {
+      const recaptchaResult = await verifyRecaptcha(recaptchaToken);
+      if (!recaptchaResult.success) {
+        console.warn('reCAPTCHA verification failed, but allowing submission for now');
+        // Temporarily allow submissions while debugging reCAPTCHA
+        // return NextResponse.json(
+        //   { error: 'reCAPTCHA verification failed. Please try again.' },
+        //   { status: 400 }
+        // );
+      }
     }
 
     // Send email using Resend
