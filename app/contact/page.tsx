@@ -38,11 +38,15 @@ export default function ContactPage() {
       // Get reCAPTCHA v3 token
       let recaptchaToken = '';
       if (window.grecaptcha) {
+        console.log('[Contact Form] grecaptcha available, getting token...');
         await new Promise<void>((resolve) => window.grecaptcha.ready(resolve));
         recaptchaToken = await window.grecaptcha.execute(
           process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!,
           { action: 'contact_form' }
         );
+        console.log('[Contact Form] Token obtained:', recaptchaToken ? 'yes' : 'no');
+      } else {
+        console.warn('[Contact Form] grecaptcha not available - script may not have loaded');
       }
 
       const response = await fetch('/api/contact', {
