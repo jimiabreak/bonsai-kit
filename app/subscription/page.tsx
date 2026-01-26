@@ -325,10 +325,10 @@ export default function SubscriptionPage() {
           <SubscriptionCard
             title="DRIP COLLECTION"
             image="/images/common-sub.jpg"
-            description='Enjoy fresh coffee with our "DRIP COFFEE" subscription! Get a bag of rich espresso or unique single origin coffee delivered to your door every two weeks.'
+            description='Enjoy fresh coffee with our "DRIP" subscription! Get a bag of our OG House Brew plus a unique single origin coffee delivered to your door every two weeks.'
             includes={[
-              '1 BAG OF ESPRESSO SINGLE ORIGIN',
-              '1 BAG OF ESPRESSO OG HOUSE BREW'
+              '1 BAG OF SINGLE ORIGIN DRIP COFFEE',
+              '1 BAG OF COMMON COFFEE OG HOUSE BREW'
             ]}
             frequencyNote="CHOOSE YOUR FREQUENCY BELOW:"
             options={dripOptions}
@@ -339,10 +339,10 @@ export default function SubscriptionPage() {
           <SubscriptionCard
             title="ESPRESSO COLLECTION"
             image="/images/espresso-sub.jpg"
-            description='Enjoy fresh coffee with our "ESPRESSO" subscription! Get a bag of rich espresso or unique single origin coffee delivered to your door every two weeks.'
+            description='Enjoy fresh coffee with our "ESPRESSO" subscription! Get a bag of rich espresso plus a unique single origin coffee delivered to your door every two weeks.'
             includes={[
-              '1 BAG OF NEWLY ROASTED (IN CAFE) SINGLE ORIGIN',
-              '1 BAG OF COMMON COFFEE OG HOUSE BREW'
+              '1 BAG OF ESPRESSO SINGLE ORIGIN',
+              '1 BAG OF ESPRESSO OG HOUSE BREW'
             ]}
             frequencyNote="CHOOSE YOUR FREQUENCY BELOW:"
             options={espressoOptions}
@@ -371,7 +371,7 @@ export default function SubscriptionPage() {
               Commonwealth Coffee Roasters has been a cornerstone of quality in Birmingham, Michigan, delivering exceptional specialty coffee since 2010 at Commonwealth Cafe.
             </p>
             <p>
-              We bring ethically sourced, expertly roasted beans right to your door. Our passion lies in showcasing the world&apos;s finest coffees, sourced from the world&apos;s top tier origins and producers, roasted with precision to unlock their fullest potential—so that you savor every sip.
+              We bring ethically sourced, expertly roasted beans right to your door. Our passion lies in showcasing the world&apos;s finest coffees, sourced from the world&apos;s top tier origins and producers, roasted with precision to unlock their fullest potential—so that you savor every sip. Subscribe today.
             </p>
           </div>
         </motion.div>
