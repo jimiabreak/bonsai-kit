@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { client } from '@/lib/sanity.client';
-import { MENU_QUERY_LEGACY } from '@/lib/sanity.queries';
+import { MENU_QUERY } from '@/lib/sanity.queries';
 
 export interface MenuItem {
   name: string;
@@ -51,7 +51,7 @@ export function useSanityMenu() {
     // Fetch initial data
     const fetchMenu = async () => {
       try {
-        const data = await client.fetch(MENU_QUERY_LEGACY);
+        const data = await client.fetch(MENU_QUERY);
         if (data && data.tabs) {
           setMenuData(data as MenuData);
         }
@@ -65,7 +65,7 @@ export function useSanityMenu() {
     fetchMenu();
 
     // Set up real-time subscription for updates
-    const subscription = client.listen(MENU_QUERY_LEGACY).subscribe((update) => {
+    const subscription = client.listen(MENU_QUERY).subscribe((update) => {
       const result = update.result as Record<string, unknown> | undefined;
       if (result && result.tabs) {
         setMenuData(result as unknown as MenuData);
