@@ -31,6 +31,7 @@ export interface MenuData {
       items: MenuItem[];
     };
   };
+  dietaryKey?: Record<string, string>;
 }
 
 // Fallback data in case Sanity is unavailable
