@@ -1,42 +1,46 @@
 import { defineQuery } from 'next-sanity'
 
 /**
- * New simplified menu query
- * Works with inline schema (foodMenu, drinksMenu, seasonalFeatures)
+ * Menu query - pulls from menuCategory documents with items
+ * Categories are grouped by name into food/drinks
  */
 export const MENU_QUERY = defineQuery(`{
-  "lastUpdated": *[_type in ["foodMenu", "drinksMenu", "seasonalFeatures"]]
-    | order(_updatedAt desc)[0]._updatedAt,
+  "lastUpdated": *[_type == "menuCategory" && count(items) > 0] | order(_updatedAt desc)[0]._updatedAt,
   "tabs": {
-    "food": *[_type == "foodMenu"][0]{
-      "categories": categories[]{
+    "food": {
+      "categories": *[
+        _type == "menuCategory"
+        && count(items) > 0
+        && name in ["Savory", "Sweet", "Bowls", "Sandwich", "Simple", "Greens", "Sides"]
+      ] | order(order asc) {
         name,
         "id": lower(name),
-        "items": items[]{
+        "items": items[]->{
           name,
-          dietaryTags,
           price,
           description
         }
       }
     },
-    "drinks": *[_type == "drinksMenu"][0]{
-      "categories": categories[]{
+    "drinks": {
+      "categories": *[
+        _type == "menuCategory"
+        && count(items) > 0
+        && name in ["Drip Coffee", "Espresso Drinks", "Tea & More", "Monthly Features"]
+      ] | order(order asc) {
         name,
         "id": lower(name),
-        "items": items[]{
+        "items": items[]->{
           name,
-          dietaryTags,
           price,
           description
         }
       }
     },
-    "features": *[_type == "seasonalFeatures"][0]{
-      "name": seasonName,
-      "items": items[]{
+    "features": *[_type == "menuTab" && tabId == "features"][0]{
+      name,
+      "items": items[]->{
         name,
-        dietaryTags,
         price,
         description
       }
