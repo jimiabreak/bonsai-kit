@@ -22,7 +22,7 @@ export default function HomePageSections({ page }: HomePageSectionsProps) {
           <div className="absolute inset-0">
             <SanityImage
               image={page.hero.image}
-              alt={page.hero.heading || 'Restaurant'}
+              alt={page.hero.heading || 'Hero'}
               fill
               sizes="100vw"
               className="object-cover"
@@ -88,7 +88,7 @@ export default function HomePageSections({ page }: HomePageSectionsProps) {
                 <motion.div variants={fadeInUp} className="relative aspect-[4/3] overflow-hidden rounded-sm">
                   <SanityImage
                     image={page.aboutPreview.image}
-                    alt="About our restaurant"
+                    alt="About us"
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"

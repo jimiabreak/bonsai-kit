@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Restaurant boilerplate built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, and **Sanity v3**. It ships 7 pages (Home, Menu, About, Contact, FAQ, Privacy, 404), an embedded Sanity Studio at `/studio`, and Visual Editing via the Presentation API + next-sanity.
+Bonsai Kit — a website starter built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, and **Sanity v3**. It ships 7 pages (Home, Menu, About, Contact, FAQ, Privacy, 404), an embedded Sanity Studio at `/studio`, and Visual Editing via the Presentation API + next-sanity.
 
-This is a **boilerplate/starter**, not a specific restaurant's site. All content is placeholder and designed to be replaced per-client.
+This is a **starter kit**, not a specific business's site. All content is placeholder and designed to be replaced per-client.
 
 ## Development Commands
 

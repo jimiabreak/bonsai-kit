@@ -40,14 +40,14 @@ export default function Footer({ siteSettings }: FooterProps) {
             {siteSettings?.logo ? (
               <SanityImage
                 image={siteSettings.logo}
-                alt={siteSettings.name || 'Restaurant'}
+                alt={siteSettings.name || 'Business'}
                 width={120}
                 height={40}
                 className="h-8 w-auto mb-4 invert"
               />
             ) : (
               <span className="font-serif text-2xl font-bold block mb-4">
-                {siteSettings?.name || 'Restaurant'}
+                {siteSettings?.name || 'Business'}
               </span>
             )}
             {address && (
@@ -115,7 +115,7 @@ export default function Footer({ siteSettings }: FooterProps) {
         </div>
 
         <div className="mt-12 pt-8 border-t border-background/20 text-center text-sm opacity-50">
-          &copy; {new Date().getFullYear()} {siteSettings?.name || 'Restaurant'}. All rights reserved.
+          &copy; {new Date().getFullYear()} {siteSettings?.name || 'Business'}. All rights reserved.
         </div>
       </div>
     </footer>

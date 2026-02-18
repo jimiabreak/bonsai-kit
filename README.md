@@ -1,6 +1,6 @@
-# Restaurant Boilerplate
+# Bonsai Kit
 
-A modern, Sanity-powered restaurant website template built with Next.js 14, TypeScript, and Tailwind CSS. Designed to get a restaurant online fast with a beautiful, responsive site and a CMS that non-technical staff can manage.
+A modern, Sanity-powered website template built with Next.js 14, TypeScript, and Tailwind CSS. Designed to get a business online fast with a beautiful, responsive site and a CMS that non-technical staff can manage.
 
 ## Features
 
@@ -42,8 +42,8 @@ A modern, Sanity-powered restaurant website template built with Next.js 14, Type
 1. **Clone the repo**
 
    ```bash
-   git clone https://github.com/your-org/restaurant-boilerplate.git
-   cd restaurant-boilerplate
+   git clone https://github.com/your-org/bonsai-kit.git
+   cd bonsai-kit
    ```
 
 2. **Install dependencies**
@@ -92,7 +92,7 @@ A modern, Sanity-powered restaurant website template built with Next.js 14, Type
 ## Project Structure
 
 ```
-restaurant-boilerplate/
+bonsai-kit/
 ├── app/
 │   ├── page.tsx                  # Home page
 │   ├── layout.tsx                # Root layout (fonts, metadata)
@@ -152,7 +152,7 @@ restaurant-boilerplate/
 
 | Document        | Purpose                                                        |
 | --------------- | -------------------------------------------------------------- |
-| **siteSettings**| Restaurant name, logo, address, phone, hours, social links, reservation URL, default SEO |
+| **siteSettings**| Business name, logo, address, phone, hours, social links, reservation URL, default SEO |
 | **homePage**    | Hero section, about preview, featured menu items, testimonials, CTA |
 
 ### Documents (multiple entries)
@@ -160,9 +160,9 @@ restaurant-boilerplate/
 | Document          | Purpose                                                    |
 | ----------------- | ---------------------------------------------------------- |
 | **menuCategory**  | Menu sections (Food, Drinks, Desserts) with sort order     |
-| **menuItem**      | Individual dishes/drinks with price, dietary tags, category reference, availability toggle |
+| **menuItem**      | Individual items with price, dietary tags, category reference, availability toggle |
 | **teamMember**    | Staff bios with photo and role                             |
-| **testimonial**   | Guest reviews with rating, source, and date                |
+| **testimonial**   | Customer reviews with rating, source, and date             |
 | **faqItem**       | Question/answer pairs with optional category grouping      |
 | **galleryImage**  | Photo gallery images with alt text and captions            |
 | **page**          | Generic CMS pages with Portable Text body and SEO fields   |

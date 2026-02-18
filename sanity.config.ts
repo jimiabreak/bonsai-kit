@@ -9,7 +9,7 @@ import { apiVersion, dataset, projectId } from './sanity/env'
 
 export default defineConfig({
   name: 'default',
-  title: 'Restaurant CMS',
+  title: 'Bonsai CMS',
 
   projectId,
   dataset,

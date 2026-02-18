@@ -73,10 +73,10 @@ function headingBlock(text: string, key: string, level: 'h2' | 'h3' | 'h4' = 'h2
 const siteSettings = {
   _id: 'siteSettings',
   _type: 'siteSettings',
-  name: 'The Restaurant',
-  tagline: 'Fine dining, redefined.',
+  name: 'Your Business',
+  tagline: 'Your tagline here.',
   phone: '555-123-4567',
-  email: 'hello@therestaurant.com',
+  email: 'hello@yourbusiness.com',
   address: {
     street: '123 Main Street',
     city: 'New York',
@@ -94,10 +94,10 @@ const siteSettings = {
     { _type: 'openingHours', _key: 'sun', day: 'Sunday', openTime: '10:00 AM', closeTime: '9:00 PM', closed: false },
   ],
   socialLinks: [
-    { _type: 'socialLink', _key: 'ig', platform: 'instagram', url: 'https://instagram.com/therestaurant' },
-    { _type: 'socialLink', _key: 'fb', platform: 'facebook', url: 'https://facebook.com/therestaurant' },
+    { _type: 'socialLink', _key: 'ig', platform: 'instagram', url: 'https://instagram.com/yourbusiness' },
+    { _type: 'socialLink', _key: 'fb', platform: 'facebook', url: 'https://facebook.com/yourbusiness' },
   ],
-  reservationUrl: 'https://resy.com/cities/ny/the-restaurant',
+  reservationUrl: 'https://example.com/book',
 }
 
 // --- Home Page ---
@@ -114,7 +114,7 @@ const homePage = {
     heading: 'Our Story',
     body: textBlocks(
       [
-        'Nestled in the heart of the city, The Restaurant has been serving unforgettable meals since 2010. Our philosophy is simple: source the finest ingredients, treat them with respect, and let their natural flavors shine.',
+        'Nestled in the heart of the city, we have been serving unforgettable meals since 2010. Our philosophy is simple: source the finest ingredients, treat them with respect, and let their natural flavors shine.',
         'From our wood-fired kitchen to your table, every dish tells a story of craftsmanship, community, and an unwavering commitment to quality.',
       ],
       'about-preview',
@@ -498,7 +498,7 @@ const faqItems = [
     answer: textBlocks(
       [
         'Yes! We have a private dining room that seats up to 30 guests, perfect for birthday celebrations, corporate dinners, rehearsal dinners, and other special occasions.',
-        'Our events team can create a custom menu tailored to your preferences and budget. Please email us at hello@therestaurant.com or call to discuss your event.',
+        'Our events team can create a custom menu tailored to your preferences and budget. Please email us at hello@yourbusiness.com or call to discuss your event.',
       ],
       'faq-events',
     ),
@@ -527,7 +527,7 @@ const aboutPageBody = [
   headingBlock('Our Story', 'about-h1', 'h2'),
   ...textBlocks(
     [
-      'The Restaurant was founded in 2010 with a simple mission: to create a space where exceptional food, warm hospitality, and genuine community come together.',
+      'We were founded in 2010 with a simple mission: to create a space where exceptional food, warm hospitality, and genuine community come together.',
       'What began as a small neighborhood bistro has grown into one of the city\'s most beloved dining destinations, but our core values have never changed. We believe great food starts with great ingredients, and we work closely with local farmers, fishermen, and artisan producers to bring the very best to your plate.',
     ],
     'about-story',
@@ -554,7 +554,7 @@ const privacyPageBody = [
   headingBlock('Privacy Policy', 'priv-h1', 'h2'),
   ...textBlocks(
     [
-      'Last updated: January 1, 2026. This Privacy Policy describes how The Restaurant ("we", "us", or "our") collects, uses, and shares information when you visit our website or dine with us.',
+      'Last updated: January 1, 2026. This Privacy Policy describes how Your Business ("we", "us", or "our") collects, uses, and shares information when you visit our website or interact with us.',
     ],
     'priv-intro',
   ),
@@ -607,7 +607,7 @@ const privacyPageBody = [
   headingBlock('Contact Us', 'priv-h8', 'h2'),
   ...textBlocks(
     [
-      'If you have any questions about this Privacy Policy or our data practices, please contact us at hello@therestaurant.com or write to us at 123 Main Street, New York, NY 10001.',
+      'If you have any questions about this Privacy Policy or our data practices, please contact us at hello@yourbusiness.com or write to us at 123 Main Street, New York, NY 10001.',
     ],
     'priv-contact',
   ),

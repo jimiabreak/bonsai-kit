@@ -39,14 +39,14 @@ export default function Header({ siteSettings }: HeaderProps) {
             {siteSettings?.logo ? (
               <SanityImage
                 image={siteSettings.logo}
-                alt={siteSettings.name || 'Restaurant'}
+                alt={siteSettings.name || 'Business'}
                 width={40}
                 height={40}
                 className="h-8 w-auto sm:h-10"
               />
             ) : (
               <span className="font-serif text-xl sm:text-2xl font-bold">
-                {siteSettings?.name || 'Restaurant'}
+                {siteSettings?.name || 'Business'}
               </span>
             )}
           </Link>

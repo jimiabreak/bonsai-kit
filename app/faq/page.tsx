@@ -8,7 +8,7 @@ import FAQContent from './FAQContent'
 
 export const metadata: Metadata = {
   title: 'FAQ',
-  description: 'Frequently asked questions about our restaurant, menu, and reservations.',
+  description: 'Frequently asked questions about our business, services, and policies.',
 }
 
 export default async function FAQPage() {

@@ -19,10 +19,10 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Restaurant Name",
-    template: "%s | Restaurant Name",
+    default: "Business Name",
+    template: "%s | Business Name",
   },
-  description: "A fine dining experience crafted with passion and quality ingredients.",
+  description: "A modern website powered by Bonsai Kit.",
 };
 
 export default async function RootLayout({
