@@ -114,7 +114,7 @@ export default function HomePageSections({ page }: HomePageSectionsProps) {
               {page.featuredMenuHeading || 'From Our Kitchen'}
             </motion.h2>
             <div className="max-w-2xl mx-auto space-y-6">
-              {page.featuredMenuItems.map((item: MenuItemType) => (
+              {(page.featuredMenuItems as MenuItemType[]).map((item) => (
                 <motion.div key={item._id} variants={fadeInUp}>
                   <MenuItem
                     name={item.name}
@@ -148,7 +148,7 @@ export default function HomePageSections({ page }: HomePageSectionsProps) {
               {page.testimonialHeading || 'What Our Guests Say'}
             </motion.h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {page.featuredTestimonials.map((t: Testimonial) => (
+              {(page.featuredTestimonials as Testimonial[]).map((t) => (
                 <TestimonialCard
                   key={t._id}
                   author={t.author}

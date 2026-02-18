@@ -23,7 +23,7 @@ export default function SanityImage({
   className,
   priority = false,
 }: SanityImageProps) {
-  if (!image?.asset) return null
+  if (!image || typeof image === 'string' || !('asset' in image)) return null
 
   const imageUrl = urlFor(image)
     .auto('format')
