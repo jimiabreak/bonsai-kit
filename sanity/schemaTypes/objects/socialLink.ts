@@ -1,0 +1,35 @@
+import { defineType } from 'sanity'
+
+export default defineType({
+  name: 'socialLink',
+  title: 'Social Link',
+  type: 'object',
+  fields: [
+    {
+      name: 'platform',
+      title: 'Platform',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Facebook', value: 'facebook' },
+          { title: 'Instagram', value: 'instagram' },
+          { title: 'Twitter / X', value: 'twitter' },
+          { title: 'TikTok', value: 'tiktok' },
+          { title: 'Yelp', value: 'yelp' },
+          { title: 'Google', value: 'google' },
+          { title: 'YouTube', value: 'youtube' },
+        ],
+      },
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'url',
+      title: 'URL',
+      type: 'url',
+      validation: (Rule) => Rule.required().uri({ scheme: ['http', 'https'] }),
+    },
+  ],
+  preview: {
+    select: { title: 'platform', subtitle: 'url' },
+  },
+})
