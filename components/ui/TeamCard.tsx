@@ -1,9 +1,10 @@
+import type { SanityImageSource } from '@sanity/image-url'
 import SanityImage from '@/components/sanity/SanityImage'
 
 interface TeamCardProps {
   name: string
   role?: string
-  image: any
+  image: SanityImageSource
 }
 
 export default function TeamCard({ name, role, image }: TeamCardProps) {

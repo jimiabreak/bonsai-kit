@@ -7,13 +7,13 @@ import SanityImage from '@/components/sanity/SanityImage'
 import MenuItem from '@/components/ui/MenuItem'
 import TestimonialCard from '@/components/ui/TestimonialCard'
 import Button from '@/components/ui/Button'
+import type { HomePage, MenuItem as MenuItemType, Testimonial } from '@/types'
 
 interface HomePageSectionsProps {
-  settings: any
-  page: any
+  page: HomePage
 }
 
-export default function HomePageSections({ settings, page }: HomePageSectionsProps) {
+export default function HomePageSections({ page }: HomePageSectionsProps) {
   return (
     <>
       {/* Hero */}
@@ -114,7 +114,7 @@ export default function HomePageSections({ settings, page }: HomePageSectionsPro
               {page.featuredMenuHeading || 'From Our Kitchen'}
             </motion.h2>
             <div className="max-w-2xl mx-auto space-y-6">
-              {page.featuredMenuItems.map((item: any) => (
+              {page.featuredMenuItems.map((item: MenuItemType) => (
                 <motion.div key={item._id} variants={fadeInUp}>
                   <MenuItem
                     name={item.name}
@@ -148,7 +148,7 @@ export default function HomePageSections({ settings, page }: HomePageSectionsPro
               {page.testimonialHeading || 'What Our Guests Say'}
             </motion.h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {page.featuredTestimonials.map((t: any) => (
+              {page.featuredTestimonials.map((t: Testimonial) => (
                 <TestimonialCard
                   key={t._id}
                   author={t.author}

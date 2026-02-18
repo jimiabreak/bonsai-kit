@@ -5,9 +5,10 @@ import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 import Container from '@/components/layout/Container'
 import Button from '@/components/ui/Button'
+import type { SiteSettings } from '@/types'
 
 interface ContactContentProps {
-  settings: any
+  settings: SiteSettings | null
 }
 
 export default function ContactContent({ settings }: ContactContentProps) {
@@ -41,9 +42,9 @@ export default function ContactContent({ settings }: ContactContentProps) {
 
       setFormState('success')
       form.reset()
-    } catch (err: any) {
+    } catch (err: unknown) {
       setFormState('error')
-      setErrorMessage(err.message || 'Failed to send message')
+      setErrorMessage(err instanceof Error ? err.message : 'Failed to send message')
     }
   }
 
@@ -130,7 +131,7 @@ export default function ContactContent({ settings }: ContactContentProps) {
             <div>
               <h2 className="font-serif text-2xl mb-4">Hours</h2>
               <div className="space-y-2">
-                {settings.hours.map((h: any, i: number) => (
+                {settings.hours.map((h: { day: string; closed?: boolean; openTime?: string; closeTime?: string }, i: number) => (
                   <div key={i} className="flex justify-between text-sm">
                     <span>{h.day}</span>
                     <span className="text-muted-foreground">

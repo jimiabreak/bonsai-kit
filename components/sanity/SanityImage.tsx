@@ -1,8 +1,9 @@
 import Image from 'next/image'
+import type { SanityImageSource } from '@sanity/image-url'
 import { urlFor } from '@/sanity/lib/image'
 
 interface SanityImageProps {
-  image: any
+  image: SanityImageSource
   alt: string
   width?: number
   height?: number

@@ -14,7 +14,7 @@ export default async function HomePage() {
     <>
       <Header siteSettings={settings} />
       <main>
-        <HomePageSections settings={settings} page={page} />
+        <HomePageSections page={page} />
       </main>
       <Footer siteSettings={settings} />
     </>

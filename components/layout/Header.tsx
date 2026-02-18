@@ -5,12 +5,13 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { fadeInUp } from '@/lib/animations'
 import MobileNav from './MobileNav'
+import type { SanityImageSource } from '@sanity/image-url'
 import SanityImage from '@/components/sanity/SanityImage'
 
 interface HeaderProps {
   siteSettings?: {
     name?: string
-    logo?: any
+    logo?: SanityImageSource
     reservationUrl?: string
   }
 }

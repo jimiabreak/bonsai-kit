@@ -19,8 +19,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const pages = await client.fetch(SITEMAP_SLUGS_QUERY)
     dynamicRoutes = (pages || [])
-      .filter((p: any) => !['about', 'privacy'].includes(p.slug))
-      .map((p: any) => ({
+      .filter((p: { slug: string; _updatedAt: string }) => !['about', 'privacy'].includes(p.slug))
+      .map((p: { slug: string; _updatedAt: string }) => ({
         url: `${baseUrl}/${p.slug}`,
         lastModified: new Date(p._updatedAt),
         changeFrequency: 'monthly' as const,

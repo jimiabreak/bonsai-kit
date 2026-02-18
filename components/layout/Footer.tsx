@@ -1,10 +1,11 @@
 import Link from 'next/link'
+import type { SanityImageSource } from '@sanity/image-url'
 import SanityImage from '@/components/sanity/SanityImage'
 
 interface FooterProps {
   siteSettings?: {
     name?: string
-    logo?: any
+    logo?: SanityImageSource
     phone?: string
     email?: string
     address?: {

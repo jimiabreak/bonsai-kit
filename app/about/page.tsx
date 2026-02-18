@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer'
 import Container from '@/components/layout/Container'
 import TeamCard from '@/components/ui/TeamCard'
 import GalleryGrid from '@/components/ui/GalleryGrid'
+import type { TeamMember } from '@/types'
 
 export const metadata: Metadata = {
   title: 'About',
@@ -45,7 +46,7 @@ export default async function AboutPage() {
                 Meet the Team
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {team.map((member: any) => (
+                {team.map((member: TeamMember) => (
                   <TeamCard
                     key={member._id}
                     name={member.name}

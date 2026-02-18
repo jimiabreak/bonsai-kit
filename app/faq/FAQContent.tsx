@@ -5,10 +5,12 @@ import { PortableText } from '@portabletext/react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 
+import type { PortableTextBlock } from '@portabletext/types'
+
 interface FAQ {
   _id: string
   question: string
-  answer: any // PortableText block content
+  answer: PortableTextBlock[]
   category?: string
 }
 

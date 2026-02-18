@@ -2,11 +2,12 @@
 
 import { motion } from 'framer-motion'
 import { staggerContainer, fadeInUp } from '@/lib/animations'
+import type { SanityImageSource } from '@sanity/image-url'
 import SanityImage from '@/components/sanity/SanityImage'
 
 interface GalleryImage {
   _id: string
-  image: any
+  image: SanityImageSource
   alt: string
   caption?: string
 }
