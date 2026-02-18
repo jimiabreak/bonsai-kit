@@ -3,283 +3,35 @@
 @tailwind utilities;
 
 :root {
-  /* Brand colors from CLAUDE.md */
-  --color-cream: #faf8ef;
-  --color-dark: #152885;
-
-  /* CSS variable colors */
-  --background: #faf8ef;
-  --foreground: #152885;
-
-  /* Font families */
-  --font-sans: "Inria Sans";
-  --font-serif: "Inria Serif";
-}
-
-html,
-body {
-  height: 100%;
-  background: var(--background);
+  --color-background: #FAFAF8;
+  --color-foreground: #1A1A1A;
+  --color-primary: #B8860B;
+  --color-primary-light: #D4A843;
+  --color-muted: #F5F5F0;
+  --color-muted-foreground: #737373;
+  --color-border: #E5E5E0;
 }
 
 body {
-  color: var(--foreground);
-  font-family:
-    var(--font-inria-sans),
-    system-ui,
-    -apple-system,
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-foreground);
+  background: var(--color-background);
 }
 
-@layer base {
-  /* Respect user motion preferences */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-
-  /* Smooth scrolling */
-  html {
-    scroll-behavior: smooth;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-  }
-
-  /* Focus visible for accessibility */
-  :focus-visible {
-    outline: 2px solid var(--color-dark);
-    outline-offset: 2px;
-  }
-}
-
+/* Accessibility: minimum touch targets */
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  /* Minimum touch targets for accessibility */
   .touch-target {
-    min-width: 44px;
     min-height: 44px;
+    min-width: 44px;
   }
 }
 
-@layer components {
-  /* Typography Styles from Figma */
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
 
-  /* Page Typography */
-  .text-body {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.5rem; /* 24px on mobile */
-    font-weight: 400;
-    line-height: 1.75rem; /* 28px */
-    letter-spacing: -0.04em;
-  }
-
-  @media (min-width: 768px) {
-    .text-body {
-      font-size: 2.813rem; /* 45px on desktop */
-      line-height: 3.125rem; /* 50px */
-    }
-  }
-
-  .text-title {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.75rem; /* 28px on mobile */
-    font-weight: 700;
-    line-height: 2rem; /* 32px */
-    letter-spacing: -0.04em;
-  }
-
-  @media (min-width: 768px) {
-    .text-title {
-      font-size: 2.813rem; /* 45px on desktop */
-      line-height: 3.125rem; /* 50px */
-    }
-  }
-
-  .text-sub-footer {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 0.938rem; /* 15px */
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  /* Menu Typography */
-  .menu-large-link {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 2.5rem; /* 40px on mobile */
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    text-decoration: underline;
-    text-decoration-skip-ink: none;
-    text-underline-position: from-font;
-  }
-
-  @media (min-width: 768px) {
-    .menu-large-link {
-      font-size: 5.063rem; /* 81.01px on desktop */
-    }
-  }
-
-  .menu-section-title {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.875rem; /* 30px on mobile */
-    font-weight: 400;
-    line-height: 1;
-    letter-spacing: -0.06em;
-  }
-
-  @media (min-width: 768px) {
-    .menu-section-title {
-      font-size: 3.125rem; /* 50px on desktop */
-    }
-  }
-
-  .menu-section-subtitle {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.125rem; /* 18px on mobile */
-    font-weight: 400;
-    line-height: 1;
-    letter-spacing: -0.03em;
-  }
-
-  @media (min-width: 768px) {
-    .menu-section-subtitle {
-      font-size: 1.875rem; /* 30px on desktop */
-    }
-  }
-
-  .menu-item-title {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.125rem; /* 18px on mobile */
-    font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: -0.03em;
-  }
-
-  @media (min-width: 768px) {
-    .menu-item-title {
-      font-size: 1.875rem; /* 30px on desktop */
-      line-height: 1;
-    }
-  }
-
-  .menu-item-description {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 0.875rem; /* 14px on mobile */
-    font-weight: 400;
-    line-height: 1.55;
-    letter-spacing: -0.01em;
-  }
-
-  @media (min-width: 768px) {
-    .menu-item-description {
-      font-size: 1.063rem; /* 17px on desktop */
-    }
-  }
-
-  /* Subscription Card Typography */
-  .text-subscription-title {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.125rem; /* 18px on mobile */
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.02em;
-  }
-
-  .text-subscription-body {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1rem; /* 16px on mobile */
-    font-weight: 400;
-    line-height: 1.5;
-  }
-
-  .text-subscription-detail {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 0.625rem; /* 10px */
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.02em;
-  }
-
-  .text-subscription-price {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.75rem; /* 28px */
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.02em;
-  }
-
-  .text-subscription-frequency {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.25rem; /* 20px on mobile */
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.02em;
-  }
-
-  .text-subscription-label {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1rem; /* 16px on mobile */
-    font-weight: 400;
-    line-height: 1.5;
-  }
-
-  .text-subscription-italic {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1rem; /* 16px on mobile */
-    font-weight: 400;
-    font-style: italic;
-    line-height: 1.5;
-  }
-
-  .text-subscription-include {
-    font-family: var(--font-inria-sans), sans-serif;
-    font-size: 1.125rem; /* 18px on mobile */
-    font-weight: 700;
-    line-height: 1.6;
-  }
-
-  @media (min-width: 768px) {
-    .text-subscription-title {
-      font-size: 1.563rem; /* 25px on desktop */
-    }
-
-    .text-subscription-body {
-      font-size: 1.563rem; /* 25px on desktop */
-      line-height: 1.938rem; /* 31px */
-    }
-
-    .text-subscription-frequency {
-      font-size: 1.563rem; /* 25px on desktop */
-    }
-
-    .text-subscription-label {
-      font-size: 1.25rem; /* 20px on desktop */
-      line-height: 1.938rem; /* 31px */
-    }
-
-    .text-subscription-italic {
-      font-size: 1.375rem; /* 22px on desktop */
-      line-height: 1.563rem; /* 25px */
-    }
-
-    .text-subscription-include {
-      font-size: 1.563rem; /* 25px on desktop */
-      line-height: 2.563rem; /* 41px */
-    }
-  }
+/* Hide reCAPTCHA badge (disclose in privacy policy) */
+.grecaptcha-badge {
+  visibility: hidden;
 }
