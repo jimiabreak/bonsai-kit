@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import { draftMode } from "next/headers";
+import { SanityLive } from "@/sanity/lib/live";
+import VisualEditing from "@/components/sanity/VisualEditing";
 import "./globals.css";
 
 const inter = Inter({
@@ -22,7 +25,7 @@ export const metadata: Metadata = {
   description: "A fine dining experience crafted with passion and quality ingredients.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -31,6 +34,8 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body className="font-sans antialiased bg-background text-foreground">
         {children}
+        <SanityLive />
+        {(await draftMode()).isEnabled && <VisualEditing />}
       </body>
     </html>
   );
