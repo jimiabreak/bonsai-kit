@@ -6,6 +6,7 @@ import { visionTool } from '@sanity/vision'
 import { presentationTool } from 'sanity/presentation'
 import { schemaTypes } from './sanity/schemaTypes'
 import { apiVersion, dataset, projectId } from './sanity/env'
+import { structure, newDocumentOptions } from './sanity/structure'
 
 export default defineConfig({
   name: 'default',
@@ -17,7 +18,7 @@ export default defineConfig({
   basePath: '/studio',
 
   plugins: [
-    structureTool(),
+    structureTool({ structure }),
     presentationTool({
       previewUrl: {
         draftMode: {
@@ -30,5 +31,9 @@ export default defineConfig({
 
   schema: {
     types: schemaTypes,
+  },
+
+  document: {
+    newDocumentOptions,
   },
 })
