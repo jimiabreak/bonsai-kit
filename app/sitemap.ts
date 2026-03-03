@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { client } from '@/sanity/lib/client'
-import { SITEMAP_SLUGS_QUERY } from '@/sanity/lib/queries'
+import { SITEMAP_QUERY } from '@/sanity/lib/queries'
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com'
 
@@ -17,11 +17,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch dynamic page slugs from Sanity
   let dynamicRoutes: MetadataRoute.Sitemap = []
   try {
-    const pages = await client.fetch(SITEMAP_SLUGS_QUERY)
+    const pages = await client.fetch(SITEMAP_QUERY)
     dynamicRoutes = (pages || [])
-      .filter((p: { slug: string; _updatedAt: string }) => !['about', 'privacy'].includes(p.slug))
-      .map((p: { slug: string; _updatedAt: string }) => ({
-        url: `${baseUrl}/${p.slug}`,
+      .filter((p: { path: string; _updatedAt: string }) => !['/about', '/privacy'].includes(p.path))
+      .map((p: { path: string; _updatedAt: string }) => ({
+        url: `${baseUrl}${p.path.startsWith('/') ? p.path : '/' + p.path}`,
         lastModified: new Date(p._updatedAt),
         changeFrequency: 'monthly' as const,
         priority: 0.5,
