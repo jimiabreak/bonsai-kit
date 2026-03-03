@@ -24,6 +24,9 @@ import sectionStatsBar from './objects/sections/sectionStatsBar'
 // Singleton documents (one of each)
 import siteSettings from './singletons/siteSettings'
 import homePage from './singletons/homePage'
+import header from './singletons/header'
+import footer from './singletons/footer'
+import redirects from './singletons/redirects'
 
 // Document types (multiple entries)
 import menuCategory from './documents/menuCategory'
@@ -59,6 +62,9 @@ export const schemaTypes = [
   // Singletons
   siteSettings,
   homePage,
+  header,
+  footer,
+  redirects,
   // Documents
   menuCategory,
   menuItem,
