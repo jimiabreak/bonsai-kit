@@ -3,6 +3,7 @@ import portableText from './objects/portableText'
 import socialLink from './objects/socialLink'
 import openingHours from './objects/openingHours'
 import seo from './objects/seo'
+import cta from './objects/cta'
 
 // Singleton documents (one of each)
 import siteSettings from './singletons/siteSettings'
@@ -23,6 +24,7 @@ export const schemaTypes = [
   socialLink,
   openingHours,
   seo,
+  cta,
   // Singletons
   siteSettings,
   homePage,
