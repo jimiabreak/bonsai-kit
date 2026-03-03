@@ -36,6 +36,7 @@ import testimonial from './documents/testimonial'
 import faqItem from './documents/faqItem'
 import galleryImage from './documents/galleryImage'
 import page from './documents/page'
+import submission from './documents/submission'
 
 export const schemaTypes = [
   // Objects
@@ -73,4 +74,5 @@ export const schemaTypes = [
   faqItem,
   galleryImage,
   page,
+  submission,
 ]
