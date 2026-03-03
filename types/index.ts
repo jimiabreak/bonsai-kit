@@ -101,33 +101,12 @@ export interface SiteSettings {
   seo?: SEO
 }
 
-/** Home Page — matches sanity/schemaTypes/singletons/homePage.ts */
+/** Home Page — with pageBuilder */
 export interface HomePage {
   _id: string
   _type: 'homePage'
-  hero?: {
-    heading: string
-    subheading?: string
-    image?: SanityImage
-    ctaText?: string
-    ctaLink?: string
-  }
-  aboutPreview?: {
-    heading?: string
-    body?: PortableTextBlock
-    image?: SanityImage
-  }
-  featuredMenuHeading?: string
-  featuredMenuItems?: SanityReference[] | MenuItem[]
-  testimonialHeading?: string
-  featuredTestimonials?: SanityReference[] | Testimonial[]
-  ctaSection?: {
-    heading?: string
-    body?: string
-    ctaText?: string
-    ctaLink?: string
-    backgroundImage?: SanityImage
-  }
+  pageBuilder?: PageBuilderSection[]
+  seo?: SEO
 }
 
 // =============================================================================
@@ -204,14 +183,217 @@ export interface GalleryImage {
   order?: number
 }
 
-/** Generic Page — matches sanity/schemaTypes/documents/page.ts */
+/** Generic Page — with pageBuilder + uri */
 export interface Page {
   _id: string
   _type: 'page'
   title: string
-  slug: SanitySlug
+  slug?: SanitySlug
+  uri?: string
   body?: PortableTextBlock
+  pageBuilder?: PageBuilderSection[]
   seo?: SEO
+}
+
+// =============================================================================
+// Section Types (Page Builder)
+// =============================================================================
+
+/** CTA (call to action) button object */
+export interface CTA {
+  _type: 'cta'
+  label: string
+  href: string
+}
+
+/** Hero section */
+export interface SectionHero {
+  _type: 'sectionHero'
+  _key: string
+  eyebrow?: string
+  heading: string
+  subheading?: string
+  image?: SanityImage
+  cta?: CTA
+  layout?: 'centered' | 'left' | 'split'
+}
+
+/** Split content section */
+export interface SectionSplitContent {
+  _type: 'sectionSplitContent'
+  _key: string
+  heading?: string
+  body?: PortableTextBlock
+  image?: SanityImage
+  imagePosition?: 'left' | 'right'
+  cta?: CTA
+}
+
+/** Rich text section */
+export interface SectionRichText {
+  _type: 'sectionRichText'
+  _key: string
+  body: PortableTextBlock
+}
+
+/** CTA section */
+export interface SectionCta {
+  _type: 'sectionCta'
+  _key: string
+  heading?: string
+  body?: string
+  cta?: CTA
+  backgroundImage?: SanityImage
+}
+
+/** Featured menu section */
+export interface SectionFeaturedMenu {
+  _type: 'sectionFeaturedMenu'
+  _key: string
+  heading?: string
+  items?: MenuItem[]
+}
+
+/** Testimonials section */
+export interface SectionTestimonials {
+  _type: 'sectionTestimonials'
+  _key: string
+  heading?: string
+  testimonials?: Testimonial[]
+}
+
+/** FAQ section */
+export interface SectionFaq {
+  _type: 'sectionFaq'
+  _key: string
+  heading?: string
+  faqItems?: FAQItem[]
+}
+
+/** Team section */
+export interface SectionTeam {
+  _type: 'sectionTeam'
+  _key: string
+  heading?: string
+  subheading?: string
+  teamMembers?: TeamMember[]
+}
+
+/** Image gallery section */
+export interface SectionImageGallery {
+  _type: 'sectionImageGallery'
+  _key: string
+  heading?: string
+  images?: GalleryImage[]
+}
+
+/** Contact form section */
+export interface SectionContactForm {
+  _type: 'sectionContactForm'
+  _key: string
+  heading?: string
+  subheading?: string
+}
+
+/** Embed section */
+export interface SectionEmbed {
+  _type: 'sectionEmbed'
+  _key: string
+  heading?: string
+  embedType?: 'video' | 'map' | 'custom'
+  embedUrl?: string
+  aspectRatio?: '16:9' | '4:3' | '1:1' | '9:16'
+}
+
+/** Full menu section */
+export interface SectionMenuSection {
+  _type: 'sectionMenuSection'
+  _key: string
+  heading?: string
+  description?: string
+  categories?: MenuCategory[]
+}
+
+/** Logo bar section */
+export interface SectionLogoBar {
+  _type: 'sectionLogoBar'
+  _key: string
+  heading?: string
+  logos?: Array<SanityImage & { alt?: string }>
+}
+
+/** Stats bar section */
+export interface SectionStatsBar {
+  _type: 'sectionStatsBar'
+  _key: string
+  stats?: Array<{ _key: string; number: string; label: string }>
+}
+
+/** Union of all section types */
+export type PageBuilderSection =
+  | SectionHero
+  | SectionSplitContent
+  | SectionRichText
+  | SectionCta
+  | SectionFeaturedMenu
+  | SectionTestimonials
+  | SectionFaq
+  | SectionTeam
+  | SectionImageGallery
+  | SectionContactForm
+  | SectionEmbed
+  | SectionMenuSection
+  | SectionLogoBar
+  | SectionStatsBar
+
+// =============================================================================
+// Global Config Types
+// =============================================================================
+
+/** Header singleton */
+export interface Header {
+  _id: string
+  _type: 'header'
+  navigation?: Array<{ _key: string; label: string; href: string }>
+  cta?: CTA
+}
+
+/** Footer singleton */
+export interface Footer {
+  _id: string
+  _type: 'footer'
+  tagline?: string
+  columns?: Array<{
+    _key: string
+    title: string
+    links?: Array<{ _key: string; label: string; href: string }>
+  }>
+  copyrightText?: string
+}
+
+/** Redirects singleton */
+export interface Redirects {
+  _id: string
+  _type: 'redirects'
+  rules?: Array<{
+    _key: string
+    source: string
+    destination: string
+    permanent?: boolean
+  }>
+}
+
+/** Submission document */
+export interface Submission {
+  _id: string
+  _type: 'submission'
+  name?: string
+  email?: string
+  phone?: string
+  message?: string
+  page?: string
+  source?: string
+  submittedAt?: string
 }
 
 // =============================================================================
