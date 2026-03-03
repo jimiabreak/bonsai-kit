@@ -2,7 +2,7 @@ import { sanityFetch } from '@/sanity/lib/live'
 import { SITE_SETTINGS_QUERY, HOME_PAGE_QUERY } from '@/sanity/lib/queries'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import HomePageSections from './HomePageSections'
+import PageBuilder from '@/components/sanity/PageBuilder'
 
 export default async function HomePage() {
   const [{ data: settings }, { data: page }] = await Promise.all([
@@ -14,7 +14,7 @@ export default async function HomePage() {
     <>
       <Header siteSettings={settings} />
       <main>
-        <HomePageSections page={page} />
+        <PageBuilder sections={page?.pageBuilder} />
       </main>
       <Footer siteSettings={settings} />
     </>
