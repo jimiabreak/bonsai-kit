@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import { PortableText } from '@portabletext/react'
 import { sanityFetch } from '@/sanity/lib/live'
 import { SITE_SETTINGS_QUERY, ABOUT_PAGE_QUERY } from '@/sanity/lib/queries'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Container from '@/components/layout/Container'
+import PageBuilder from '@/components/sanity/PageBuilder'
 import TeamCard from '@/components/ui/TeamCard'
 import GalleryGrid from '@/components/ui/GalleryGrid'
 import type { TeamMember } from '@/types'
@@ -31,11 +31,7 @@ export default async function AboutPage() {
           <h1 className="font-serif text-4xl sm:text-5xl text-center mb-12">
             {page?.title || 'About Us'}
           </h1>
-          {page?.body && (
-            <div className="prose prose-lg max-w-3xl mx-auto text-muted-foreground">
-              <PortableText value={page.body} />
-            </div>
-          )}
+          <PageBuilder sections={page?.pageBuilder} />
         </Container>
 
         {/* Team */}

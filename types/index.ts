@@ -1,3 +1,5 @@
+import type { PortableTextBlock as PTBlock } from '@portabletext/types'
+
 // =============================================================================
 // Sanity Helper Types
 // =============================================================================
@@ -27,6 +29,7 @@ export interface SanityImage {
     height: number
     width: number
   }
+  crop?: { top: number; bottom: number; left: number; right: number }
 }
 
 /** Sanity geopoint */
@@ -38,7 +41,7 @@ export interface SanityGeopoint {
 }
 
 /** Portable Text block content (array of Sanity block nodes) */
-export type PortableTextBlock = any[]
+export type PortableTextBlock = PTBlock[]
 
 // =============================================================================
 // Sanity Object Types (shared building blocks)
@@ -190,7 +193,6 @@ export interface Page {
   title: string
   slug?: SanitySlug
   uri?: string
-  body?: PortableTextBlock
   pageBuilder?: PageBuilderSection[]
   seo?: SEO
 }

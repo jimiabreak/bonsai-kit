@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import type { SanityImageSource } from '@sanity/image-url'
+import type { SanityImageObject } from '@sanity/image-url/lib/types/types'
 import { urlFor } from '@/sanity/lib/image'
 
 interface SanityImageProps {
@@ -25,12 +26,17 @@ export default function SanityImage({
 }: SanityImageProps) {
   if (!image || typeof image === 'string' || !('asset' in image)) return null
 
-  const imageUrl = urlFor(image)
-    .auto('format')
-    .quality(80)
-    .url()
-
   if (fill) {
+    const imageUrl = urlFor(image)
+      .auto('format')
+      .quality(80)
+      .url()
+
+    const hotspot = (image as SanityImageObject)?.hotspot
+    const objectPosition = hotspot
+      ? `${Math.round(hotspot.x * 100)}% ${Math.round(hotspot.y * 100)}%`
+      : undefined
+
     return (
       <Image
         src={imageUrl}
@@ -39,16 +45,28 @@ export default function SanityImage({
         sizes={sizes || '100vw'}
         className={className}
         priority={priority}
+        style={{ objectPosition }}
       />
     )
   }
+
+  const w = width || 800
+  const h = height || 600
+
+  const imageUrl = urlFor(image)
+    .auto('format')
+    .quality(80)
+    .width(w)
+    .height(h)
+    .fit('crop')
+    .url()
 
   return (
     <Image
       src={imageUrl}
       alt={alt}
-      width={width || 800}
-      height={height || 600}
+      width={w}
+      height={h}
       sizes={sizes}
       className={className}
       priority={priority}

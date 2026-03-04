@@ -160,7 +160,6 @@ export const ABOUT_PAGE_QUERY = defineQuery(`
       title,
       uri,
       ${PAGE_BUILDER_PROJECTION},
-      body,
       seo
     },
     "team": *[_type == "teamMember"] | order(order asc) {
@@ -193,7 +192,6 @@ export const FAQ_QUERY = defineQuery(`
 export const PAGE_QUERY = defineQuery(`
   *[_type == "page" && slug.current == $slug][0] {
     title,
-    body,
     ${PAGE_BUILDER_PROJECTION},
     seo
   }
