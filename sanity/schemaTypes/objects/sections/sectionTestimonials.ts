@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity'
+import { defineType, defineField, defineArrayMember } from 'sanity'
 
 export default defineType({
   name: 'sectionTestimonials',
@@ -10,8 +10,8 @@ export default defineType({
       name: 'testimonials',
       title: 'Testimonials',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'testimonial' }] }],
-      validation: (Rule) => Rule.max(6),
+      of: [defineArrayMember({ type: 'reference', to: [{ type: 'testimonial' }] })],
+      validation: (Rule) => Rule.max(6).unique(),
     }),
   ],
   preview: {

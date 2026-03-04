@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity'
+import { defineType, defineField, defineArrayMember } from 'sanity'
 
 export default defineType({
   name: 'sectionImageGallery',
@@ -10,7 +10,8 @@ export default defineType({
       name: 'images',
       title: 'Images',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'galleryImage' }] }],
+      of: [defineArrayMember({ type: 'reference', to: [{ type: 'galleryImage' }] })],
+      validation: (Rule) => Rule.unique(),
     }),
   ],
   preview: {

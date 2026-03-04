@@ -1,6 +1,7 @@
 import type { StructureBuilder } from 'sanity/structure'
+import { HomeIcon, BasketIcon, BookIcon, EnvelopeIcon, CogIcon, MenuIcon, BlockContentIcon, LinkIcon } from '@sanity/icons'
 
-const SINGLETONS = ['siteSettings', 'homePage', 'header', 'footer', 'redirects']
+export const SINGLETONS = ['siteSettings', 'homePage', 'header', 'footer', 'redirects']
 
 export const structure = (S: StructureBuilder) =>
   S.list()
@@ -8,7 +9,7 @@ export const structure = (S: StructureBuilder) =>
     .items([
       S.listItem()
         .title('Homepage')
-        .icon(() => '🏠')
+        .icon(HomeIcon)
         .child(S.document().schemaType('homePage').documentId('homePage')),
 
       S.divider(),
@@ -19,7 +20,7 @@ export const structure = (S: StructureBuilder) =>
 
       S.listItem()
         .title('Menu')
-        .icon(() => '🍽')
+        .icon(BasketIcon)
         .child(
           S.list()
             .title('Menu')
@@ -31,7 +32,7 @@ export const structure = (S: StructureBuilder) =>
 
       S.listItem()
         .title('Content Library')
-        .icon(() => '📚')
+        .icon(BookIcon)
         .child(
           S.list()
             .title('Content Library')
@@ -43,32 +44,32 @@ export const structure = (S: StructureBuilder) =>
             ])
         ),
 
-      S.documentTypeListItem('submission').title('Submissions').icon(() => '📩'),
+      S.documentTypeListItem('submission').title('Submissions').icon(EnvelopeIcon),
 
       S.divider(),
 
       S.listItem()
         .title('Site')
-        .icon(() => '⚙')
+        .icon(CogIcon)
         .child(
           S.list()
             .title('Site')
             .items([
               S.listItem()
                 .title('Settings')
-                .icon(() => '⚙')
+                .icon(CogIcon)
                 .child(S.document().schemaType('siteSettings').documentId('siteSettings')),
               S.listItem()
                 .title('Header')
-                .icon(() => '🔝')
+                .icon(MenuIcon)
                 .child(S.document().schemaType('header').documentId('header')),
               S.listItem()
                 .title('Footer')
-                .icon(() => '🔻')
+                .icon(BlockContentIcon)
                 .child(S.document().schemaType('footer').documentId('footer')),
               S.listItem()
                 .title('Redirects')
-                .icon(() => '↪')
+                .icon(LinkIcon)
                 .child(S.document().schemaType('redirects').documentId('redirects')),
             ])
         ),

@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity'
+import { defineType, defineField, defineArrayMember } from 'sanity'
 
 export default defineType({
   name: 'sectionStatsBar',
@@ -10,16 +10,16 @@ export default defineType({
       title: 'Stats',
       type: 'array',
       of: [
-        {
+        defineArrayMember({
           type: 'object',
           fields: [
-            { name: 'number', type: 'string', title: 'Number', validation: (Rule: any) => Rule.required() },
-            { name: 'label', type: 'string', title: 'Label', validation: (Rule: any) => Rule.required() },
+            defineField({ name: 'number', type: 'string', title: 'Number', validation: (Rule) => Rule.required() }),
+            defineField({ name: 'label', type: 'string', title: 'Label', validation: (Rule) => Rule.required() }),
           ],
           preview: {
             select: { title: 'number', subtitle: 'label' },
           },
-        },
+        }),
       ],
     }),
   ],

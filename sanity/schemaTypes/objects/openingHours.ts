@@ -1,11 +1,11 @@
-import { defineType } from 'sanity'
+import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'openingHours',
   title: 'Opening Hours',
   type: 'object',
   fields: [
-    {
+    defineField({
       name: 'day',
       title: 'Day',
       type: 'string',
@@ -13,27 +13,27 @@ export default defineType({
         list: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
       },
       validation: (Rule) => Rule.required(),
-    },
-    {
+    }),
+    defineField({
       name: 'openTime',
       title: 'Open',
       type: 'string',
       description: 'e.g., "11:00 AM"',
       hidden: ({ parent }) => parent?.closed,
-    },
-    {
+    }),
+    defineField({
       name: 'closeTime',
       title: 'Close',
       type: 'string',
       description: 'e.g., "10:00 PM"',
       hidden: ({ parent }) => parent?.closed,
-    },
-    {
+    }),
+    defineField({
       name: 'closed',
       title: 'Closed this day',
       type: 'boolean',
       initialValue: false,
-    },
+    }),
   ],
   preview: {
     select: { day: 'day', open: 'openTime', close: 'closeTime', closed: 'closed' },

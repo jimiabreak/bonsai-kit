@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity'
+import { defineType, defineField, defineArrayMember } from 'sanity'
 
 export default defineType({
   name: 'sectionLogoBar',
@@ -11,13 +11,13 @@ export default defineType({
       title: 'Logos',
       type: 'array',
       of: [
-        {
+        defineArrayMember({
           type: 'image',
           options: { hotspot: true },
           fields: [
-            { name: 'alt', type: 'string', title: 'Alt Text', validation: (Rule: any) => Rule.required() },
+            defineField({ name: 'alt', type: 'string', title: 'Alt Text', validation: (Rule) => Rule.required() }),
           ],
-        },
+        }),
       ],
     }),
   ],

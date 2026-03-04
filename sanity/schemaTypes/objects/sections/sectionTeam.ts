@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity'
+import { defineType, defineField, defineArrayMember } from 'sanity'
 
 export default defineType({
   name: 'sectionTeam',
@@ -11,7 +11,8 @@ export default defineType({
       name: 'teamMembers',
       title: 'Team Members',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'teamMember' }] }],
+      of: [defineArrayMember({ type: 'reference', to: [{ type: 'teamMember' }] })],
+      validation: (Rule) => Rule.unique(),
     }),
   ],
   preview: {
