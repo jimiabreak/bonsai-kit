@@ -40,8 +40,7 @@ Server components fetch data via `sanityFetch()` (from `@/sanity/lib/live`) and 
 
 ```
 app/
-├── page.tsx                  # Home (server component)
-├── HomePageSections.tsx      # Home (client component - interactivity)
+├── page.tsx                  # Home (server component, uses PageBuilder)
 ├── layout.tsx                # Root layout (fonts, SanityLive, VisualEditing)
 ├── globals.css               # CSS variables + base styles
 ├── sitemap.ts                # Dynamic sitemap generation
@@ -52,12 +51,30 @@ app/
 ├── faq/page.tsx              # FAQ accordion page
 ├── privacy/page.tsx          # Privacy policy (generic page template)
 ├── studio/[[...tool]]/       # Embedded Sanity Studio
-├── api/contact/route.ts      # Contact form API (Resend)
+├── api/contact/route.ts      # Contact form API (Resend + Sanity submissions)
 └── api/draft/                # Draft mode enable/disable endpoints
 components/
 ├── layout/                   # Header, Footer, Container, MobileNav, ThemedHeader
 ├── ui/                       # Button, Card, MenuItem, FAQAccordion, GalleryGrid, TeamCard, TestimonialCard
-├── sanity/                   # SanityImage, VisualEditing
+├── sanity/
+│   ├── SanityImage.tsx       # Sanity image component
+│   ├── VisualEditing.tsx     # Visual editing integration
+│   └── PageBuilder.tsx       # Maps pageBuilder sections to React components
+├── sections/                 # Page Builder section components
+│   ├── Hero.tsx              # sectionHero
+│   ├── SplitContent.tsx      # sectionSplitContent
+│   ├── RichText.tsx          # sectionRichText
+│   ├── CTA.tsx               # sectionCta
+│   ├── FeaturedMenu.tsx      # sectionFeaturedMenu
+│   ├── Testimonials.tsx      # sectionTestimonials
+│   ├── FAQ.tsx               # sectionFaq
+│   ├── Team.tsx              # sectionTeam
+│   ├── ImageGallery.tsx      # sectionImageGallery
+│   ├── ContactForm.tsx       # sectionContactForm
+│   ├── Embed.tsx             # sectionEmbed
+│   ├── MenuSection.tsx       # sectionMenuSection
+│   ├── LogoBar.tsx           # sectionLogoBar
+│   └── StatsBar.tsx          # sectionStatsBar
 └── animations/               # (empty, reserved for future use)
 sanity/
 ├── env.ts                    # Environment variable assertions
@@ -65,12 +82,36 @@ sanity/
 │   ├── client.ts             # Sanity client instance
 │   ├── image.ts              # Image URL builder
 │   ├── live.ts               # sanityFetch() and SanityLive (defineLive)
-│   └── queries.ts            # All GROQ queries
+│   └── queries.ts            # All GROQ queries (with PAGE_BUILDER_PROJECTION)
+├── structure/
+│   └── index.ts              # Custom desk structure (grouped singletons, documents, sections)
 └── schemaTypes/
     ├── index.ts              # Schema registry
-    ├── objects/              # portableText, socialLink, openingHours, seo
-    ├── singletons/           # siteSettings, homePage
-    └── documents/            # menuCategory, menuItem, teamMember, testimonial, faqItem, galleryImage, page
+    ├── builders/
+    │   └── pageBuilder.ts    # pageBuilder array field definition (used by homePage + page)
+    ├── objects/
+    │   ├── portableText.ts   # Rich text block type
+    │   ├── socialLink.ts     # Social media link
+    │   ├── openingHours.ts   # Business hours
+    │   ├── seo.ts            # SEO metadata
+    │   ├── cta.ts            # Call-to-action button object
+    │   └── sections/         # Page Builder section schemas
+    │       ├── sectionHero.ts
+    │       ├── sectionSplitContent.ts
+    │       ├── sectionRichText.ts
+    │       ├── sectionCta.ts
+    │       ├── sectionFeaturedMenu.ts
+    │       ├── sectionTestimonials.ts
+    │       ├── sectionFaq.ts
+    │       ├── sectionTeam.ts
+    │       ├── sectionImageGallery.ts
+    │       ├── sectionContactForm.ts
+    │       ├── sectionEmbed.ts
+    │       ├── sectionMenuSection.ts
+    │       ├── sectionLogoBar.ts
+    │       └── sectionStatsBar.ts
+    ├── singletons/           # siteSettings, homePage, header, footer, redirects
+    └── documents/            # menuCategory, menuItem, teamMember, testimonial, faqItem, galleryImage, page, submission
 lib/
 └── animations.ts             # Shared Framer Motion variants
 sanity.config.ts              # Sanity Studio configuration (structureTool, presentationTool, visionTool)
@@ -116,6 +157,35 @@ return (
 2. Register it in `sanity/schemaTypes/index.ts`
 3. Add GROQ queries to `sanity/lib/queries.ts`
 4. Run `npm run typegen` to regenerate TypeScript types
+
+### Page Builder Pattern
+
+Pages use a modular `pageBuilder` field (array of section objects) that is rendered by a single `<PageBuilder sections={page?.pageBuilder} />` component.
+
+**How it works:**
+1. In Sanity, `homePage` and `page` documents include a `pageBuilder` field (defined in `sanity/schemaTypes/builders/pageBuilder.ts`) — an array of typed section objects.
+2. GROQ queries use a shared `PAGE_BUILDER_PROJECTION` fragment to resolve all section types and their referenced data.
+3. The `PageBuilder` component (`components/sanity/PageBuilder.tsx`) maps each section's `_type` to the corresponding React component.
+
+**Adding a new section:**
+1. Create the schema in `sanity/schemaTypes/objects/sections/sectionMySection.ts`
+2. Register it in `sanity/schemaTypes/index.ts`
+3. Add it to the `pageBuilder` array in `sanity/schemaTypes/builders/pageBuilder.ts`
+4. Add its projection to `PAGE_BUILDER_PROJECTION` in `sanity/lib/queries.ts`
+5. Create the React component in `components/sections/MySection.tsx`
+6. Register the component mapping in `components/sanity/PageBuilder.tsx`
+7. Add the TypeScript interface in `types/index.ts` and add it to the `PageBuilderSection` union
+8. Run `npm run typegen` to regenerate Sanity types
+
+```tsx
+// Usage in a page server component
+import PageBuilder from '@/components/sanity/PageBuilder'
+
+export default async function SomePage() {
+  const { data: page } = await sanityFetch({ query: SOME_PAGE_QUERY })
+  return <PageBuilder sections={page?.pageBuilder} />
+}
+```
 
 ### Animation Pattern
 
