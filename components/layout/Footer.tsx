@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { stegaClean } from '@sanity/client/stega'
 import type { SanityImageSource } from '@sanity/image-url'
 import SanityImage from '@/components/sanity/SanityImage'
 
@@ -14,7 +15,7 @@ interface FooterProps {
       state?: string
       zip?: string
     }
-    socialLinks?: Array<{ platform: string; url: string }>
+    socialLinks?: Array<{ _key?: string; platform: string; url: string }>
   }
 }
 
@@ -84,31 +85,34 @@ export default function Footer({ siteSettings }: FooterProps) {
           <div>
             <h3 className="font-serif text-lg mb-4">Contact</h3>
             {siteSettings?.phone && (
-              <a href={`tel:${siteSettings.phone}`} className="block text-sm opacity-70 hover:opacity-100 mb-1">
+              <a href={`tel:${stegaClean(siteSettings.phone)}`} className="block text-sm opacity-70 hover:opacity-100 mb-1">
                 {siteSettings.phone}
               </a>
             )}
             {siteSettings?.email && (
-              <a href={`mailto:${siteSettings.email}`} className="block text-sm opacity-70 hover:opacity-100 mb-4">
+              <a href={`mailto:${stegaClean(siteSettings.email)}`} className="block text-sm opacity-70 hover:opacity-100 mb-4">
                 {siteSettings.email}
               </a>
             )}
             {siteSettings?.socialLinks && siteSettings.socialLinks.length > 0 && (
               <div className="flex gap-4 mt-4">
-                {siteSettings.socialLinks.map((social) => (
-                  <a
-                    key={social.platform}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.platform}
-                    className="opacity-70 hover:opacity-100 transition-opacity"
-                  >
-                    <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                      <path d={socialIcons[social.platform] || ''} />
-                    </svg>
-                  </a>
-                ))}
+                {siteSettings.socialLinks.map((social) => {
+                  const platform = stegaClean(social.platform)
+                  return (
+                    <a
+                      key={social._key || platform}
+                      href={stegaClean(social.url)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={platform}
+                      className="opacity-70 hover:opacity-100 transition-opacity"
+                    >
+                      <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                        <path d={socialIcons[platform] || ''} />
+                      </svg>
+                    </a>
+                  )
+                })}
               </div>
             )}
           </div>

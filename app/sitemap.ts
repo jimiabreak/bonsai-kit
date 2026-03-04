@@ -3,6 +3,7 @@ import { client } from '@/sanity/lib/client'
 import { SITEMAP_QUERY } from '@/sanity/lib/queries'
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com'
+const sitemapClient = client.withConfig({ stega: false })
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -17,7 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch dynamic page slugs from Sanity
   let dynamicRoutes: MetadataRoute.Sitemap = []
   try {
-    const pages = await client.fetch(SITEMAP_QUERY)
+    const pages = await sitemapClient.fetch(SITEMAP_QUERY)
     dynamicRoutes = (pages || [])
       .filter((p: { path: string; _updatedAt: string }) => !['/about', '/privacy'].includes(p.path))
       .map((p: { path: string; _updatedAt: string }) => ({

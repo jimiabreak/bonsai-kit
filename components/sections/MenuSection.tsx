@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { stegaClean } from '@sanity/client/stega'
 import { motion, AnimatePresence } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 import Container from '@/components/layout/Container'
@@ -19,10 +20,10 @@ interface MenuSectionProps {
 }
 
 export default function MenuSection({ heading, description, categories }: MenuSectionProps) {
-  const sections = Array.from(new Set(categories?.map((c) => c.menuSection) || []))
+  const sections = Array.from(new Set(categories?.map((c) => stegaClean(c.menuSection)) || []))
   const [activeTab, setActiveTab] = useState(sections[0] || 'food')
   if (!categories || categories.length === 0) return null
-  const filteredCategories = categories.filter((c) => c.menuSection === activeTab)
+  const filteredCategories = categories.filter((c) => stegaClean(c.menuSection) === activeTab)
   return (
     <motion.section variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="py-20 sm:py-28">
       <Container>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { stegaClean } from '@sanity/client/stega'
 import { motion, AnimatePresence } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 import Container from '@/components/layout/Container'
@@ -29,12 +30,12 @@ const sections = [
 
 export default function MenuContent({ categories }: { categories: Category[] }) {
   const availableSections = sections.filter((s) =>
-    categories.some((c) => c.menuSection === s.key && c.items.length > 0)
+    categories.some((c) => stegaClean(c.menuSection) === s.key && c.items.length > 0)
   )
   const [activeTab, setActiveTab] = useState(availableSections[0]?.key || 'food')
 
   const filteredCategories = categories.filter(
-    (c) => c.menuSection === activeTab && c.items.length > 0
+    (c) => stegaClean(c.menuSection) === activeTab && c.items.length > 0
   )
 
   return (

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
+import { stegaClean } from '@sanity/client/stega'
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 import Container from '@/components/layout/Container'
@@ -131,8 +132,8 @@ export default function ContactContent({ settings }: ContactContentProps) {
             <div>
               <h2 className="font-serif text-2xl mb-4">Hours</h2>
               <div className="space-y-2">
-                {settings.hours.map((h: { day: string; closed?: boolean; openTime?: string; closeTime?: string }, i: number) => (
-                  <div key={i} className="flex justify-between text-sm">
+                {settings.hours.map((h: { _key?: string; day: string; closed?: boolean; openTime?: string; closeTime?: string }) => (
+                  <div key={h._key || stegaClean(h.day)} className="flex justify-between text-sm">
                     <span>{h.day}</span>
                     <span className="text-muted-foreground">
                       {h.closed ? 'Closed' : `${h.openTime} – ${h.closeTime}`}
@@ -159,14 +160,14 @@ export default function ContactContent({ settings }: ContactContentProps) {
             <h2 className="font-serif text-2xl mb-4">Get in Touch</h2>
             {settings?.phone && (
               <p className="text-muted-foreground mb-1">
-                <a href={`tel:${settings.phone}`} className="hover:text-primary transition-colors">
+                <a href={`tel:${stegaClean(settings.phone)}`} className="hover:text-primary transition-colors">
                   {settings.phone}
                 </a>
               </p>
             )}
             {settings?.email && (
               <p className="text-muted-foreground">
-                <a href={`mailto:${settings.email}`} className="hover:text-primary transition-colors">
+                <a href={`mailto:${stegaClean(settings.email)}`} className="hover:text-primary transition-colors">
                   {settings.email}
                 </a>
               </p>
@@ -181,7 +182,7 @@ export default function ContactContent({ settings }: ContactContentProps) {
                 Book a table through our reservation system.
               </p>
               <a
-                href={settings.reservationUrl}
+                href={stegaClean(settings.reservationUrl)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-primary text-white px-6 py-3 text-sm uppercase tracking-wider hover:bg-primary-light transition-colors"

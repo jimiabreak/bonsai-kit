@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { stegaClean } from '@sanity/client/stega'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { fadeInUp } from '@/lib/animations'
@@ -64,7 +65,7 @@ export default function Header({ siteSettings }: HeaderProps) {
             ))}
             {siteSettings?.reservationUrl && (
               <a
-                href={siteSettings.reservationUrl}
+                href={stegaClean(siteSettings.reservationUrl)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-primary text-white px-4 py-2 text-sm uppercase tracking-wider hover:bg-primary-light transition-colors"
@@ -93,7 +94,7 @@ export default function Header({ siteSettings }: HeaderProps) {
         links={[
           ...navLinks,
           ...(siteSettings?.reservationUrl
-            ? [{ href: siteSettings.reservationUrl, label: 'Reserve a Table' }]
+            ? [{ href: stegaClean(siteSettings.reservationUrl), label: 'Reserve a Table' }]
             : []),
         ]}
       />

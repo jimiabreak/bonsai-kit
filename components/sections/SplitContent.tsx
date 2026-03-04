@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { stegaClean } from '@sanity/client/stega'
 import { PortableText } from '@portabletext/react'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 import type { SanityImageSource } from '@sanity/image-url'
@@ -29,7 +30,7 @@ export default function SplitContent({ heading, body, image, imagePosition = 'ri
       )}
       {cta?.label && cta?.href && (
         <div className="mt-8">
-          <Button href={cta.href} variant="outline">{cta.label}</Button>
+          <Button href={stegaClean(cta.href)} variant="outline">{cta.label}</Button>
         </div>
       )}
     </motion.div>
@@ -45,7 +46,7 @@ export default function SplitContent({ heading, body, image, imagePosition = 'ri
     <motion.section variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} className="py-20 sm:py-28">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {imagePosition === 'left' ? <>{imageBlock}{textBlock}</> : <>{textBlock}{imageBlock}</>}
+          {stegaClean(imagePosition) === 'left' ? <>{imageBlock}{textBlock}</> : <>{textBlock}{imageBlock}</>}
         </div>
       </Container>
     </motion.section>

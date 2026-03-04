@@ -1,3 +1,4 @@
+import { stegaClean } from '@sanity/client/stega'
 import Hero from '@/components/sections/Hero'
 import SplitContent from '@/components/sections/SplitContent'
 import RichText from '@/components/sections/RichText'
@@ -41,9 +42,10 @@ export default function PageBuilder({ sections }: PageBuilderProps) {
   return (
     <>
       {sections.map((section) => {
-        const Component = sectionComponents[section._type]
+        const cleanType = stegaClean(section._type)
+        const Component = sectionComponents[cleanType]
         if (!Component) {
-          console.warn(`Unknown section type: ${section._type}`)
+          console.warn(`Unknown section type: ${cleanType}`)
           return null
         }
         return <Component key={section._key} {...section} />

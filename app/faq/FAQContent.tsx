@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { stegaClean } from '@sanity/client/stega'
 import { PortableText } from '@portabletext/react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
@@ -109,7 +110,7 @@ export default function FAQContent({ faqs }: { faqs: FAQ[] }) {
 
   // Group by category if categories exist
   const categories = faqs.reduce<Record<string, FAQ[]>>((acc, faq) => {
-    const cat = faq.category || 'General'
+    const cat = stegaClean(faq.category) || 'General'
     if (!acc[cat]) acc[cat] = []
     acc[cat].push(faq)
     return acc

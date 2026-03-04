@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { stegaClean } from '@sanity/client/stega'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 import Container from '@/components/layout/Container'
 import type { SanityImageSource } from '@sanity/image-url'
@@ -29,7 +30,7 @@ export default function CTA({ heading, body, cta, backgroundImage }: CTAProps) {
           {body && <motion.p variants={fadeInUp} className="text-lg opacity-90 mb-8">{body}</motion.p>}
           {cta?.label && cta?.href && (
             <motion.div variants={fadeInUp}>
-              <Button href={cta.href} variant="primary" size="lg">{cta.label}</Button>
+              <Button href={stegaClean(cta.href)} variant="primary" size="lg">{cta.label}</Button>
             </motion.div>
           )}
         </motion.div>

@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { stegaClean } from '@sanity/client/stega'
 import { fadeInUp } from '@/lib/animations'
 import type { SanityImageSource } from '@sanity/image-url'
 import SanityImage from '@/components/sanity/SanityImage'
@@ -16,7 +17,8 @@ interface HeroProps {
 }
 
 export default function Hero({ eyebrow, heading, subheading, image, cta, layout = 'centered' }: HeroProps) {
-  if (layout === 'split') {
+  const cleanLayout = stegaClean(layout)
+  if (cleanLayout === 'split') {
     return (
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[70vh]">
         <div className="flex items-center justify-center px-8 py-20 sm:py-28">
@@ -36,7 +38,7 @@ export default function Hero({ eyebrow, heading, subheading, image, cta, layout 
             )}
             {cta?.label && cta?.href && (
               <motion.div variants={fadeInUp} initial="hidden" animate="visible">
-                <Button href={cta.href} variant="primary" size="lg">{cta.label}</Button>
+                <Button href={stegaClean(cta.href)} variant="primary" size="lg">{cta.label}</Button>
               </motion.div>
             )}
           </div>
@@ -50,7 +52,7 @@ export default function Hero({ eyebrow, heading, subheading, image, cta, layout 
     )
   }
 
-  const alignClass = layout === 'left' ? 'text-left items-start' : 'text-center'
+  const alignClass = cleanLayout === 'left' ? 'text-left items-start' : 'text-center'
 
   return (
     <section className="relative min-h-[80vh] flex items-center justify-center text-white">
@@ -76,7 +78,7 @@ export default function Hero({ eyebrow, heading, subheading, image, cta, layout 
         )}
         {cta?.label && cta?.href && (
           <motion.div variants={fadeInUp} initial="hidden" animate="visible">
-            <Button href={cta.href} variant="primary" size="lg">{cta.label}</Button>
+            <Button href={stegaClean(cta.href)} variant="primary" size="lg">{cta.label}</Button>
           </motion.div>
         )}
       </div>

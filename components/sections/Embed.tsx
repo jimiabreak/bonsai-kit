@@ -1,3 +1,4 @@
+import { stegaClean } from '@sanity/client/stega'
 import Container from '@/components/layout/Container'
 
 interface EmbedProps {
@@ -15,13 +16,14 @@ const aspectClasses: Record<string, string> = {
 }
 
 export default function Embed({ heading, embedUrl, aspectRatio = '16:9' }: EmbedProps) {
-  if (!embedUrl) return null
+  const cleanUrl = stegaClean(embedUrl)
+  if (!cleanUrl) return null
   return (
     <section className="py-16 sm:py-24">
       <Container>
         {heading && <h2 className="font-serif text-3xl sm:text-4xl text-center mb-12">{heading}</h2>}
-        <div className={`relative ${aspectClasses[aspectRatio] || 'aspect-video'} overflow-hidden rounded-sm`}>
-          <iframe src={embedUrl} className="absolute inset-0 w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+        <div className={`relative ${aspectClasses[stegaClean(aspectRatio)] || 'aspect-video'} overflow-hidden rounded-sm`}>
+          <iframe src={cleanUrl} className="absolute inset-0 w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
         </div>
       </Container>
     </section>
