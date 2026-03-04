@@ -4,12 +4,14 @@ A modern, Sanity-powered website template built with Next.js 14, TypeScript, and
 
 ## Features
 
-- **7 ready-made pages** -- Home, Menu, About, Contact, FAQ, Privacy, and a custom 404
+- **Composable page builder** -- 14 drag-and-drop section types; clients build pages without code
 - **Sanity CMS** -- structured content management with an embedded studio at `/studio`
 - **Visual Editing** -- real-time preview via Sanity's Presentation API and draft mode
+- **Custom desk structure** -- organized sidebar (Homepage, Pages, Menu, Content Library, Submissions, Site)
+- **Form submissions in CMS** -- contact form entries stored in Sanity for client visibility
 - **Responsive design** -- mobile-first layout with 44px minimum touch targets (WCAG 2.1 AA)
 - **Framer Motion animations** -- subtle, accessible animations that respect `prefers-reduced-motion`
-- **Contact form** -- server-side email delivery via Resend with reCAPTCHA v3 spam protection
+- **Contact form** -- server-side email delivery via Resend with parallel Sanity submission storage
 - **Dynamic sitemap** -- auto-generated from static routes and Sanity pages
 - **SEO-ready** -- per-page meta tags, Open Graph support, and structured data
 - **TypeScript** -- strict mode with auto-generated Sanity types via `typegen`
@@ -18,16 +20,16 @@ A modern, Sanity-powered website template built with Next.js 14, TypeScript, and
 
 ## Tech Stack
 
-| Layer       | Technology                             |
-| ----------- | -------------------------------------- |
-| Framework   | Next.js 14 (App Router)                |
-| Language    | TypeScript (strict)                    |
-| CMS         | Sanity v3 + next-sanity                |
-| Styling     | Tailwind CSS with CSS variable theming |
-| Animations  | Framer Motion                          |
-| Email       | Resend                                 |
-| Fonts       | Inter (sans) + Playfair Display (serif)|
-| Deployment  | Vercel (recommended)                   |
+| Layer      | Technology                              |
+| ---------- | --------------------------------------- |
+| Framework  | Next.js 14 (App Router)                 |
+| Language   | TypeScript (strict)                     |
+| CMS        | Sanity v3 + next-sanity                 |
+| Styling    | Tailwind CSS with CSS variable theming  |
+| Animations | Framer Motion                           |
+| Email      | Resend                                  |
+| Fonts      | Inter (sans) + Playfair Display (serif) |
+| Deployment | Vercel (recommended)                    |
 
 ## Quick Start
 
@@ -85,7 +87,6 @@ A modern, Sanity-powered website template built with Next.js 14, TypeScript, and
    ```
 
 7. **Open in your browser**
-
    - Website: [http://localhost:3000](http://localhost:3000)
    - Sanity Studio: [http://localhost:3000/studio](http://localhost:3000/studio)
 
@@ -94,55 +95,53 @@ A modern, Sanity-powered website template built with Next.js 14, TypeScript, and
 ```
 bonsai-kit/
 ├── app/
-│   ├── page.tsx                  # Home page
+│   ├── page.tsx                  # Home page (server, renders PageBuilder)
 │   ├── layout.tsx                # Root layout (fonts, metadata)
 │   ├── globals.css               # CSS variables & base styles
 │   ├── sitemap.ts                # Dynamic sitemap generator
 │   ├── not-found.tsx             # Custom 404 page
-│   ├── HomePageSections.tsx      # Home page section components
 │   ├── about/page.tsx            # About page
-│   ├── menu/
-│   │   ├── page.tsx              # Menu page (server)
-│   │   └── MenuContent.tsx       # Menu tabs & items (client)
-│   ├── contact/
-│   │   ├── page.tsx              # Contact page (server)
-│   │   └── ContactContent.tsx    # Contact form (client)
-│   ├── faq/
-│   │   ├── page.tsx              # FAQ page (server)
-│   │   └── FAQContent.tsx        # Accordion UI (client)
+│   ├── menu/page.tsx             # Menu page
+│   ├── contact/page.tsx          # Contact page
+│   ├── faq/page.tsx              # FAQ page
 │   ├── privacy/page.tsx          # Privacy policy page
-│   ├── studio/[[...tool]]/page.tsx  # Embedded Sanity Studio
+│   ├── studio/[[...tool]]/       # Embedded Sanity Studio
 │   └── api/
-│       ├── contact/route.ts      # Contact form endpoint
+│       ├── contact/route.ts      # Contact form endpoint (Resend + Sanity)
 │       └── draft/                # Draft mode enable/disable
 ├── components/
 │   ├── layout/                   # Header, Footer, MobileNav, Container
 │   ├── ui/                       # Button, Card, MenuItem, FAQAccordion, etc.
-│   ├── animations/               # Framer Motion wrappers
-│   └── sanity/                   # SanityImage, VisualEditing
+│   ├── sanity/
+│   │   ├── SanityImage.tsx       # Sanity image component
+│   │   ├── VisualEditing.tsx     # Visual editing integration
+│   │   └── PageBuilder.tsx       # Maps pageBuilder sections → React components
+│   ├── sections/                 # Page Builder section components (14 types)
+│   │   ├── Hero.tsx, SplitContent.tsx, RichText.tsx, CTA.tsx,
+│   │   ├── FeaturedMenu.tsx, Testimonials.tsx, FAQ.tsx, Team.tsx,
+│   │   ├── ImageGallery.tsx, ContactForm.tsx, Embed.tsx,
+│   │   └── MenuSection.tsx, LogoBar.tsx, StatsBar.tsx
+│   └── animations/               # Framer Motion wrappers
 ├── sanity/
 │   ├── env.ts                    # Sanity environment config
-│   ├── schemaTypes/              # All document & object schemas
-│   │   ├── singletons/           # siteSettings, homePage
-│   │   ├── documents/            # menuCategory, menuItem, teamMember, etc.
-│   │   ├── objects/              # portableText, socialLink, openingHours, seo
-│   │   └── index.ts              # Schema registry
+│   ├── structure/index.ts        # Custom desk structure (sidebar groups)
+│   ├── schemaTypes/
+│   │   ├── index.ts              # Schema registry
+│   │   ├── builders/pageBuilder.ts  # pageBuilder field (used by homePage + page)
+│   │   ├── singletons/           # siteSettings, homePage, header, footer, redirects
+│   │   ├── documents/            # menuCategory, menuItem, teamMember, etc. + submission
+│   │   └── objects/
+│   │       ├── portableText, socialLink, openingHours, seo, cta
+│   │       └── sections/         # 14 section schemas (sectionHero, sectionCta, etc.)
 │   └── lib/
-│       ├── client.ts             # Sanity client
+│       ├── client.ts             # Sanity client (read + write)
 │       ├── image.ts              # Image URL builder
-│       ├── live.ts               # Live content updates
-│       └── queries.ts            # GROQ queries
-├── lib/
-│   └── animations.ts             # Framer Motion animation variants
-├── types/
-│   └── index.ts                  # Shared TypeScript types
-├── public/
-│   ├── images/                   # Static images
-│   └── robots.txt                # Robots configuration
-├── sanity.config.ts              # Sanity Studio configuration
-├── sanity.cli.js                 # Sanity CLI configuration
+│       ├── live.ts               # sanityFetch() and SanityLive
+│       └── queries.ts            # GROQ queries + PAGE_BUILDER_PROJECTION
+├── lib/animations.ts             # Framer Motion animation variants
+├── types/index.ts                # Shared TypeScript types
+├── sanity.config.ts              # Sanity Studio config (structureTool, presentationTool)
 ├── tailwind.config.ts            # Tailwind + design tokens
-├── next.config.mjs               # Next.js configuration
 └── .env.local.example            # Environment variable template
 ```
 
@@ -150,31 +149,55 @@ bonsai-kit/
 
 ### Singletons (one per project)
 
-| Document        | Purpose                                                        |
-| --------------- | -------------------------------------------------------------- |
-| **siteSettings**| Business name, logo, address, phone, hours, social links, reservation URL, default SEO |
-| **homePage**    | Hero section, about preview, featured menu items, testimonials, CTA |
+| Document         | Purpose                                                                                |
+| ---------------- | -------------------------------------------------------------------------------------- |
+| **siteSettings** | Business name, logo, address, phone, hours, social links, reservation URL, default SEO |
+| **homePage**     | Homepage with composable page builder sections + SEO                                   |
+| **header**       | Navigation links + optional CTA button                                                 |
+| **footer**       | Tagline, link columns, copyright text                                                  |
+| **redirects**    | Source/destination redirect rules (301 permanent / 307 temporary)                      |
 
 ### Documents (multiple entries)
 
-| Document          | Purpose                                                    |
-| ----------------- | ---------------------------------------------------------- |
-| **menuCategory**  | Menu sections (Food, Drinks, Desserts) with sort order     |
-| **menuItem**      | Individual items with price, dietary tags, category reference, availability toggle |
-| **teamMember**    | Staff bios with photo and role                             |
-| **testimonial**   | Customer reviews with rating, source, and date             |
-| **faqItem**       | Question/answer pairs with optional category grouping      |
-| **galleryImage**  | Photo gallery images with alt text and captions            |
-| **page**          | Generic CMS pages with Portable Text body and SEO fields   |
+| Document         | Purpose                                                                            |
+| ---------------- | ---------------------------------------------------------------------------------- |
+| **page**         | CMS pages with URI routing, page builder sections, and SEO                         |
+| **menuCategory** | Menu sections (Food, Drinks, Desserts) with sort order                             |
+| **menuItem**     | Individual items with price, dietary tags, category reference, availability toggle |
+| **teamMember**   | Staff bios with photo and role                                                     |
+| **testimonial**  | Customer reviews with rating, source, and date                                     |
+| **faqItem**      | Question/answer pairs with optional category grouping                              |
+| **galleryImage** | Photo gallery images with alt text and captions                                    |
+| **submission**   | Contact form entries (read-only, stored via API)                                   |
+
+### Section Types (page builder blocks)
+
+| Section                 | Description                                           |
+| ----------------------- | ----------------------------------------------------- |
+| **sectionHero**         | Hero with eyebrow, heading, image, CTA (3 layouts)    |
+| **sectionSplitContent** | Text + image side by side (left/right position)       |
+| **sectionRichText**     | Portable Text body content                            |
+| **sectionCta**          | Call-to-action banner with optional background        |
+| **sectionFeaturedMenu** | Featured menu items (max 6 references)                |
+| **sectionTestimonials** | Testimonial cards (max 6 references)                  |
+| **sectionFaq**          | FAQ accordion with referenced faqItems                |
+| **sectionTeam**         | Team member grid                                      |
+| **sectionImageGallery** | Image gallery grid                                    |
+| **sectionContactForm**  | Contact form (heading + subheading, form is frontend) |
+| **sectionEmbed**        | Video/map/custom iframe embed                         |
+| **sectionMenuSection**  | Full menu with tabbed categories                      |
+| **sectionLogoBar**      | Logo row (partner/client logos)                       |
+| **sectionStatsBar**     | Number + label stat items                             |
 
 ### Object Types (reusable building blocks)
 
-| Object            | Used for                                                   |
-| ----------------- | ---------------------------------------------------------- |
-| **portableText**  | Rich text content (headings, lists, links, images)         |
-| **socialLink**    | Social media platform + URL pairs                          |
-| **openingHours**  | Day-of-week hours (used in siteSettings)                   |
-| **seo**           | Title, description, and OG image for any page              |
+| Object           | Used for                                           |
+| ---------------- | -------------------------------------------------- |
+| **portableText** | Rich text content (headings, lists, links, images) |
+| **cta**          | Call-to-action button (label + href)               |
+| **socialLink**   | Social media platform + URL pairs                  |
+| **openingHours** | Day-of-week hours (used in siteSettings)           |
+| **seo**          | Title, description, and OG image for any page      |
 
 ## Customization
 
@@ -184,13 +207,13 @@ Edit the CSS variables in `app/globals.css`:
 
 ```css
 :root {
-  --color-background: #FAFAF8;   /* Page background */
-  --color-foreground: #1A1A1A;   /* Body text */
-  --color-primary: #B8860B;      /* Accent / buttons (warm gold) */
-  --color-primary-light: #D4A843;/* Hover state for primary */
-  --color-muted: #F5F5F0;        /* Secondary backgrounds */
+  --color-background: #fafaf8; /* Page background */
+  --color-foreground: #1a1a1a; /* Body text */
+  --color-primary: #b8860b; /* Accent / buttons (warm gold) */
+  --color-primary-light: #d4a843; /* Hover state for primary */
+  --color-muted: #f5f5f0; /* Secondary backgrounds */
   --color-muted-foreground: #737373; /* Secondary text */
-  --color-border: #E5E5E0;       /* Borders and dividers */
+  --color-border: #e5e5e0; /* Borders and dividers */
 }
 ```
 
@@ -220,9 +243,13 @@ Replace `Inter` and `Playfair_Display` with any [Google Font](https://fonts.goog
 
 ### Add a New Page
 
-1. Create `app/your-page/page.tsx`
-2. Fetch content from Sanity using the `page` document type or create a new schema
-3. Add the route to the `sitemap.ts` static routes array (or it will be picked up automatically if using the `page` schema)
+The easiest way is through Sanity Studio — create a new **Page** document, set its URI (e.g. `/services`), and add sections via the page builder. No code changes needed.
+
+For pages with custom server-side logic:
+
+1. Create `app/your-page/page.tsx` as a server component
+2. Fetch content with `sanityFetch()` and render with `<PageBuilder sections={page?.pageBuilder} />`
+3. The page will be picked up automatically by the dynamic sitemap
 
 ### Add Menu Sections
 
@@ -240,31 +267,30 @@ The menu is organized by sections (tabs) and categories. To add a new section:
 
 ## Environment Variables
 
-| Variable                          | Required | Description                                      |
-| --------------------------------- | -------- | ------------------------------------------------ |
-| `NEXT_PUBLIC_SANITY_PROJECT_ID`   | Yes      | Sanity project ID from [sanity.io/manage](https://sanity.io/manage) |
-| `NEXT_PUBLIC_SANITY_DATASET`      | Yes      | Sanity dataset name (default: `production`)      |
-| `NEXT_PUBLIC_SANITY_API_VERSION`  | No       | Sanity API version (default: `2024-01-01`)       |
-| `SANITY_API_READ_TOKEN`           | Yes      | Sanity API token with read access (for draft mode and server-side queries) |
-| `RESEND_API_KEY`                  | Yes      | Resend API key for sending contact form emails   |
-| `CONTACT_EMAIL_TO`                | Yes      | Email address that receives contact form submissions |
-| `CONTACT_EMAIL_FROM`              | Yes      | Sender address for contact form emails (must be verified in Resend) |
-| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`  | No       | reCAPTCHA v3 site key for spam protection        |
-| `RECAPTCHA_SECRET_KEY`            | No       | reCAPTCHA v3 secret key (server-side validation) |
-| `NEXT_PUBLIC_SITE_URL`            | No       | Production URL (used in sitemap and OG tags)     |
-| `NEXT_PUBLIC_GA_ID`               | No       | Google Analytics measurement ID                  |
+| Variable                         | Required | Description                                                                |
+| -------------------------------- | -------- | -------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID`  | Yes      | Sanity project ID from [sanity.io/manage](https://sanity.io/manage)        |
+| `NEXT_PUBLIC_SANITY_DATASET`     | Yes      | Sanity dataset name (default: `production`)                                |
+| `NEXT_PUBLIC_SANITY_API_VERSION` | No       | Sanity API version (default: `2024-01-01`)                                 |
+| `SANITY_API_READ_TOKEN`          | Yes      | Sanity API token with read access (for draft mode and server-side queries) |
+| `SANITY_API_WRITE_TOKEN`         | Yes      | Sanity API token with write access (for form submissions + seeding)        |
+| `RESEND_API_KEY`                 | Yes      | Resend API key for sending contact form emails                             |
+| `CONTACT_EMAIL_TO`               | Yes      | Email address that receives contact form submissions                       |
+| `CONTACT_EMAIL_FROM`             | Yes      | Sender address for contact form emails (must be verified in Resend)        |
+| `NEXT_PUBLIC_SITE_URL`           | No       | Production URL (used in sitemap and OG tags)                               |
+| `NEXT_PUBLIC_GA_ID`              | No       | Google Analytics measurement ID                                            |
 
 ## Scripts
 
-| Command              | Description                                           |
-| -------------------- | ----------------------------------------------------- |
-| `npm run dev`        | Start the development server                          |
-| `npm run build`      | Create an optimized production build                  |
-| `npm run start`      | Start the production server                           |
-| `npm run lint`       | Run ESLint                                            |
-| `npm run typecheck`  | Run TypeScript type checking                          |
-| `npm run typegen`    | Extract Sanity schemas and generate TypeScript types  |
-| `npm run seed`       | Seed Sanity dataset with sample content               |
+| Command             | Description                                          |
+| ------------------- | ---------------------------------------------------- |
+| `npm run dev`       | Start the development server                         |
+| `npm run build`     | Create an optimized production build                 |
+| `npm run start`     | Start the production server                          |
+| `npm run lint`      | Run ESLint                                           |
+| `npm run typecheck` | Run TypeScript type checking                         |
+| `npm run typegen`   | Extract Sanity schemas and generate TypeScript types |
+| `npm run seed`      | Seed Sanity dataset with sample content              |
 
 ## Deployment
 
@@ -276,6 +302,7 @@ The menu is organized by sections (tabs) and categories. To add a new section:
 4. Deploy
 
 Vercel will automatically:
+
 - Build and deploy on every push to `main`
 - Create preview deployments for pull requests
 - Handle edge caching and CDN distribution

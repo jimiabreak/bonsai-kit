@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Bonsai Kit — a website starter built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, and **Sanity v3**. It ships 7 pages (Home, Menu, About, Contact, FAQ, Privacy, 404), an embedded Sanity Studio at `/studio`, and Visual Editing via the Presentation API + next-sanity.
+Bonsai Kit — a website starter built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, and **Sanity v3**. It uses a composable **page builder** system with 14 section types, an embedded Sanity Studio at `/studio`, and Visual Editing via the Presentation API + next-sanity.
 
-This is a **starter kit**, not a specific business's site. All content is placeholder and designed to be replaced per-client.
+This is a **starter kit**, not a specific business's site. All content is placeholder and designed to be replaced per-client. Clients build and manage pages entirely from the CMS — no code changes needed for content updates or new pages.
 
 ## Development Commands
 
@@ -34,7 +34,7 @@ npm run seed         # Seed Sanity dataset with placeholder content
 
 ### Data Flow
 
-Server components fetch data via `sanityFetch()` (from `@/sanity/lib/live`) and pass it as props to client components for interactivity. Every page fetches `siteSettings` for the Header/Footer.
+Server components fetch data via `sanityFetch()` (from `@/sanity/lib/live`) and pass it as props to client components for interactivity. Every page fetches `siteSettings` for the Header/Footer. The contact form API writes submission documents to Sanity in parallel with sending email via Resend.
 
 ### File Structure
 
@@ -130,14 +130,14 @@ sanity.config.ts              # Sanity Studio configuration (structureTool, pres
 const [{ data: settings }, { data: menu }] = await Promise.all([
   sanityFetch({ query: SITE_SETTINGS_QUERY }),
   sanityFetch({ query: MENU_QUERY }),
-])
+]);
 return (
   <>
     <Header siteSettings={settings} />
     <MenuContent categories={menu?.categories || []} />
     <Footer siteSettings={settings} />
   </>
-)
+);
 ```
 
 ### Adding a New Page
@@ -163,11 +163,13 @@ return (
 Pages use a modular `pageBuilder` field (array of section objects) that is rendered by a single `<PageBuilder sections={page?.pageBuilder} />` component.
 
 **How it works:**
+
 1. In Sanity, `homePage` and `page` documents include a `pageBuilder` field (defined in `sanity/schemaTypes/builders/pageBuilder.ts`) — an array of typed section objects.
 2. GROQ queries use a shared `PAGE_BUILDER_PROJECTION` fragment to resolve all section types and their referenced data.
 3. The `PageBuilder` component (`components/sanity/PageBuilder.tsx`) maps each section's `_type` to the corresponding React component.
 
 **Adding a new section:**
+
 1. Create the schema in `sanity/schemaTypes/objects/sections/sectionMySection.ts`
 2. Register it in `sanity/schemaTypes/index.ts`
 3. Add it to the `pageBuilder` array in `sanity/schemaTypes/builders/pageBuilder.ts`
@@ -179,11 +181,11 @@ Pages use a modular `pageBuilder` field (array of section objects) that is rende
 
 ```tsx
 // Usage in a page server component
-import PageBuilder from '@/components/sanity/PageBuilder'
+import PageBuilder from "@/components/sanity/PageBuilder";
 
 export default async function SomePage() {
-  const { data: page } = await sanityFetch({ query: SOME_PAGE_QUERY })
-  return <PageBuilder sections={page?.pageBuilder} />
+  const { data: page } = await sanityFetch({ query: SOME_PAGE_QUERY });
+  return <PageBuilder sections={page?.pageBuilder} />;
 }
 ```
 
@@ -192,14 +194,19 @@ export default async function SomePage() {
 Import shared variants from `@/lib/animations` and use with Framer Motion:
 
 ```tsx
-import { motion } from 'framer-motion'
-import { fadeInUp, staggerContainer } from '@/lib/animations'
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
 
 // Parent uses staggerContainer, children use fadeInUp
-<motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+<motion.div
+  variants={staggerContainer}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+>
   <motion.div variants={fadeInUp}>Child 1</motion.div>
   <motion.div variants={fadeInUp}>Child 2</motion.div>
-</motion.div>
+</motion.div>;
 ```
 
 Available variants: `fadeInUp`, `fadeIn`, `staggerContainer`, `pageTransition`
@@ -208,15 +215,15 @@ Available variants: `fadeInUp`, `fadeIn`, `staggerContainer`, `pageTransition`
 
 CSS variables defined in `app/globals.css`, mapped to Tailwind in `tailwind.config.ts`:
 
-| Variable                   | Value     | Tailwind Class          |
-|----------------------------|-----------|-------------------------|
-| `--color-background`       | `#FAFAF8` | `bg-background`         |
-| `--color-foreground`       | `#1A1A1A` | `text-foreground`       |
+| Variable                   | Value     | Tailwind Class               |
+| -------------------------- | --------- | ---------------------------- |
+| `--color-background`       | `#FAFAF8` | `bg-background`              |
+| `--color-foreground`       | `#1A1A1A` | `text-foreground`            |
 | `--color-primary`          | `#B8860B` | `bg-primary`, `text-primary` |
-| `--color-primary-light`    | `#D4A843` | `bg-primary-light`      |
-| `--color-muted`            | `#F5F5F0` | `bg-muted`              |
-| `--color-muted-foreground` | `#737373` | `text-muted-foreground` |
-| `--color-border`           | `#E5E5E0` | `border-border`         |
+| `--color-primary-light`    | `#D4A843` | `bg-primary-light`           |
+| `--color-muted`            | `#F5F5F0` | `bg-muted`                   |
+| `--color-muted-foreground` | `#737373` | `text-muted-foreground`      |
+| `--color-border`           | `#E5E5E0` | `border-border`              |
 
 ## Fonts
 
@@ -227,18 +234,18 @@ Loaded via `next/font/google` in `app/layout.tsx` and exposed as CSS variables:
 
 ## Environment Variables
 
-| Variable                          | Required | Description                                      |
-|-----------------------------------|----------|--------------------------------------------------|
-| `NEXT_PUBLIC_SANITY_PROJECT_ID`   | Yes      | Sanity project ID (from sanity.io/manage)        |
-| `NEXT_PUBLIC_SANITY_DATASET`      | Yes      | Sanity dataset name (usually `production`)       |
-| `NEXT_PUBLIC_SANITY_API_VERSION`  | No       | Sanity API version (default: `2024-01-01`)       |
-| `SANITY_API_READ_TOKEN`          | Yes      | Sanity read token (for live preview + fetching)  |
-| `SANITY_API_WRITE_TOKEN`         | Seed only| Sanity write token (only needed for `npm run seed`) |
-| `RESEND_API_KEY`                 | Contact  | Resend API key (for contact form emails)         |
-| `CONTACT_EMAIL_TO`               | Contact  | Destination email for contact form submissions   |
-| `CONTACT_EMAIL_FROM`             | Contact  | Sender address for contact form emails           |
-| `NEXT_PUBLIC_SITE_URL`           | No       | Production URL (used in sitemap, SEO)            |
-| `NEXT_PUBLIC_GA_ID`              | No       | Google Analytics measurement ID                  |
+| Variable                         | Required | Description                                            |
+| -------------------------------- | -------- | ------------------------------------------------------ |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID`  | Yes      | Sanity project ID (from sanity.io/manage)              |
+| `NEXT_PUBLIC_SANITY_DATASET`     | Yes      | Sanity dataset name (usually `production`)             |
+| `NEXT_PUBLIC_SANITY_API_VERSION` | No       | Sanity API version (default: `2024-01-01`)             |
+| `SANITY_API_READ_TOKEN`          | Yes      | Sanity read token (for live preview + fetching)        |
+| `SANITY_API_WRITE_TOKEN`         | Yes      | Sanity write token (form submissions + `npm run seed`) |
+| `RESEND_API_KEY`                 | Contact  | Resend API key (for contact form emails)               |
+| `CONTACT_EMAIL_TO`               | Contact  | Destination email for contact form submissions         |
+| `CONTACT_EMAIL_FROM`             | Contact  | Sender address for contact form emails                 |
+| `NEXT_PUBLIC_SITE_URL`           | No       | Production URL (used in sitemap, SEO)                  |
+| `NEXT_PUBLIC_GA_ID`              | No       | Google Analytics measurement ID                        |
 
 See `.env.local.example` for the full template.
 
