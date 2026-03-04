@@ -2,12 +2,13 @@
 
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
+import type { SanityImageSource } from '@sanity/image-url'
 import Container from '@/components/layout/Container'
 import GalleryGrid from '@/components/ui/GalleryGrid'
 
 interface ImageGalleryProps {
   heading?: string
-  images?: Array<{ _id: string; image: any; alt: string; caption?: string }>
+  images?: Array<{ _id: string; image: SanityImageSource; alt: string; caption?: string }>
 }
 
 export default function ImageGallery({ heading, images }: ImageGalleryProps) {

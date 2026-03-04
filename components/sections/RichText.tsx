@@ -1,8 +1,10 @@
 import { PortableText } from '@portabletext/react'
 import Container from '@/components/layout/Container'
 
+type PortableTextValue = Parameters<typeof PortableText>[0]['value']
+
 interface RichTextProps {
-  body?: any
+  body?: PortableTextValue
 }
 
 export default function RichText({ body }: RichTextProps) {

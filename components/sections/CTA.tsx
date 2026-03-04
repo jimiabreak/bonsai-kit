@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 import Container from '@/components/layout/Container'
+import type { SanityImageSource } from '@sanity/image-url'
 import SanityImage from '@/components/sanity/SanityImage'
 import Button from '@/components/ui/Button'
 
@@ -10,7 +11,7 @@ interface CTAProps {
   heading?: string
   body?: string
   cta?: { label?: string; href?: string }
-  backgroundImage?: any
+  backgroundImage?: SanityImageSource
 }
 
 export default function CTA({ heading, body, cta, backgroundImage }: CTAProps) {

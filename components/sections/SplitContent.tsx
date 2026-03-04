@@ -3,14 +3,17 @@
 import { motion } from 'framer-motion'
 import { PortableText } from '@portabletext/react'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
+import type { SanityImageSource } from '@sanity/image-url'
 import Container from '@/components/layout/Container'
 import SanityImage from '@/components/sanity/SanityImage'
 import Button from '@/components/ui/Button'
 
+type PortableTextValue = Parameters<typeof PortableText>[0]['value']
+
 interface SplitContentProps {
   heading?: string
-  body?: any
-  image?: any
+  body?: PortableTextValue
+  image?: SanityImageSource
   imagePosition?: 'left' | 'right'
   cta?: { label?: string; href?: string }
 }
@@ -21,7 +24,7 @@ export default function SplitContent({ heading, body, image, imagePosition = 'ri
       {heading && <h2 className="font-serif text-3xl sm:text-4xl mb-6">{heading}</h2>}
       {body && (
         <div className="prose prose-lg max-w-none text-muted-foreground">
-          {Array.isArray(body) ? <PortableText value={body} /> : <p>{body}</p>}
+          {Array.isArray(body) ? <PortableText value={body} /> : <p>{String(body)}</p>}
         </div>
       )}
       {cta?.label && cta?.href && (

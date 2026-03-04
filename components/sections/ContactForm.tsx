@@ -37,8 +37,8 @@ export default function ContactForm({ heading, subheading }: ContactFormProps) {
       }
       setFormState('success')
       ;(e.target as HTMLFormElement).reset()
-    } catch (err: any) {
-      setErrorMessage(err.message || 'Something went wrong')
+    } catch (err: unknown) {
+      setErrorMessage(err instanceof Error ? err.message : 'Something went wrong')
       setFormState('error')
     }
   }

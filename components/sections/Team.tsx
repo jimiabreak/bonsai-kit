@@ -2,13 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
+import type { SanityImageSource } from '@sanity/image-url'
 import Container from '@/components/layout/Container'
 import TeamCard from '@/components/ui/TeamCard'
 
 interface TeamProps {
   heading?: string
   subheading?: string
-  teamMembers?: Array<{ _id: string; name: string; role?: string; image: any }>
+  teamMembers?: Array<{ _id: string; name: string; role?: string; image: SanityImageSource }>
 }
 
 export default function Team({ heading, subheading, teamMembers }: TeamProps) {

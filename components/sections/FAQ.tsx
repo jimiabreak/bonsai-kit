@@ -6,9 +6,11 @@ import { PortableText } from '@portabletext/react'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 import Container from '@/components/layout/Container'
 
+type PortableTextValue = Parameters<typeof PortableText>[0]['value']
+
 interface FAQProps {
   heading?: string
-  faqItems?: Array<{ _id: string; question: string; answer: any }>
+  faqItems?: Array<{ _id: string; question: string; answer: PortableTextValue }>
 }
 
 export default function FAQ({ heading, faqItems }: FAQProps) {
@@ -31,7 +33,7 @@ export default function FAQ({ heading, faqItems }: FAQProps) {
                 {openId === item._id && (
                   <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2, ease: 'easeOut' }} className="overflow-hidden">
                     <div className="pb-5 prose prose-sm text-muted-foreground">
-                      {Array.isArray(item.answer) ? <PortableText value={item.answer} /> : <p>{item.answer}</p>}
+                      {Array.isArray(item.answer) ? <PortableText value={item.answer} /> : <p>{String(item.answer)}</p>}
                     </div>
                   </motion.div>
                 )}

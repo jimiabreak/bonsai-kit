@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { fadeInUp } from '@/lib/animations'
+import type { SanityImageSource } from '@sanity/image-url'
 import SanityImage from '@/components/sanity/SanityImage'
 import Button from '@/components/ui/Button'
 
@@ -9,7 +10,7 @@ interface HeroProps {
   eyebrow?: string
   heading?: string
   subheading?: string
-  image?: any
+  image?: SanityImageSource
   cta?: { label?: string; href?: string }
   layout?: 'centered' | 'left' | 'split'
 }

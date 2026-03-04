@@ -19,7 +19,7 @@ interface MenuSectionProps {
 }
 
 export default function MenuSection({ heading, description, categories }: MenuSectionProps) {
-  const sections = [...new Set(categories?.map((c) => c.menuSection) || [])]
+  const sections = Array.from(new Set(categories?.map((c) => c.menuSection) || []))
   const [activeTab, setActiveTab] = useState(sections[0] || 'food')
   if (!categories || categories.length === 0) return null
   const filteredCategories = categories.filter((c) => c.menuSection === activeTab)

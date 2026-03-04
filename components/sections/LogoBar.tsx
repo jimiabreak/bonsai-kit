@@ -1,9 +1,10 @@
+import type { SanityImageSource } from '@sanity/image-url'
 import Container from '@/components/layout/Container'
 import SanityImage from '@/components/sanity/SanityImage'
 
 interface LogoBarProps {
   heading?: string
-  logos?: Array<{ _key: string; asset: any; alt?: string }>
+  logos?: Array<{ _key: string; asset: SanityImageSource; alt?: string }>
 }
 
 export default function LogoBar({ heading, logos }: LogoBarProps) {

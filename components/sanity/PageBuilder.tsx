@@ -13,6 +13,7 @@ import MenuSection from '@/components/sections/MenuSection'
 import LogoBar from '@/components/sections/LogoBar'
 import StatsBar from '@/components/sections/StatsBar'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const sectionComponents: Record<string, React.ComponentType<any>> = {
   sectionHero: Hero,
   sectionSplitContent: SplitContent,
@@ -31,6 +32,7 @@ const sectionComponents: Record<string, React.ComponentType<any>> = {
 }
 
 interface PageBuilderProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   sections?: Array<{ _type: string; _key: string; [key: string]: any }>
 }
 
