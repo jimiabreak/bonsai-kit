@@ -30,7 +30,7 @@ function AccordionItem({
     <div className="border-b border-foreground/20">
       <button
         onClick={onToggle}
-        className="w-full text-left py-6 flex items-center justify-between gap-4 hover:opacity-70 transition-opacity duration-300 focus:outline-none focus-visible:outline-none active:opacity-70"
+        className="w-full text-left py-6 flex items-center justify-between gap-4 hover:opacity-70 transition-opacity duration-300 active:opacity-70"
         aria-expanded={isOpen}
       >
         <h3 className="text-[20px] sm:text-[24px] md:text-[28px] lg:text-[33px] font-bold leading-tight tracking-[-0.03em] pr-8">

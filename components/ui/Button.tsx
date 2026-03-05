@@ -35,7 +35,7 @@ export default function Button({
   type = 'button',
   ariaLabel,
 }: ButtonProps) {
-  const baseStyles = 'inline-flex items-center justify-center font-sans uppercase tracking-wider transition-all duration-200 min-h-touch'
+  const baseStyles = 'inline-flex items-center justify-center font-sans uppercase tracking-wider transition-colors duration-200 min-h-touch'
   const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`
 
   if (href) {

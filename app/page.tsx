@@ -13,7 +13,7 @@ export default async function HomePage() {
   return (
     <>
       <Header siteSettings={settings} />
-      <main>
+      <main id="main">
         <PageBuilder sections={page?.pageBuilder} />
       </main>
       <Footer siteSettings={settings} />

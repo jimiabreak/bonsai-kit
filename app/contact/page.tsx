@@ -16,7 +16,7 @@ export default async function ContactPage() {
   return (
     <>
       <Header siteSettings={settings} />
-      <main className="py-16 sm:py-24">
+      <main id="main" className="py-16 sm:py-24">
         <ContactContent settings={settings} />
       </main>
       <Footer siteSettings={settings} />

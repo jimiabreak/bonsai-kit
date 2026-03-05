@@ -19,7 +19,7 @@ export default async function MenuPage() {
   return (
     <>
       <Header siteSettings={settings} />
-      <main className="py-16 sm:py-24">
+      <main id="main" className="py-16 sm:py-24">
         <MenuContent categories={menu?.categories || []} />
       </main>
       <Footer siteSettings={settings} />

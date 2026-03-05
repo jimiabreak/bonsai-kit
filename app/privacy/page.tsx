@@ -20,7 +20,7 @@ export default async function PrivacyPage() {
   return (
     <>
       <Header siteSettings={settings} />
-      <main className="py-16 sm:py-24">
+      <main id="main" className="py-16 sm:py-24">
         <Container>
           <h1 className="font-serif text-4xl sm:text-5xl text-center mb-12">
             {page?.title || 'Privacy Policy'}

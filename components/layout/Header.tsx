@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { stegaClean } from '@sanity/client/stega'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -25,6 +25,7 @@ const navLinks = [
 
 export default function Header({ siteSettings }: HeaderProps) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
 
   return (
     <motion.header
@@ -77,6 +78,7 @@ export default function Header({ siteSettings }: HeaderProps) {
 
           {/* Mobile Menu Button */}
           <button
+            ref={menuButtonRef}
             className="md:hidden touch-target flex items-center justify-center"
             onClick={() => setMobileNavOpen(true)}
             aria-label="Open menu"
@@ -91,6 +93,7 @@ export default function Header({ siteSettings }: HeaderProps) {
       <MobileNav
         isOpen={mobileNavOpen}
         onClose={() => setMobileNavOpen(false)}
+        triggerRef={menuButtonRef}
         links={[
           ...navLinks,
           ...(siteSettings?.reservationUrl

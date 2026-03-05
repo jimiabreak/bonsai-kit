@@ -85,12 +85,12 @@ export default function Footer({ siteSettings }: FooterProps) {
           <div>
             <h3 className="font-serif text-lg mb-4">Contact</h3>
             {siteSettings?.phone && (
-              <a href={`tel:${stegaClean(siteSettings.phone)}`} className="block text-sm opacity-70 hover:opacity-100 mb-1">
+              <a href={`tel:${stegaClean(siteSettings.phone)}`} className="block text-sm opacity-70 hover:opacity-100 py-1">
                 {siteSettings.phone}
               </a>
             )}
             {siteSettings?.email && (
-              <a href={`mailto:${stegaClean(siteSettings.email)}`} className="block text-sm opacity-70 hover:opacity-100 mb-4">
+              <a href={`mailto:${stegaClean(siteSettings.email)}`} className="block text-sm opacity-70 hover:opacity-100 py-1 mb-2">
                 {siteSettings.email}
               </a>
             )}
@@ -105,7 +105,7 @@ export default function Footer({ siteSettings }: FooterProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={platform}
-                      className="opacity-70 hover:opacity-100 transition-opacity"
+                      className="p-3 -m-3 opacity-70 hover:opacity-100 transition-opacity"
                     >
                       <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                         <path d={socialIcons[platform] || ''} />

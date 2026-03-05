@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, FormEvent } from 'react'
+import { useState, useRef, FormEvent } from 'react'
 import { stegaClean } from '@sanity/client/stega'
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
@@ -15,13 +15,22 @@ interface ContactContentProps {
 export default function ContactContent({ settings }: ContactContentProps) {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const formRef = useRef<HTMLFormElement>(null)
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setFormState('submitting')
     setErrorMessage('')
 
     const form = e.currentTarget
+
+    if (!form.checkValidity()) {
+      const firstInvalid = form.querySelector<HTMLInputElement | HTMLTextAreaElement>(':invalid')
+      firstInvalid?.focus()
+      form.reportValidity()
+      return
+    }
+
+    setFormState('submitting')
     const formData = new FormData(form)
 
     try {
@@ -29,10 +38,10 @@ export default function ContactContent({ settings }: ContactContentProps) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: formData.get('name'),
-          email: formData.get('email'),
-          phone: formData.get('phone'),
-          message: formData.get('message'),
+          name: (formData.get('name') as string)?.trim(),
+          email: (formData.get('email') as string)?.trim(),
+          phone: (formData.get('phone') as string)?.trim(),
+          message: (formData.get('message') as string)?.trim(),
         }),
       })
 
@@ -46,6 +55,13 @@ export default function ContactContent({ settings }: ContactContentProps) {
     } catch (err: unknown) {
       setFormState('error')
       setErrorMessage(err instanceof Error ? err.message : 'Failed to send message')
+    }
+  }
+
+  function handleTextareaKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault()
+      formRef.current?.requestSubmit()
     }
   }
 
@@ -70,12 +86,12 @@ export default function ContactContent({ settings }: ContactContentProps) {
         {/* Form */}
         <motion.div variants={fadeInUp}>
           {formState === 'success' ? (
-            <div className="bg-muted p-8 rounded-sm text-center">
+            <div className="bg-muted p-8 rounded-sm text-center" aria-live="polite">
               <h2 className="font-serif text-2xl mb-2">Thank you!</h2>
               <p className="text-muted-foreground">We&apos;ll get back to you soon.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6" noValidate>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
                 <input
@@ -83,6 +99,8 @@ export default function ContactContent({ settings }: ContactContentProps) {
                   id="name"
                   name="name"
                   required
+                  autoComplete="name"
+                  placeholder="Jane Doe…"
                   className="w-full px-4 py-3 border border-border bg-background rounded-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
@@ -93,6 +111,9 @@ export default function ContactContent({ settings }: ContactContentProps) {
                   id="email"
                   name="email"
                   required
+                  autoComplete="email"
+                  spellCheck={false}
+                  placeholder="jane@example.com…"
                   className="w-full px-4 py-3 border border-border bg-background rounded-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
@@ -102,6 +123,9 @@ export default function ContactContent({ settings }: ContactContentProps) {
                   type="tel"
                   id="phone"
                   name="phone"
+                  autoComplete="tel"
+                  inputMode="tel"
+                  placeholder="(555) 123-4567…"
                   className="w-full px-4 py-3 border border-border bg-background rounded-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
@@ -112,14 +136,16 @@ export default function ContactContent({ settings }: ContactContentProps) {
                   name="message"
                   rows={5}
                   required
+                  placeholder="How can we help…"
+                  onKeyDown={handleTextareaKeyDown}
                   className="w-full px-4 py-3 border border-border bg-background rounded-sm focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                 />
               </div>
               {formState === 'error' && (
-                <p className="text-red-600 text-sm">{errorMessage}</p>
+                <p role="alert" className="text-red-600 text-sm">{errorMessage}</p>
               )}
               <Button type="submit" disabled={formState === 'submitting'}>
-                {formState === 'submitting' ? 'Sending...' : 'Send Message'}
+                {formState === 'submitting' ? 'Sending…' : 'Send Message'}
               </Button>
             </form>
           )}
